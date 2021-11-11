@@ -1,4 +1,4 @@
-baseURL = 'https://ubeydgencer.com/'
+baseURL = 'https://ubeydgencer.github.io'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme="papermod-hugo"
