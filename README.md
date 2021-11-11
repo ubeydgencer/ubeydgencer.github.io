@@ -1,1 +1,0 @@
-# ubeydgencer.github.io
