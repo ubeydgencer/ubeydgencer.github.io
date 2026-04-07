@@ -1,4 +1,27 @@
-baseURL = 'https://ubeydgencer.github.io/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = "ananke"
+baseURL = 'https://ubeydgencer.com/'
+languageCode = 'tr'
+title = 'Ubeyd Gencer'
+theme = "minimal"
+paginate = 10
+
+[params]
+  name = "Ubeyd Gencer"
+  role = "Bilgi İşlem & İş Geliştirme"
+  company = "Açsa Otomotiv"
+  location = "İstanbul, Türkiye"
+  bio = "Fırat Üniversitesi Bilgisayar Mühendisliği mezunu. Teknoloji, girişimcilik, tasarım ve fotoğrafçılığa meraklıyım. Şu an Açsa Otomotiv'de bilgi işlem ve iş geliştirme üzerine çalışıyorum."
+  github = "https://github.com/ubeydgencer"
+  twitter = "https://twitter.com/UbeydGencer"
+  linkedin = "https://linkedin.com/in/mubeyd"
+  instagram = "https://instagram.com/ubeydgencer"
+  medium = "https://medium.com/@ubeydgencer"
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 1
+  [[menu.main]]
+    name = "Projeler"
+    url = "/projeler/"
+    weight = 2
