@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yer İmleri — Ubeyd Gencer</title>
+  <meta name="description" content="Ubeyd Gencer'in kaydettiği yer imleri." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SCQFS30M5E');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --text: #27272a;
+      --muted: #71717a;
+      --border: #e4e4e7;
+      --link: #18181b;
+      --card-bg: #fff;
+    }
+
+    html.dark {
+      --bg: #09090b;
+      --text: #fafafa;
+      --muted: #a1a1aa;
+      --border: #27272a;
+      --link: #e4e4e7;
+      --card-bg: #18181b;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 24px 80px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    main {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    /* Theme toggle — pill slider */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      cursor: pointer;
+      padding: 0;
+      z-index: 100;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .theme-toggle:hover {
+      border-color: #a1a1aa;
+    }
+
+    .toggle-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html.dark .toggle-knob {
+      left: 27px;
+    }
+
+    .toggle-knob svg {
+      width: 11px;
+      height: 11px;
+      color: var(--card-bg);
+      flex-shrink: 0;
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+    }
+
+    .back-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .embed-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .embed-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 600px;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Temayı değiştir">
+    <span class="toggle-knob">
+      <!-- Sun icon (dark mode'da görünür) -->
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <!-- Moon icon (light mode'da görünür) -->
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+      </svg>
+    </span>
+  </button>
+
+  <main>
+    <a class="back-link" href="/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Geri dön
+    </a>
+
+    <h1>Yer İmleri</h1>
+
+    <div class="embed-wrapper">
+      <iframe allowfullscreen frameborder="0" src="https://ubeyd.raindrop.page/embed/me"></iframe>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        root.classList.add('dark');
+      }
+      btn.addEventListener('click', () => {
+        root.classList.toggle('dark');
+        localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+      });
+    })();
+  </script>
+</body>
+</html>
