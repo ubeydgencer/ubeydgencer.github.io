@@ -1,0 +1,35 @@
+# Ubeyd Gencer
+
+> Bilgi İşlem & İş Geliştirme · Açsa Otomotiv · İstanbul, Türkiye
+
+Ubeyd Gencer — Fırat Üniversitesi Bilgisayar Mühendisliği mezunu. Teknoloji, girişimcilik, tasarım ve fotoğrafçılığa meraklı. Şu an Açsa Otomotiv'de bilgi işlem ve iş geliştirme alanlarında çalışıyor.
+
+## Sayfalar
+
+- [Ana Sayfa](https://ubeydgencer.com/)
+- [Projeler](https://ubeydgencer.com/projects)
+- [Yer İmleri](https://ubeydgencer.com/bookmarks)
+
+## Projeler
+
+- **ACSA Depo Çıkış Takip** — Eberspächer ve Indel B ürün çıkışlarını takip eden PWA. Next.js 14, Supabase, barkod okuma. [acsa-depo.vercel.app](https://acsa-depo.vercel.app)
+- **Toparla** — macOS için yerel AI ile klasör organize eden Tauri 2 masaüstü uygulaması. Ollama ile çevrimdışı çalışır.
+- **Qayyo** — Küçük işletmeler için ERP ve etiket yönetim sistemi. Tauri, Electron, Python.
+- **Hediye Ambalaj** — Hediye ambalaj firması için Next.js landing page.
+- **Kıroğlu Hukuk Bürosu** — Avukatlık bürosu kurumsal web sitesi. [kirogluhukuk.com](https://www.kirogluhukuk.com)
+- **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma Electron uygulaması.
+- **Kalori — Ürün Kataloğu** — ACSA / Eberspächer ısıtıcı ürünleri dijital kataloğu. Docker, Nginx.
+- **Satın Alma Takip** — Trendyol satın alma verilerini takip eden Python aracı.
+- **ugoto** — Yedek parça distribütörü için çok dilli PHP kurumsal web sitesi. [ugotomotiv.com](https://www.ugotomotiv.com)
+- **İnterkom Bot** — ESP32 + Telegram bot ile bina kapısı otomasyon sistemi.
+- **Indel B ITB Serisi** — Taşınabilir araç buzdolapları ürün landing page'i. SEO, structured data. [indelb.acsagroup.com](https://indelb.acsagroup.com)
+- **Açsa Teklif Hazırlama** — Açsa Otomotiv için dahili teklif hazırlama ve PDF çıktı uygulaması.
+- **Della Pianto** — İkas e-ticaret mağazası. [dellapianto.com](https://dellapianto.com)
+- **Eye Sofia** — İkas e-ticaret mağazası. [eyesofia.com](https://eyesofia.com)
+- **Qayyo Shop** — İkas e-ticaret mağazası. [qayyo.com](https://qayyo.com)
+
+## İletişim
+
+- GitHub: [github.com/ubeydgencer](https://github.com/ubeydgencer)
+- LinkedIn: [linkedin.com/in/mubeyd](https://linkedin.com/in/mubeyd)
+- Twitter: [twitter.com/UbeydGencer](https://twitter.com/UbeydGencer)
