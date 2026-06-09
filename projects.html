@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeler — Ubeyd Gencer</title>
+  <meta name="description" content="Ubeyd Gencer'in geliştirdiği projeler." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SCQFS30M5E');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --text: #27272a;
+      --muted: #71717a;
+      --border: #e4e4e7;
+      --link: #18181b;
+      --link-hover: #3f3f46;
+      --card-bg: #fff;
+      --card-hover: #f4f4f5;
+      --tag-bg: #f4f4f5;
+      --tag-text: #52525b;
+    }
+
+    html.dark {
+      --bg: #09090b;
+      --text: #fafafa;
+      --muted: #a1a1aa;
+      --border: #27272a;
+      --link: #e4e4e7;
+      --link-hover: #a1a1aa;
+      --card-bg: #18181b;
+      --card-hover: #27272a;
+      --tag-bg: #27272a;
+      --tag-text: #a1a1aa;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 24px 80px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    main {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      cursor: pointer;
+      padding: 0;
+      z-index: 100;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .theme-toggle:hover {
+      border-color: #a1a1aa;
+    }
+
+    .toggle-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html.dark .toggle-knob {
+      left: 27px;
+    }
+
+    .toggle-knob svg {
+      width: 11px;
+      height: 11px;
+      color: var(--card-bg);
+      flex-shrink: 0;
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun { display: block; }
+    html.dark .icon-moon { display: none; }
+
+    /* Back link */
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 32px;
+      transition: color 0.15s;
+    }
+
+    .back:hover {
+      color: var(--text);
+    }
+
+    .back svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 32px;
+    }
+
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .page-sub {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    /* Project list */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      padding: 20px 20px 18px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      display: block;
+      transition: background 0.15s;
+    }
+
+    .project-card:last-child {
+      border-bottom: none;
+    }
+
+    .project-card:hover {
+      background: var(--card-hover);
+    }
+
+    .project-card.no-link {
+      cursor: default;
+    }
+
+    .project-card.no-link:hover {
+      background: var(--card-bg);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .project-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .project-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .project-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+    }
+
+    .project-status .dot.wip {
+      background: #f59e0b;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 48px;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+    <span class="toggle-knob">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <line x1="12" y1="2" x2="12" y2="4"/>
+        <line x1="12" y1="20" x2="12" y2="22"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="2" y1="12" x2="4" y2="12"/>
+        <line x1="20" y1="12" x2="22" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </span>
+  </button>
+
+  <main>
+    <a class="back" href="/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Ana sayfa
+    </a>
+
+    <header class="header">
+      <h1 class="page-title">Projeler</h1>
+      <p class="page-sub">Geliştirdiğim uygulamalar ve araçlar</p>
+    </header>
+
+    <hr class="divider" />
+
+    <div class="projects">
+
+      <!-- OSIRIS -->
+      <a class="project-card" href="https://osirislive.app" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="project-name">OSIRIS</span>
+          <span class="project-status">
+            <span class="dot"></span>
+            Canlı
+          </span>
+        </div>
+        <p class="project-desc">Gerçek zamanlı küresel istihbarat panosu. Uçuş takibi, deniz trafiği, depremler, aktif yangınlar, 2000+ CCTV kamerası ve 24/7 haber akışlarını tek bir GPU hızlandırmalı haritada birleştiriyor.</p>
+        <div class="project-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">MapLibre GL</span>
+          <span class="tag">OSINT</span>
+        </div>
+      </a>
+
+      <!-- Toparla -->
+      <div class="project-card no-link">
+        <div class="project-header">
+          <span class="project-name">Toparla</span>
+          <span class="project-status">
+            <span class="dot wip"></span>
+            Geliştirme
+          </span>
+        </div>
+        <p class="project-desc">macOS için AI destekli klasör organizasyon uygulaması. Yerel Ollama modelleriyle dosyalarını otomatik kategorize eder — hiçbir veri buluta gitmez. Geri alma ve özelleştirilebilir model desteğiyle gelir.</p>
+        <div class="project-tags">
+          <span class="tag">Tauri 2</span>
+          <span class="tag">Rust</span>
+          <span class="tag">Python</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">macOS</span>
+        </div>
+      </div>
+
+      <!-- Qayyo -->
+      <div class="project-card no-link">
+        <div class="project-header">
+          <span class="project-name">Qayyo</span>
+          <span class="project-status">
+            <span class="dot wip"></span>
+            Geliştirme
+          </span>
+        </div>
+        <p class="project-desc">Küçük işletmeler için ERP ve etiket yönetim sistemi. Ürün yönetimi, depo takibi ve barkod/etiket üretimini tek bir masaüstü uygulamasında birleştiriyor.</p>
+        <div class="project-tags">
+          <span class="tag">Tauri</span>
+          <span class="tag">Electron</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <!-- Hediye Ambalaj -->
+      <div class="project-card no-link">
+        <div class="project-header">
+          <span class="project-name">Hediye Ambalaj</span>
+          <span class="project-status">
+            <span class="dot"></span>
+            Tamamlandı
+          </span>
+        </div>
+        <p class="project-desc">Hediye ambalaj firması için kurumsal web sitesi. Hizmet kataloğu, marka kimliği ve iletişim sayfalarını kapsayan modern bir landing page.</p>
+        <div class="project-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>İstanbul, Türkiye</p>
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (stored === 'dark' || (!stored && prefersDark)) {
+      html.classList.add('dark');
+    }
+
+    btn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
