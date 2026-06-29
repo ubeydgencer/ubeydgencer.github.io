@@ -12,21 +12,25 @@ Ubeyd Gencer — Fırat Üniversitesi Bilgisayar Mühendisliği mezunu. Teknoloj
 
 ## Projeler
 
+- **Dünya Kupası 2026 — Canlı Takip** — FIFA 2026 Dünya Kupası canlı skor takip PWA'sı. Grup tabloları, fikstür, eleme turu bracket görselleştirmesi. [world-cup-26-sja.pages.dev](https://world-cup-26-sja.pages.dev)
 - **ACSA Depo Çıkış Takip** — Eberspächer ve Indel B ürün çıkışlarını takip eden PWA. Next.js 14, Supabase, barkod okuma. [acsa-depo.vercel.app](https://acsa-depo.vercel.app)
-- **Toparla** — macOS için yerel AI ile klasör organize eden Tauri 2 masaüstü uygulaması. Ollama ile çevrimdışı çalışır.
-- **Qayyo** — Küçük işletmeler için ERP ve etiket yönetim sistemi. Tauri, Electron, Python.
-- **Hediye Ambalaj** — Hediye ambalaj firması için Next.js landing page.
-- **Kıroğlu Hukuk Bürosu** — Avukatlık bürosu kurumsal web sitesi. [kirogluhukuk.com](https://www.kirogluhukuk.com)
-- **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma Electron uygulaması.
-- **Kalori — Ürün Kataloğu** — ACSA / Eberspächer ısıtıcı ürünleri dijital kataloğu. Docker, Nginx.
-- **Satın Alma Takip** — Trendyol satın alma verilerini takip eden Python aracı.
-- **ugoto** — Yedek parça distribütörü için çok dilli PHP kurumsal web sitesi. [ugotomotiv.com](https://www.ugotomotiv.com)
-- **İnterkom Bot** — ESP32 + Telegram bot ile bina kapısı otomasyon sistemi.
-- **Indel B ITB Serisi** — Taşınabilir araç buzdolapları ürün landing page'i. SEO, structured data. [indelb.acsagroup.com](https://indelb.acsagroup.com)
-- **Açsa Teklif Hazırlama** — Açsa Otomotiv için dahili teklif hazırlama ve PDF çıktı uygulaması.
 - **Della Pianto** — İkas e-ticaret mağazası. [dellapianto.com](https://dellapianto.com)
 - **Eye Sofia** — İkas e-ticaret mağazası. [eyesofia.com](https://eyesofia.com)
 - **Qayyo Shop** — İkas e-ticaret mağazası. [qayyo.com](https://qayyo.com)
+- **İkiz Yapı** — Pergole, cam balkon ve otomatik kapı sistemleri firma sitesi. Cloudinary, Next.js. [ikizyapi.com](https://ikizyapi.com)
+- **Toparla** — macOS için yerel AI ile klasör organize eden Tauri 2 masaüstü uygulaması. Ollama ile çevrimdışı çalışır.
+- **Qayyo ERP** — Küçük işletmeler için ERP sistemi. Ürün/depo yönetimi, barkod/etiket üretimi, Trendyol takibi. [qayyo-yonetim.onrender.com](https://qayyo-yonetim.onrender.com)
+- **Hediye Ambalaj** — Hediye ambalaj firması için Next.js landing page.
+- **Cooltronic 2000 G3 Hatch** — Eberspächer tavan klima ünitesi ürün landing page'i. [cooltronic.acsagroup.com](https://cooltronic.acsagroup.com)
+- **Zeliox Mobil Güç Sistemleri** — Zeliox & Eberspächer mobil enerji depolama sistemleri landing page'i. [zeliox.acsagroup.com](https://zeliox.acsagroup.com)
+- **Ulukale Köyü Dijital Arşivi** — Tunceli Çemişgezek Ulukale köyü tarih ve bellek arşivi. [ulukalekoyu.com](https://ulukalekoyu.com)
+- **Indel B ITB Serisi** — Taşınabilir araç buzdolapları ürün landing page'i. SEO, structured data. [indelb.acsagroup.com](https://indelb.acsagroup.com)
+- **Açsa Teklif Hazırlama** — Açsa Otomotiv için dahili teklif hazırlama ve PDF çıktı uygulaması.
+- **Kıroğlu Hukuk Bürosu** — Avukatlık bürosu kurumsal web sitesi. [kirogluhukuk.com](https://www.kirogluhukuk.com)
+- **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma Electron uygulaması.
+- **Kalori — Ürün Kataloğu** — ACSA / Eberspächer ısıtıcı ürünleri dijital kataloğu. Docker, Nginx.
+- **ugoto** — Yedek parça distribütörü için çok dilli PHP kurumsal web sitesi. [ugotomotiv.com](https://www.ugotomotiv.com)
+- **İnterkom Bot** — ESP32 + Telegram bot ile bina kapısı otomasyon sistemi.
 
 ## İletişim
 
