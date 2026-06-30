@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yer İmleri — Ubeyd Gencer</title>
-  <meta name="description" content="Ubeyd Gencer'in kaydettiği yer imleri — teknoloji, tasarım, geliştirme ve ilham veren kaynaklar." />
+  <meta name="description" content="Ubeyd Gencer'in kaydettiği yer imleri — ekipman, web tasarım ilhamları ve video kaynakları." />
   <meta name="author" content="Ubeyd Gencer" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://ubeydgencer.com/bookmarks" />
@@ -12,7 +12,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Yer İmleri — Ubeyd Gencer" />
-  <meta property="og:description" content="Teknoloji, tasarım, geliştirme ve ilham veren kaynaklar." />
+  <meta property="og:description" content="Ekipman, web tasarım ilhamları ve video kaynakları." />
   <meta property="og:url" content="https://ubeydgencer.com/bookmarks" />
   <meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
   <meta property="og:locale" content="tr_TR" />
@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@UbeydGencer" />
   <meta name="twitter:title" content="Yer İmleri — Ubeyd Gencer" />
-  <meta name="twitter:description" content="Teknoloji, tasarım, geliştirme ve ilham veren kaynaklar." />
+  <meta name="twitter:description" content="Ekipman, web tasarım ilhamları ve video kaynakları." />
   <meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -53,6 +53,8 @@
       --link-hover: #3f3f46;
       --card-bg: #fff;
       --card-hover: #f4f4f5;
+      --tag-bg: #f4f4f5;
+      --tag-text: #52525b;
     }
 
     html.dark {
@@ -64,6 +66,8 @@
       --link-hover: #a1a1aa;
       --card-bg: #18181b;
       --card-hover: #27272a;
+      --tag-bg: #27272a;
+      --tag-text: #a1a1aa;
     }
 
     html {
@@ -140,7 +144,6 @@
       max-width: 560px;
     }
 
-    /* Back link */
     .back {
       display: inline-flex;
       align-items: center;
@@ -161,7 +164,6 @@
       height: 14px;
     }
 
-    /* Header */
     .header {
       margin-bottom: 32px;
     }
@@ -180,28 +182,121 @@
       color: var(--muted);
     }
 
-    /* Divider */
     .divider {
       border: none;
       border-top: 1px solid var(--border);
       margin-bottom: 32px;
     }
 
-    /* Embed — full width */
-    .embed-wrapper {
+    /* Bookmarks area */
+    .bookmarks-area {
       width: 100%;
       max-width: 1200px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
     }
 
-    .embed-wrapper iframe {
-      display: block;
-      width: 100%;
-      height: calc(100vh - 260px);
-      min-height: 500px;
-      border: 0;
+    /* Category */
+    .category {
+      margin-bottom: 40px;
+    }
+
+    .category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+
+    /* Grid */
+    .bookmark-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .bookmark-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .bookmark-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .bookmark-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Bookmark card */
+    .bm-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .bm-card:hover {
+      border-color: var(--muted);
+      background: var(--card-hover);
+    }
+
+    .bm-favicon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+
+    .bm-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .bm-title {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bm-domain {
+      font-size: 0.6875rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .bm-arrow {
+      width: 14px;
+      height: 14px;
+      color: var(--muted);
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .bm-card:hover .bm-arrow {
+      opacity: 1;
     }
 
     /* Footer */
@@ -249,8 +344,320 @@
     <hr class="divider" />
   </div>
 
-  <div class="embed-wrapper">
-    <iframe allowfullscreen frameborder="0" src="https://ubeyd.raindrop.page/embed/me"></iframe>
+  <div class="bookmarks-area">
+
+    <!-- Ekipman -->
+    <section class="category">
+      <h2 class="category-title">Ekipman</h2>
+      <div class="bookmark-grid">
+
+        <a class="bm-card" href="https://www.apple.com/tr/mac-mini/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Mac mini M4</div>
+            <div class="bm-domain">apple.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.lg.com/tr/monitor/uhd-4k-5k/32un880-b-lg-ultrafine-ergo-ekran/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=lg.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">LG UltraFine Ergo 32" 4K Monitor</div>
+            <div class="bm-domain">lg.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.logitech.com/tr-tr/products/keyboards/mx-keys-mini.920-010504.html" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=logitech.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Logitech MX Keys Mini</div>
+            <div class="bm-domain">logitech.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.logitech.com/tr-tr/products/mice/mx-master-3s.910-006559.html" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=logitech.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Logitech MX Master 3s</div>
+            <div class="bm-domain">logitech.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.caldigit.com/thunderbolt-station-4/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=caldigit.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">CalDigit TS4 Thunderbolt 4 Dock</div>
+            <div class="bm-domain">caldigit.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.ikea.com.tr/urun/alex-beyaz-140x60-cm-calisma-masasi-49431927" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=ikea.com.tr&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">IKEA ALEX Çalışma Masası 140x60</div>
+            <div class="bm-domain">ikea.com.tr</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://shop.nurus.com/products/nurus-me-too-baslikli-kisisellestirilebilir-calisma-koltugu?variant=50121620291889" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=nurus.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Nurus Me Too Çalışma Koltuğu</div>
+            <div class="bm-domain">nurus.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://ugreen.com.tr/urun/ugreen-aluminyum-ayarlanabilir-ve-katlanabilir-havalandirmali-masaustu-laptop-notebook-standi/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=ugreen.com.tr&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Ugreen Laptop Standı</div>
+            <div class="bm-domain">ugreen.com.tr</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.benq.com/en-us/lighting/monitor-light/screenbar-pro/buy.html" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=benq.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">BenQ ScreenBar Pro</div>
+            <div class="bm-domain">benq.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.obsbot.com/store/products/tiny-2-lite?product_id=690957de895b4" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=obsbot.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">OBSBOT Tiny 2 Lite 4K Webcam</div>
+            <div class="bm-domain">obsbot.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.arturia.com/products/audio/minifuse/minifuse1" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=arturia.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Arturia MiniFuse 1</div>
+            <div class="bm-domain">arturia.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.apple.com/tr/homepod-mini/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Apple HomePod mini</div>
+            <div class="bm-domain">apple.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://support.apple.com/en-us/118451" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=apple.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">iPad (8th generation)</div>
+            <div class="bm-domain">apple.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.anker.com/products/a2697-anker-charger-140w-4-port" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=anker.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Anker 140W 4-Port Charger</div>
+            <div class="bm-domain">anker.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.anker.com/products/a1902-100w-power-bank-charging-station" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=anker.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Anker Prime 100W Charging Base</div>
+            <div class="bm-domain">anker.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://us.ugreen.com/collections/usb-hub/products/ugreen-uno-6-in-1-usb-c-hub-4k60hz-100w-10gbps" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=ugreen.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Ugreen Uno 6-in-1 USB-C Hub</div>
+            <div class="bm-domain">ugreen.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.tp-link.com/tr/home-networking/deco/deco-x20/v4%20(3-pack)/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=tp-link.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">TP-Link Deco X20 Mesh Wi-Fi 6</div>
+            <div class="bm-domain">tp-link.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.tp-link.com/tr/home-networking/deco/deco-x50-poe/v2%20(1-pack)/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=tp-link.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">TP-Link Deco X50 PoE Mesh Wi-Fi</div>
+            <div class="bm-domain">tp-link.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.dji.com/global/nano" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=dji.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">DJI Osmo Nano</div>
+            <div class="bm-domain">dji.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.dji.com/global/mini-2-se" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=dji.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">DJI Mini 2 SE</div>
+            <div class="bm-domain">dji.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Web Tasarım İlhamları -->
+    <section class="category">
+      <h2 class="category-title">Web Tasarım İlhamları</h2>
+      <div class="bookmark-grid">
+
+        <a class="bm-card" href="https://mesajewelry.shop/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=mesajewelry.shop&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Mesa Jewelry</div>
+            <div class="bm-domain">mesajewelry.shop</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://persodias.com/tr/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=persodias.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Persodias</div>
+            <div class="bm-domain">persodias.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://mozanitistanbul.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=mozanitistanbul.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Mozanit İstanbul</div>
+            <div class="bm-domain">mozanitistanbul.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://nordbron.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=nordbron.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Nordbron</div>
+            <div class="bm-domain">nordbron.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://ladues.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=ladues.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Ladues</div>
+            <div class="bm-domain">ladues.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://olegcassini.com.tr/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=olegcassini.com.tr&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Oleg Cassini</div>
+            <div class="bm-domain">olegcassini.com.tr</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://www.watchofroyal.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=watchofroyal.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Watch of Royal</div>
+            <div class="bm-domain">watchofroyal.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://vitanyofficial.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=vitanyofficial.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Vitany Sportswear</div>
+            <div class="bm-domain">vitanyofficial.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://eyeofhoruseyewear.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=eyeofhoruseyewear.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Eye of Horus Eyewear</div>
+            <div class="bm-domain">eyeofhoruseyewear.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://gettoderi.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=gettoderi.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Getto Deri</div>
+            <div class="bm-domain">gettoderi.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <a class="bm-card" href="https://senlites.com/" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=senlites.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Senlites</div>
+            <div class="bm-domain">senlites.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Youtube -->
+    <section class="category">
+      <h2 class="category-title">Youtube</h2>
+      <div class="bookmark-grid">
+
+        <a class="bm-card" href="https://youtu.be/vBo7ItRPTDg?t=1381" target="_blank" rel="noopener">
+          <img class="bm-favicon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="" />
+          <div class="bm-info">
+            <div class="bm-title">Karavanda Nasıl Isınacağım? Mercedes 207D</div>
+            <div class="bm-domain">youtube.com</div>
+          </div>
+          <svg class="bm-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+      </div>
+    </section>
+
   </div>
 
   <footer class="footer">
