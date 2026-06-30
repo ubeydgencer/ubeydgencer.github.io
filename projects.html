@@ -110,11 +110,6 @@
       transition: background-color 0.2s, color 0.2s;
     }
 
-    main {
-      width: 100%;
-      max-width: 560px;
-    }
-
     /* Theme toggle */
     .theme-toggle {
       position: fixed;
@@ -165,7 +160,12 @@
     html.dark .icon-sun { display: block; }
     html.dark .icon-moon { display: none; }
 
-    /* Back link */
+    /* Header area */
+    .header-area {
+      width: 100%;
+      max-width: 560px;
+    }
+
     .back {
       display: inline-flex;
       align-items: center;
@@ -186,7 +186,6 @@
       height: 14px;
     }
 
-    /* Header */
     .header {
       margin-bottom: 32px;
     }
@@ -205,46 +204,70 @@
       color: var(--muted);
     }
 
-    /* Divider */
     .divider {
       border: none;
       border-top: 1px solid var(--border);
       margin-bottom: 32px;
     }
 
-    /* Project list */
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
+    /* Projects area — full width */
+    .projects-area {
+      width: 100%;
+      max-width: 1200px;
     }
 
+    /* Category */
+    .category {
+      margin-bottom: 40px;
+    }
+
+    .category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+
+    /* Grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .project-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Card */
     .project-card {
       background: var(--card-bg);
-      padding: 20px 20px 18px;
-      border-bottom: 1px solid var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
       text-decoration: none;
-      display: block;
-      transition: background 0.15s;
-    }
-
-    .project-card:last-child {
-      border-bottom: none;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.15s, border-color 0.15s;
     }
 
     .project-card:hover {
-      background: var(--card-hover);
-    }
-
-    .project-card.no-link {
-      cursor: default;
-    }
-
-    .project-card.no-link:hover {
-      background: var(--card-bg);
+      border-color: var(--muted);
     }
 
     .project-header {
@@ -252,7 +275,7 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .project-name {
@@ -286,10 +309,11 @@
     }
 
     .project-desc {
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       color: var(--muted);
       line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      flex: 1;
     }
 
     .project-tags {
@@ -321,7 +345,7 @@
     }
 
     .tag {
-      font-size: 0.75rem;
+      font-size: 0.6875rem;
       color: var(--tag-text);
       background: var(--tag-bg);
       padding: 2px 8px;
@@ -358,7 +382,7 @@
     </span>
   </button>
 
-  <main>
+  <div class="header-area">
     <a class="back" href="/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="15 18 9 12 15 6"/>
@@ -372,394 +396,346 @@
     </header>
 
     <hr class="divider" />
+  </div>
 
-    <div class="projects">
+  <div class="projects-area">
 
-      <!-- Dünya Kupası 2026 -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Dünya Kupası 2026 — Canlı Takip</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
+    <!-- Açsa Otomotiv -->
+    <section class="category">
+      <h2 class="category-title">Açsa Otomotiv</h2>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">ACSA Depo Çıkış Takip</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Eberspächer ve Indel B ürünlerinin depodan müşteri firmalara çıkışını takip eden PWA. Barkod okuma, otomatik model tanıma, firma yönetimi ve filtrelenebilir geçmiş ekranı.</p>
+          <div class="project-tags">
+            <span class="tag">Next.js 14</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">PWA</span>
+          </div>
+          <a class="project-link" href="https://acsa-depo.vercel.app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            acsa-depo.vercel.app
+          </a>
         </div>
-        <p class="project-desc">FIFA 2026 Dünya Kupası için canlı skor takip PWA'sı. Grup puan tabloları, fikstür, eleme turu bracket görselleştirmesi ve anlık maç güncellemeleri.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">PWA</span>
-          <span class="tag">Cloudflare Pages</span>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Cooltronic 2000 G3 Hatch</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Eberspächer Cooltronic 2000 G3 Hatch tavan klima ünitesi için ürün landing page'i. Teknik özellikler, ürün galerisi ve SEO optimizasyonu.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SEO</span>
+          </div>
+          <a class="project-link" href="https://cooltronic.acsagroup.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            cooltronic.acsagroup.com
+          </a>
         </div>
-        <a class="project-link" href="https://world-cup-26-sja.pages.dev" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          world-cup-26-sja.pages.dev
-        </a>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Zeliox Mobil Güç Sistemleri</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Zeliox & Eberspächer mobil enerji depolama sistemleri için ürün landing page'i. Beş model, teknik karşılaştırma tablosu ve SEO optimizasyonu.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SEO</span>
+          </div>
+          <a class="project-link" href="https://zeliox.acsagroup.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            zeliox.acsagroup.com
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Indel B ITB Serisi</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Indel B Travel Box taşınabilir araç buzdolapları için ürün landing page'i. Structured data ve karşılaştırma tablosu.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SEO</span>
+          </div>
+          <a class="project-link" href="https://indelb.acsagroup.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            indelb.acsagroup.com
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Açsa Teklif Hazırlama</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Dahili teklif hazırlama aracı. Ürün seçimi, fiyatlandırma ve PDF teklif çıktısını tek sayfada birleştiren web uygulaması.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Kalori — Ürün Kataloğu</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Eberspächer ısıtıcı ürünleri için dijital ürün kataloğu. Docker ile deploy, çok dilli ve PDF katalog desteği.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-      <!-- ACSA Depo -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">ACSA Depo Çıkış Takip</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
+    <!-- E-Ticaret -->
+    <section class="category">
+      <h2 class="category-title">E-Ticaret</h2>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Della Pianto</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi.</p>
+          <div class="project-tags">
+            <span class="tag">İkas</span>
+            <span class="tag">E-Ticaret</span>
+          </div>
+          <a class="project-link" href="https://dellapianto.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            dellapianto.com
+          </a>
         </div>
-        <p class="project-desc">Eberspächer ve Indel B ürünlerinin depodan müşteri firmalara çıkışını takip eden PWA. Barkod okuma, otomatik model tanıma, firma yönetimi ve filtrelenebilir geçmiş ekranı.</p>
-        <div class="project-tags">
-          <span class="tag">Next.js 14</span>
-          <span class="tag">Supabase</span>
-          <span class="tag">Tailwind CSS</span>
-          <span class="tag">PWA</span>
-          <span class="tag">Vercel</span>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Eye Sofia</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi.</p>
+          <div class="project-tags">
+            <span class="tag">İkas</span>
+            <span class="tag">E-Ticaret</span>
+          </div>
+          <a class="project-link" href="https://eyesofia.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            eyesofia.com
+          </a>
         </div>
-        <a class="project-link" href="https://acsa-depo.vercel.app" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          acsa-depo.vercel.app
-        </a>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Qayyo Shop</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi.</p>
+          <div class="project-tags">
+            <span class="tag">İkas</span>
+            <span class="tag">E-Ticaret</span>
+          </div>
+          <a class="project-link" href="https://qayyo.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            qayyo.com
+          </a>
+        </div>
+
       </div>
+    </section>
 
-      <!-- Della Pianto -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Della Pianto</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
+    <!-- Web Projeleri -->
+    <section class="category">
+      <h2 class="category-title">Web Projeleri</h2>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Dünya Kupası 2026 — Canlı Takip</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">FIFA 2026 Dünya Kupası için canlı skor takip PWA'sı. Grup puan tabloları, fikstür, eleme turu bracket görselleştirmesi.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">PWA</span>
+          </div>
+          <a class="project-link" href="https://world-cup-26-sja.pages.dev" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            world-cup-26-sja.pages.dev
+          </a>
         </div>
-        <p class="project-desc">İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi.</p>
-        <div class="project-tags">
-          <span class="tag">İkas</span>
-          <span class="tag">E-Ticaret</span>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">İkiz Yapı</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Pergole, cam balkon ve otomatik kapı sistemleri firması için proje galerisi sitesi. Cloudinary fotoğraf altyapısı ve WhatsApp entegrasyonu.</p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Cloudinary</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <a class="project-link" href="https://ikizyapi.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            ikizyapi.com
+          </a>
         </div>
-        <a class="project-link" href="https://dellapianto.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          dellapianto.com
-        </a>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Ulukale Köyü Dijital Arşivi</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Tunceli Çemişgezek Ulukale köyünün tarihini ve belleğini koruyan dijital arşiv. Kronolojik tarih, fotoğraf koleksiyonu ve mimari belgeleme.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Netlify</span>
+            <span class="tag">SEO</span>
+          </div>
+          <a class="project-link" href="https://ulukalekoyu.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            ulukalekoyu.com
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Kıroğlu Hukuk Bürosu</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Av. Aslıhan Kıroğlu için hukuk bürosu web sitesi. Aile, iş, ceza ve gayrimenkul hukuku, SEO optimizasyonlu kurumsal site.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <a class="project-link" href="https://www.kirogluhukuk.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            kirogluhukuk.com
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Hediye Ambalaj</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Hediye ambalaj firması için kurumsal web sitesi. Hizmet kataloğu, marka kimliği ve iletişim sayfalarını kapsayan landing page.</p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">ugoto</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Yedek parça distribütörü için çok dilli kurumsal web sitesi. Fren, süspansiyon ve elektrik parçaları için marka ve ürün kataloğu.</p>
+          <div class="project-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+          <a class="project-link" href="https://www.ugotomotiv.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            ugotomotiv.com
+          </a>
+        </div>
+
       </div>
+    </section>
 
-      <!-- Eye Sofia -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Eye Sofia</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
+    <!-- Uygulamalar & IoT -->
+    <section class="category">
+      <h2 class="category-title">Uygulamalar & IoT</h2>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Qayyo ERP</span>
+            <span class="project-status"><span class="dot wip"></span> Geliştirme</span>
+          </div>
+          <p class="project-desc">Küçük işletmeler için ERP sistemi. Ürün ve depo yönetimi, barkod/etiket üretimi, Trendyol satın alma takibi, SQLite ve Excel aktarımı.</p>
+          <div class="project-tags">
+            <span class="tag">Tauri</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQLite</span>
+          </div>
+          <a class="project-link" href="https://qayyo-yonetim.onrender.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            qayyo-yonetim.onrender.com
+          </a>
         </div>
-        <p class="project-desc">İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi.</p>
-        <div class="project-tags">
-          <span class="tag">İkas</span>
-          <span class="tag">E-Ticaret</span>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Toparla</span>
+            <span class="project-status"><span class="dot wip"></span> Geliştirme</span>
+          </div>
+          <p class="project-desc">macOS için AI destekli klasör organizasyon uygulaması. Yerel Ollama modelleriyle dosyaları otomatik kategorize eder, veri buluta gitmez.</p>
+          <div class="project-tags">
+            <span class="tag">Tauri 2</span>
+            <span class="tag">Rust</span>
+            <span class="tag">Python</span>
+            <span class="tag">Ollama</span>
+          </div>
         </div>
-        <a class="project-link" href="https://eyesofia.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          eyesofia.com
-        </a>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">Trendyol Etiket</span>
+            <span class="project-status"><span class="dot"></span> Canlı</span>
+          </div>
+          <p class="project-desc">Trendyol siparişleri için kargo etiketi yazdırma masaüstü uygulaması. Trendyol API ile entegre, tek tıkla toplu etiket yazdırma.</p>
+          <div class="project-tags">
+            <span class="tag">Electron</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">macOS</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">İnterkom Bot</span>
+            <span class="project-status"><span class="dot wip"></span> Geliştirme</span>
+          </div>
+          <p class="project-desc">ESP32 tabanlı akıllı interkom otomasyon sistemi. Bina kapısı zili çaldığında Telegram bildirimi, uzaktan kapı açma.</p>
+          <div class="project-tags">
+            <span class="tag">ESP32</span>
+            <span class="tag">Arduino</span>
+            <span class="tag">Telegram Bot</span>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-      <!-- Qayyo Shop -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Qayyo Shop</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi.</p>
-        <div class="project-tags">
-          <span class="tag">İkas</span>
-          <span class="tag">E-Ticaret</span>
-        </div>
-        <a class="project-link" href="https://qayyo.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          qayyo.com
-        </a>
-      </div>
-
-      <!-- İkiz Yapı -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">İkiz Yapı</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Pergole, cam balkon, kış bahçesi ve otomatik kapı sistemleri firması için proje galerisi sitesi. Cloudinary tabanlı fotoğraf altyapısı, dönen sekme başlığı ve WhatsApp entegrasyonu.</p>
-        <div class="project-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">Cloudinary</span>
-          <span class="tag">Tailwind CSS</span>
-          <span class="tag">Vercel</span>
-        </div>
-        <a class="project-link" href="https://ikizyapi.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ikizyapi.com
-        </a>
-      </div>
-
-      <!-- Toparla -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Toparla</span>
-          <span class="project-status">
-            <span class="dot wip"></span>
-            Geliştirme
-          </span>
-        </div>
-        <p class="project-desc">macOS için AI destekli klasör organizasyon uygulaması. Yerel Ollama modelleriyle dosyalarını otomatik kategorize eder — hiçbir veri buluta gitmez. Geri alma ve özelleştirilebilir model desteğiyle gelir.</p>
-        <div class="project-tags">
-          <span class="tag">Tauri 2</span>
-          <span class="tag">Rust</span>
-          <span class="tag">Python</span>
-          <span class="tag">Ollama</span>
-          <span class="tag">macOS</span>
-        </div>
-      </div>
-
-      <!-- Qayyo ERP -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Qayyo ERP</span>
-          <span class="project-status">
-            <span class="dot wip"></span>
-            Geliştirme
-          </span>
-        </div>
-        <p class="project-desc">Küçük işletmeler için ERP sistemi. Ürün ve depo yönetimi, barkod/etiket üretimi, Trendyol satın alma takibi, SQLite veritabanı ve Excel aktarımı.</p>
-        <div class="project-tags">
-          <span class="tag">Tauri</span>
-          <span class="tag">Python</span>
-          <span class="tag">SQLite</span>
-        </div>
-        <a class="project-link" href="https://qayyo-yonetim.onrender.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          qayyo-yonetim.onrender.com
-        </a>
-      </div>
-
-      <!-- Hediye Ambalaj -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Hediye Ambalaj</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Hediye ambalaj firması için kurumsal web sitesi. Hizmet kataloğu, marka kimliği ve iletişim sayfalarını kapsayan modern bir landing page.</p>
-        <div class="project-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">TypeScript</span>
-        </div>
-      </div>
-
-      <!-- Cooltronic 2000 G3 Hatch -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Cooltronic 2000 G3 Hatch</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Eberspächer Cooltronic 2000 G3 Hatch tavan klima ünitesi için ürün landing page'i. Teknik özellikler, ürün galerisi ve SEO optimizasyonlu Açsa Otomotiv alt sayfası.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">SEO</span>
-        </div>
-        <a class="project-link" href="https://cooltronic.acsagroup.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          cooltronic.acsagroup.com
-        </a>
-      </div>
-
-      <!-- Zeliox Eberspächer -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Zeliox Mobil Güç Sistemleri</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Zeliox & Eberspächer mobil enerji depolama sistemleri için ürün landing page'i. Eco Slim'den NEO 4000'e kadar beş model, teknik karşılaştırma tablosu ve SEO optimizasyonlu Açsa Otomotiv alt sayfası.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">SEO</span>
-        </div>
-        <a class="project-link" href="https://zeliox.acsagroup.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          zeliox.acsagroup.com
-        </a>
-      </div>
-
-      <!-- Ulukale Köyü -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Ulukale Köyü Dijital Arşivi</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Tunceli Çemişgezek'e bağlı Ulukale köyünün tarihini ve belleğini koruyan dijital arşiv. Kronolojik tarih, tarihi yapılar, fotoğraf koleksiyonu, sözlü tarih ve mimari belgeleme.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">Netlify</span>
-          <span class="tag">SEO</span>
-        </div>
-        <a class="project-link" href="https://ulukalekoyu.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ulukalekoyu.com
-        </a>
-      </div>
-
-      <!-- Indel B ITB -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Indel B ITB Serisi</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Indel B Travel Box ITB20/32/42/52 taşınabilir araç buzdolapları için ürün landing page'i. SEO optimizasyonlu, structured data ve karşılaştırma tablosu içeren Açsa Otomotiv alt sayfası.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">SEO</span>
-        </div>
-        <a class="project-link" href="https://indelb.acsagroup.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          indelb.acsagroup.com
-        </a>
-      </div>
-
-      <!-- Açsa Teklif -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Açsa Teklif Hazırlama</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Açsa Otomotiv için dahili teklif hazırlama aracı. Ürün seçimi, fiyatlandırma ve PDF teklif çıktısını tek sayfada birleştiren web uygulaması.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-        </div>
-      </div>
-
-      <!-- Kıroğlu Hukuk -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Kıroğlu Hukuk Bürosu</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Av. Aslıhan Kıroğlu için hukuk bürosu web sitesi. Aile, iş, ceza ve gayrimenkul hukuku alanlarını kapsayan, SEO optimizasyonlu kurumsal site.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-        </div>
-        <a class="project-link" href="https://www.kirogluhukuk.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          kirogluhukuk.com
-        </a>
-      </div>
-
-      <!-- Trendyol Etiket -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Trendyol Etiket</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Trendyol siparişleri için kargo etiketi yazdırma masaüstü uygulaması. Trendyol API ile entegre, tek tıkla toplu etiket yazdırma desteği sunar.</p>
-        <div class="project-tags">
-          <span class="tag">Electron</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">macOS</span>
-        </div>
-      </div>
-
-      <!-- Kalori Katalog -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">Kalori — Ürün Kataloğu</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">ACSA / Eberspächer ısıtıcı ürünleri için dijital ürün kataloğu. Docker ile deploy edilen, çok dilli ve PDF katalog desteği olan web sitesi.</p>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Nginx</span>
-        </div>
-      </div>
-
-      <!-- ugoto -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">ugoto</span>
-          <span class="project-status">
-            <span class="dot"></span>
-            Canlı
-          </span>
-        </div>
-        <p class="project-desc">Yedek parça distribütörü için çok dilli kurumsal web sitesi. Fren, süspansiyon ve elektrik parçaları için marka ve ürün kataloğu içerir.</p>
-        <div class="project-tags">
-          <span class="tag">PHP</span>
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-        </div>
-        <a class="project-link" href="https://www.ugotomotiv.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ugotomotiv.com
-        </a>
-      </div>
-
-      <!-- İnterkom Bot -->
-      <div class="project-card no-link">
-        <div class="project-header">
-          <span class="project-name">İnterkom Bot</span>
-          <span class="project-status">
-            <span class="dot wip"></span>
-            Geliştirme
-          </span>
-        </div>
-        <p class="project-desc">ESP32 tabanlı akıllı interkom otomasyon sistemi. Bina kapısı zili çaldığında Telegram üzerinden bildirim gönderir, uzaktan kapı açmaya izin verir.</p>
-        <div class="project-tags">
-          <span class="tag">ESP32</span>
-          <span class="tag">Arduino</span>
-          <span class="tag">Telegram Bot</span>
-        </div>
-      </div>
-
-    </div>
-  </main>
+  </div>
 
   <footer class="footer">
     <p>İstanbul, Türkiye</p>
