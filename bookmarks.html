@@ -84,11 +84,6 @@
       transition: background-color 0.2s, color 0.2s;
     }
 
-    main {
-      width: 100%;
-      max-width: 560px;
-    }
-
     /* Theme toggle */
     .theme-toggle {
       position: fixed;
@@ -139,6 +134,12 @@
     html.dark .icon-sun { display: block; }
     html.dark .icon-moon { display: none; }
 
+    /* Header area */
+    .header-area {
+      width: 100%;
+      max-width: 560px;
+    }
+
     /* Back link */
     .back {
       display: inline-flex;
@@ -186,8 +187,10 @@
       margin-bottom: 32px;
     }
 
-    /* Embed */
+    /* Embed — full width */
     .embed-wrapper {
+      width: 100%;
+      max-width: 1200px;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -196,26 +199,9 @@
     .embed-wrapper iframe {
       display: block;
       width: 100%;
-      height: 600px;
+      height: calc(100vh - 260px);
+      min-height: 500px;
       border: 0;
-      color-scheme: light;
-    }
-
-    /* Site dark + OS light: Raindrop light → invert to dark */
-    @media (prefers-color-scheme: light) {
-      html.dark .embed-wrapper iframe {
-        filter: invert(1) hue-rotate(180deg);
-      }
-      html.dark .embed-wrapper iframe img {
-        filter: invert(1) hue-rotate(180deg);
-      }
-    }
-
-    /* Site light + OS dark: Raindrop dark → invert to light */
-    @media (prefers-color-scheme: dark) {
-      html:not(.dark) .embed-wrapper iframe {
-        filter: invert(1) hue-rotate(180deg);
-      }
     }
 
     /* Footer */
@@ -247,7 +233,7 @@
     </span>
   </button>
 
-  <main>
+  <div class="header-area">
     <a class="back" href="/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="15 18 9 12 15 6"/>
@@ -261,11 +247,11 @@
     </header>
 
     <hr class="divider" />
+  </div>
 
-    <div class="embed-wrapper">
-      <iframe allowfullscreen frameborder="0" src="https://ubeyd.raindrop.page/embed/me"></iframe>
-    </div>
-  </main>
+  <div class="embed-wrapper">
+    <iframe allowfullscreen frameborder="0" src="https://ubeyd.raindrop.page/embed/me"></iframe>
+  </div>
 
   <footer class="footer">
     <p>İstanbul, Türkiye</p>
