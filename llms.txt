@@ -12,6 +12,7 @@ Ubeyd Gencer — Fırat Üniversitesi Bilgisayar Mühendisliği mezunu. Teknoloj
 
 ## Projeler
 
+- **Haramain News** — Mekke & Medine haberlerini sunan üç dilli (Arapça/Türkçe/İngilizce) haber sitesi. Gazete düzeni, namaz vakitleri, Kuran dinleme, azkar. Vanilla JS SPA, FastAPI backend, Netlify. [haramainnews.com](https://haramainnews.com)
 - **Dünya Kupası 2026 — Canlı Takip** — FIFA 2026 Dünya Kupası canlı skor takip PWA'sı. Grup tabloları, fikstür, eleme turu bracket görselleştirmesi. [world-cup-26-sja.pages.dev](https://world-cup-26-sja.pages.dev)
 - **ACSA Depo Çıkış Takip** — Eberspächer ve Indel B ürün çıkışlarını takip eden PWA. Next.js 14, Supabase, barkod okuma. [acsa-depo.vercel.app](https://acsa-depo.vercel.app)
 - **Della Pianto** — İkas e-ticaret mağazası. [dellapianto.com](https://dellapianto.com)
