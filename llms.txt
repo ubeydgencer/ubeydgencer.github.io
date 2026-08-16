@@ -26,6 +26,8 @@ Ubeyd Gencer — Fırat Üniversitesi Bilgisayar Mühendisliği mezunu. Teknoloj
 - **Zeliox Mobil Güç Sistemleri** — Zeliox & Eberspächer mobil enerji depolama sistemleri landing page'i. [zeliox.acsagroup.com](https://zeliox.acsagroup.com)
 - **Ulukale Köyü Dijital Arşivi** — Tunceli Çemişgezek Ulukale köyü tarih ve bellek arşivi. [ulukalekoyu.com](https://ulukalekoyu.com)
 - **Indel B ITB Serisi** — Taşınabilir araç buzdolapları ürün landing page'i. SEO, structured data. [indelb.acsagroup.com](https://indelb.acsagroup.com)
+- **Personel İzin Hesaplama Otomasyonu** — PDKS raporundan 4857 sayılı İş Kanunu'na göre yıllık izin bakiyesi hesaplayan dahili web aracı. Sıfır bağımlılık, tek HTML dosyası, Docker.
+- **Araç Muayene & Sigorta Takip** — Şirket filosunun fenni muayene, egzoz, sigorta ve K2 yetki belgesi tarihlerini takip eden dahili uygulama. localStorage tabanlı, backend yok, Docker.
 - **Açsa Teklif Hazırlama** — Açsa Otomotiv için dahili teklif hazırlama ve PDF çıktı uygulaması.
 - **Kıroğlu Hukuk Bürosu** — Avukatlık bürosu kurumsal web sitesi. [kirogluhukuk.com](https://www.kirogluhukuk.com)
 - **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma Electron uygulaması.
