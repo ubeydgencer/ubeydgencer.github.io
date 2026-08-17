@@ -815,6 +815,20 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
   border-radius: 1px;
 }
 
+/* Ray ve kumanda cipleri kartonun uzerinde duruyor ve karton yedi tonun
+   herhangi biri olabiliyor; tek renkli bir halka hepsinde birden 3:1'i
+   tutturamiyor (beyaz krom sarisinda 2.08, koyu murekkep ultramarinde 2.19).
+   Ic ice beyaz + murekkep halka: hangi ton olursa olsun ikisinden biri
+   mutlaka ayirt ediliyor. Ray'in overflow:hidden'i disariya tasan halkayi
+   kirptigi icin ikisi de inset. */
+.tab:focus-visible,
+.ctl:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 2px rgb(255 255 255 / 0.96),
+    inset 0 0 0 5px #17150F;
+}
+
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-track { background: var(--board-face); }
 ::-webkit-scrollbar-thumb {
@@ -904,7 +918,6 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
   .tab { font-size: 0.5625rem; letter-spacing: 0.09em; padding: 0.6rem 0; --tab-x: 0.2rem; }
   .tab:hover { --tab-x: 0.1rem; }
   .tab[aria-current='page'] { --tab-x: 0rem; }
-  .tab[aria-current='page']::after { width: 0.4rem; top: 0.6rem; }
   .controls { padding: 0.3rem; gap: 2px; }
   .ctl { padding: 0.3rem 0.5rem; font-size: 0.5rem; min-height: 44px; }
   .spine { font-size: 0.5rem; letter-spacing: 0.16em; }
