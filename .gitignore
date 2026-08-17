@@ -8,3 +8,11 @@
 
 .DS_Store
 .hugo_build.lock
+
+# Çalışma belgeleri — repoda dursun ama yayına gitmesin.
+# GitHub Pages repodaki her dosyayı sunuyor; bunlar ubeydgencer.com/PRODUCT.md
+# gibi adreslerden herkese açık hâle geliyordu.
+# Kopyaları: ~/Desktop/ubeydgencer-tasarim-belgeleri/
+PRODUCT.md
+DESIGN.md
+.impeccable/
