@@ -1,0 +1,10 @@
+{
+ "prompt": "SOURCED, NOT GENERATED. Ubeyd Gencer'in canlı projesinin ekran görüntüsü: https://zeliox.acsagroup.com — 17 Ağustos 2026'da headless Chrome ile 1280x800 görüntü alanında, DPR 1, ilk görüntü alanı olarak çekildi; kadraj dışında düzenleme yapılmadı. cwebp -q 76 ile 640x400'e ölçeklendi. Yeniden üretmek için: siteyi 1280x800'de aç, yerleşmesini bekle, ilk görüntü alanını yakala.",
+ "origin": "https://zeliox.acsagroup.com",
+ "captured": "2026-08-17",
+ "method": "headless Chrome CDP Page.captureScreenshot",
+ "viewport": "1280x800 @1x",
+ "output": "640x400 webp q76",
+ "generated": false,
+ "edited": false
+}

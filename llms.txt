@@ -1,39 +1,53 @@
 # Ubeyd Gencer
 
 > Bilgi İşlem & İş Geliştirme · Açsa Otomotiv · İstanbul, Türkiye
+> IT & Business Development · Açsa Otomotiv · İstanbul, Türkiye
 
 Ubeyd Gencer — Fırat Üniversitesi Bilgisayar Mühendisliği mezunu. Teknoloji, girişimcilik, tasarım ve fotoğrafçılığa meraklı. Şu an Açsa Otomotiv'de bilgi işlem ve iş geliştirme alanlarında çalışıyor.
 
+Site iki dillidir: Türkçe kök dizinde, İngilizce /en/ altında.
+
 ## Sayfalar
 
-- [Ana Sayfa](https://ubeydgencer.com/)
-- [Projeler](https://ubeydgencer.com/projects)
-- [Yer İmleri](https://ubeydgencer.com/bookmarks)
+- [Ana Sayfa](https://ubeydgencer.com/) · [Home (EN)](https://ubeydgencer.com/en/)
+- [Projeler](https://ubeydgencer.com/projects) · [Projects (EN)](https://ubeydgencer.com/en/projects)
+- [Yer İmleri](https://ubeydgencer.com/bookmarks) · [Bookmarks (EN)](https://ubeydgencer.com/en/bookmarks)
 
-## Projeler
+## Projeler (22 — 19 canlı, 3 geliştirmede)
 
-- **Haramain News** — Mekke & Medine haberlerini sunan üç dilli (Arapça/Türkçe/İngilizce) haber sitesi. Gazete düzeni, namaz vakitleri, Kuran dinleme, azkar. Vanilla JS SPA, FastAPI backend, Netlify. [haramainnews.com](https://haramainnews.com)
-- **Dünya Kupası 2026 — Canlı Takip** — FIFA 2026 Dünya Kupası canlı skor takip PWA'sı. Grup tabloları, fikstür, eleme turu bracket görselleştirmesi. [world-cup-26-sja.pages.dev](https://world-cup-26-sja.pages.dev)
-- **ACSA Depo Çıkış Takip** — Eberspächer ve Indel B ürün çıkışlarını takip eden PWA. Next.js 14, Supabase, barkod okuma. [acsa-depo.vercel.app](https://acsa-depo.vercel.app)
-- **Della Pianto** — İkas e-ticaret mağazası. [dellapianto.com](https://dellapianto.com)
-- **Eye Sofia** — İkas e-ticaret mağazası. [eyesofia.com](https://eyesofia.com)
-- **Qayyo Shop** — İkas e-ticaret mağazası. [qayyo.com](https://qayyo.com)
-- **İkiz Yapı** — Pergole, cam balkon ve otomatik kapı sistemleri firma sitesi. Cloudinary, Next.js. [ikizyapi.com](https://ikizyapi.com)
-- **Toparla** — macOS için yerel AI ile klasör organize eden Tauri 2 masaüstü uygulaması. Ollama ile çevrimdışı çalışır.
-- **Qayyo ERP** — Küçük işletmeler için ERP sistemi. Ürün/depo yönetimi, barkod/etiket üretimi, Trendyol takibi. [qayyo-yonetim.onrender.com](https://qayyo-yonetim.onrender.com)
-- **Hediye Ambalaj** — Hediye ambalaj firması için Next.js landing page.
-- **Cooltronic 2000 G3 Hatch** — Eberspächer tavan klima ünitesi ürün landing page'i. [cooltronic.acsagroup.com](https://cooltronic.acsagroup.com)
-- **Zeliox Mobil Güç Sistemleri** — Zeliox & Eberspächer mobil enerji depolama sistemleri landing page'i. [zeliox.acsagroup.com](https://zeliox.acsagroup.com)
-- **Ulukale Köyü Dijital Arşivi** — Tunceli Çemişgezek Ulukale köyü tarih ve bellek arşivi. [ulukalekoyu.com](https://ulukalekoyu.com)
-- **Indel B ITB Serisi** — Taşınabilir araç buzdolapları ürün landing page'i. SEO, structured data. [indelb.acsagroup.com](https://indelb.acsagroup.com)
-- **Personel İzin Hesaplama Otomasyonu** — PDKS raporundan 4857 sayılı İş Kanunu'na göre yıllık izin bakiyesi hesaplayan dahili web aracı. Sıfır bağımlılık, tek HTML dosyası, Docker.
-- **Araç Muayene & Sigorta Takip** — Şirket filosunun fenni muayene, egzoz, sigorta ve K2 yetki belgesi tarihlerini takip eden dahili uygulama. localStorage tabanlı, backend yok, Docker.
-- **Açsa Teklif Hazırlama** — Açsa Otomotiv için dahili teklif hazırlama ve PDF çıktı uygulaması.
-- **Kıroğlu Hukuk Bürosu** — Avukatlık bürosu kurumsal web sitesi. [kirogluhukuk.com](https://www.kirogluhukuk.com)
-- **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma Electron uygulaması.
-- **Kalori — Ürün Kataloğu** — ACSA / Eberspächer ısıtıcı ürünleri dijital kataloğu. Docker, Nginx.
-- **ugoto** — Yedek parça distribütörü için çok dilli PHP kurumsal web sitesi. [ugotomotiv.com](https://www.ugotomotiv.com)
-- **İnterkom Bot** — ESP32 + Telegram bot ile bina kapısı otomasyon sistemi.
+### Açsa Otomotiv / Açsa Otomotiv
+
+- **ACSA Depo Çıkış Takip** — Eberspächer ve Indel B ürünlerinin depodan müşteri firmalara çıkışını takip eden PWA. Barkod okuma, otomatik model tanıma, firma yönetimi ve filtrelenebilir geçmiş ekranı. [acsa-depo.vercel.app](https://acsa-depo.vercel.app)
+- **Cooltronic 2000 G3 Hatch** — Eberspächer Cooltronic 2000 G3 Hatch tavan klima ünitesi için ürün landing page’i. Teknik özellikler, ürün galerisi ve SEO optimizasyonu. [cooltronic.acsagroup.com](https://cooltronic.acsagroup.com)
+- **Zeliox Mobil Güç Sistemleri** — Zeliox & Eberspächer mobil enerji depolama sistemleri için ürün landing page’i. Beş model, teknik karşılaştırma tablosu ve SEO optimizasyonu. [zeliox.acsagroup.com](https://zeliox.acsagroup.com)
+- **Indel B ITB Serisi** — Indel B Travel Box taşınabilir araç buzdolapları için ürün landing page’i. Structured data ve karşılaştırma tablosu. [indelb.acsagroup.com](https://indelb.acsagroup.com)
+- **Personel İzin Hesaplama Otomasyonu** — PDKS raporundan 4857 sayılı İş Kanunu’na göre yıllık izin bakiyesini hesaplayan dahili web aracı. Sıfır bağımlılık, tek HTML dosyası, veri tarayıcıdan çıkmaz. (dahili / bağlantı yok)
+- **Araç Muayene & Sigorta Takip** — Şirket filosunun fenni muayene, egzoz, zorunlu trafik sigortası ve K2 yetki belgesi tarihlerini takip eden dahili uygulama. localStorage tabanlı, backend yok. (dahili / bağlantı yok)
+- **Açsa Teklif Hazırlama** — Dahili teklif hazırlama aracı. Ürün seçimi, fiyatlandırma ve PDF teklif çıktısını tek sayfada birleştiren web uygulaması. (dahili / bağlantı yok)
+- **Kalori — Ürün Kataloğu** — Eberspächer ısıtıcı ürünleri için dijital ürün kataloğu. Docker ile deploy, çok dilli ve PDF katalog desteği. (dahili / bağlantı yok)
+
+### E-Ticaret / E-Commerce
+
+- **Della Pianto** — İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi. [dellapianto.com](https://dellapianto.com)
+- **Eye Sofia** — İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi. [eyesofia.com](https://eyesofia.com)
+- **Qayyo Shop** — İkas üzerinde kurulu e-ticaret mağazası. Banner tasarımı, ödeme entegrasyonları, ürün filtreleme, özel alanlar ve tema düzenlemesi. [qayyo.com](https://qayyo.com)
+
+### Web Projeleri / Web Projects
+
+- **Haramain News** — Mekke & Medine haberlerini sunan üç dilli (Arapça/Türkçe/İngilizce) haber sitesi. Gazete düzeni, namaz vakitleri, Kuran dinleme ve azkar özellikleri içeren vanilla JS SPA. [haramainnews.com](https://haramainnews.com)
+- **Dünya Kupası 2026 — Canlı Takip** — FIFA 2026 Dünya Kupası için canlı skor takip PWA’sı. Grup puan tabloları, fikstür, eleme turu bracket görselleştirmesi. [world-cup-26-sja.pages.dev](https://world-cup-26-sja.pages.dev)
+- **İkiz Yapı** — Pergole, cam balkon ve otomatik kapı sistemleri firması için proje galerisi sitesi. Cloudinary fotoğraf altyapısı ve WhatsApp entegrasyonu. [ikizyapi.com](https://ikizyapi.com)
+- **Ulukale Köyü Dijital Arşivi** — Tunceli Çemişgezek Ulukale köyünün tarihini ve belleğini koruyan dijital arşiv. Kronolojik tarih, fotoğraf koleksiyonu ve mimari belgeleme. [ulukalekoyu.com](https://ulukalekoyu.com)
+- **Kıroğlu Hukuk Bürosu** — Av. Aslıhan Kıroğlu için hukuk bürosu web sitesi. Aile, iş, ceza ve gayrimenkul hukuku, SEO optimizasyonlu kurumsal site. [www.kirogluhukuk.com](https://www.kirogluhukuk.com)
+- **Hediye Ambalaj** — Hediye ambalaj firması için kurumsal web sitesi. Hizmet kataloğu, marka kimliği ve iletişim sayfalarını kapsayan landing page. (dahili / bağlantı yok)
+- **ugoto** — Yedek parça distribütörü için çok dilli kurumsal web sitesi. Fren, süspansiyon ve elektrik parçaları için marka ve ürün kataloğu. [www.ugotomotiv.com](https://www.ugotomotiv.com)
+
+### Uygulamalar & IoT / Applications & IoT
+
+- **Qayyo ERP** — Küçük işletmeler için ERP sistemi. Ürün ve depo yönetimi, barkod/etiket üretimi, Trendyol satın alma takibi, SQLite ve Excel aktarımı. [qayyo-yonetim.onrender.com](https://qayyo-yonetim.onrender.com)
+- **Toparla** — macOS için AI destekli klasör organizasyon uygulaması. Yerel Ollama modelleriyle dosyaları otomatik kategorize eder, veri buluta gitmez. (dahili / bağlantı yok)
+- **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma masaüstü uygulaması. Trendyol API ile entegre, tek tıkla toplu etiket yazdırma. (dahili / bağlantı yok)
+- **İnterkom Bot** — ESP32 tabanlı akıllı interkom otomasyon sistemi. Bina kapısı zili çaldığında Telegram bildirimi, uzaktan kapı açma. (dahili / bağlantı yok)
 
 ## İletişim
 

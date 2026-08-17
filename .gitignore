@@ -1,0 +1,10 @@
+# Impeccable çalışma çıktıları — yayına gitmez.
+# İnceleme ekran görüntüleri ve kalite çıtası referansları 11 MB tutuyor ve
+# sitenin sunduğu hiçbir şeyle ilgisi yok.
+.impeccable/review/
+.impeccable/quality-bar/
+.impeccable/questions/
+.impeccable/mocks/
+
+.DS_Store
+.hugo_build.lock

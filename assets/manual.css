@@ -1,0 +1,949 @@
+/* ============================================================
+   UBEYD GENCER — REFERANS KILAVUZU
+   Asetat yapraklı kullanım kılavuzu sistemi.
+   Ayraç kartonu tam doygunlukta zemin; süt asetat yaprak üstünde,
+   alfası çalışma zamanında çözülür (manual.js). Menteşe 90ms/2 kare.
+   Yumuşama (easing) yok. Vermilyon yalnızca errata.
+   ============================================================ */
+
+/* ---------- 1. Reset ---------- */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--rule-strong) var(--board);
+}
+
+/* height:auto şart: img'lerde width/height öznitelikleri sunum ipucu olarak
+   uygulanıyor ve CSS genişliği ölçeklerken yükseklik 400px'te takılı kalıyor. */
+img, svg { display: block; max-width: 100%; height: auto; }
+
+/* ---------- 2. Renk çarkı ---------- */
+
+:root {
+  /* Ayraç kartonu tonları — tam doygunluk, karıştırılmaz */
+  --h-yellow:    #E9A81C;
+  --h-orange:    #B94F14;
+  --h-grass:     #3C7429;
+  --h-teal:      #0F7176;
+  --h-ultra:     #1C4A9E;
+  --h-violet:    #64499A;
+  --h-sienna:    #78381D;
+  /* Elde tutulan: yalnızca errata şeridi. Başka hiçbir yerde kullanılmaz. */
+  --h-vermilion: #C42208;
+
+  /* Asetat yaprak ham rengi (alfa manual.js tarafından çözülür) */
+  --leaf-rgb: 246 241 230;
+  --leaf-a: 0.92;               /* çözülene kadar geçerli yedek */
+
+  --ink:        #17150F;
+  --ink-2:      #57503F;
+  --rule:       #ADA189;
+  --rule-strong:#8A7E68;
+
+  --board:      var(--h-yellow);
+  --board-face: var(--h-yellow);
+
+  /* Menteşe: iki kare, 90ms, yumuşama yok */
+  --step: 90ms;
+  --hinge: steps(2, end);
+
+  --measure: 62ch;
+  --gutter: clamp(1.25rem, 3.2vw, 2.75rem);
+  --rail-w: clamp(2.25rem, 4.4vw, 3.25rem);
+  --bind-w: clamp(1.75rem, 3.4vw, 2.75rem);
+  /* Karton, yaprağın dört yanından görünür — ton sayfa ölçeğinde taahhüt */
+  --board-gutter: clamp(0.5rem, 2.4vw, 2.25rem);
+
+  color-scheme: light;
+  accent-color: var(--board-face);
+}
+
+html.dark {
+  /* head'deki cozucunun dumanli asetat sabitiyle birebir ayni olmali:
+     farkli olursa alfa bir renge gore cozulup baska bir renk bindirilir. */
+  --leaf-rgb: 20 18 16;
+  --leaf-a: 0.86;
+  --ink:        #EFE9DA;
+  --ink-2:      #A79C84;
+  --rule:       #45403A;
+  --rule-strong:#6B6355;
+  color-scheme: dark;
+}
+
+/* Bölüm tonu — her sayfa <html data-board="..."> ile seçer.
+   <html> üzerinde, çünkü head'deki alfa çözücü boyamadan önce okumak zorunda. */
+html[data-board="yellow"] { --board-face: var(--h-yellow); --on-board: var(--ink); }
+html[data-board="orange"] { --board-face: var(--h-orange); --on-board: #fff; }
+html[data-board="teal"]   { --board-face: var(--h-teal);   --on-board: #fff; }
+
+/* Alt bölüm tonları. --on-tone, o ton üstünde 4.5:1'i geçen tek ön plandır;
+   krom sarısı beyazla 2.08'de kalır, bu yüzden tek koyu mürekkepli tondur. */
+.t-grass  { --tone: var(--h-grass);  --on-tone: #fff; }
+.t-ultra  { --tone: var(--h-ultra);  --on-tone: #fff; }
+.t-violet { --tone: var(--h-violet); --on-tone: #fff; }
+.t-sienna { --tone: var(--h-sienna); --on-tone: #fff; }
+.t-teal   { --tone: var(--h-teal);   --on-tone: #fff; }
+.t-orange { --tone: var(--h-orange); --on-tone: #fff; }
+/* Sabit koyu mürekkep: ton temayla değişmiyor (yalnız filtreleniyor), bu yüzden
+   var(--ink) kullanmak koyu temada sarının üstüne açık metin koyar — 2.08:1. */
+.t-yellow { --tone: var(--h-yellow); --on-tone: #17150F; }
+
+/* ---------- 3. Zemin: ayraç kartonu ---------- */
+
+body {
+  min-height: 100vh;
+  background-color: var(--board-face);
+  color: var(--ink);
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 1.0625rem;   /* 17px */
+  line-height: 1.5294;    /* 26px */
+  padding: 0 calc(var(--rail-w) + var(--board-gutter)) 0 calc(var(--bind-w) + var(--board-gutter));
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Karton dokusu: baskı graini. Tek katman, sabit, ucuz. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+}
+html.dark body::before { mix-blend-mode: screen; opacity: 0.28; }
+
+/* ---------- 4. Cilt kenarı: delikler + sırt yazısı ---------- */
+
+.binding {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--bind-w);
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 5vh, 3.5rem) 0;
+}
+
+.punch-hole {
+  width: clamp(0.6rem, 1.5vw, 0.9rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--board-face) 62%, #000 38%);
+  box-shadow: inset 0 1px 1.5px rgb(0 0 0 / 0.45), 0 1px 0 rgb(255 255 255 / 0.14);
+  flex: none;
+}
+
+.spine {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  /* Adı, kılavuz başlığını ve sürümü taşıyor: dekoratif değil, metin.
+     Opaklık kaldırıldı, karışım mürekkebe itildi. */
+  color: color-mix(in srgb, var(--board-face) 12%, var(--ink) 88%);
+  white-space: nowrap;
+}
+html.dark .spine { color: color-mix(in srgb, var(--board-face) 20%, var(--ink) 80%); }
+
+/* ---------- 5. Sekme rayı: kademeli, hacimle orantılı ---------- */
+
+.rail {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: var(--rail-w);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: clamp(1.5rem, 5vh, 3.5rem) 0;
+  list-style: none;
+  /* Sekmeler sağa ötelenerek içeri çekilir; taşan kenar burada kırpılır. */
+  overflow: hidden;
+}
+
+/* Sekme yüksekliği bölümün hacmiyle orantılı: --extent her <li>'de yazılı,
+   burada tüketilmezse yükseklik etiket uzunluğuna kalır. */
+.rail li { display: flex; flex: var(--extent, 1) 1 0; min-height: 0; }
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--on-tone, #fff);
+  background: var(--tone);
+  border: none;
+  border-radius: 0 3px 3px 0;
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-variation-settings: 'wdth' 84, 'wght' 700;
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  padding: 0.75rem 0;
+  width: 100%;
+  /* Sekmenin dışarı çekilmesi: yerleşimi değil yalnız dönüşümü oynatır. */
+  translate: var(--tab-x, 0.5rem) 0;
+  transition: translate var(--step) var(--hinge), filter var(--step) var(--hinge);
+  position: relative;
+}
+
+.tab:hover { --tab-x: 0.15rem; }
+
+/* Seçili sekme uzar ve zemin olur — üstünde delik açılır */
+/* Açık ayraç: kartona boyanırsa zeminle birebir aynı piksele düşer ve
+   üzerinde bulunduğun bölüm tabelasız kalır. Yaprağa boyanır. */
+.tab[aria-current='page'] {
+  --tab-x: 0rem;
+  background: rgb(var(--leaf-rgb) / var(--leaf-a));
+  color: var(--ink);
+}
+
+/* Delik akisin icinde: mutlak konumluyken uzun etiketin ustune biniyordu
+   (ingilizce "1 · INTRODUCTION" rakamin uzerine geliyordu) ve scrollHeight
+   olcumu bunu goremiyordu, cunku ::after akis geometrisine katilmaz. */
+.tab[aria-current='page'] span::before {
+  content: '';
+  display: inline-block;
+  width: 0.44rem;
+  height: 0.44rem;
+  border-radius: 50%;
+  background: var(--board-face);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.55);
+  margin-inline-end: 0.55rem;
+  flex: none;
+}
+.tab[aria-current='page'] span {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Koyu temada seçili sekmenin tonu zaten çözücü tarafından kısılmış olarak
+   gelir; filtre eklemek onu ikinci kez karartır. */
+html.dark .tab { color: var(--on-tone, #fff); filter: brightness(0.72); }
+/* Bu seçici (0,2,1) olduğu için rengi de geri vermek zorunda: aksi halde
+   yukarıdaki html.dark .tab kuralı aktif sekmeyi --on-tone'a düşürür. */
+html.dark .tab[aria-current='page'] { color: var(--ink); filter: none; }
+
+/* ---------- 6. Asetat yaprak ---------- */
+
+.leaf {
+  position: relative;
+  z-index: 2;
+  margin: clamp(1.25rem, 3.5vh, 2.75rem) 0;
+  padding: clamp(1.5rem, 4vw, 3.25rem) clamp(1.25rem, 3.5vw, 3rem);
+  background-color: rgb(var(--leaf-rgb) / var(--leaf-a));
+  /* Asetatın tek yerli belirtisi: ön kenarda yan ışık parlaması. */
+  background-image: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 0.42) 0,
+    rgb(255 255 255 / 0.10) 0.35rem,
+    transparent 1.1rem
+  );
+  /* Dört kenarda da okunan yumuşak ofset gölge — sert blok gölge bu dünyanın
+     malzemesi değil ve sağ kenarı zaten ray örtüyordu. */
+  box-shadow: 0 3px 14px rgb(0 0 0 / 0.20), 0 0 0 1px rgb(0 0 0 / 0.05);
+  border-radius: 1px 3px 3px 1px;
+}
+html.dark .leaf {
+  background-image: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 0.14) 0,
+    rgb(255 255 255 / 0.04) 0.35rem,
+    transparent 1.1rem
+  );
+  box-shadow: 0 3px 16px rgb(0 0 0 / 0.45), 0 0 0 1px rgb(255 255 255 / 0.05);
+}
+
+.sheet {
+  display: grid;
+  grid-template-columns: [margin] minmax(0, 9.5rem) repeat(4, [col] minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(1.75rem, 4vh, 3rem);
+  align-items: start;
+}
+
+.sheet > * { grid-column: col 1 / -1; min-width: 0; }
+.sheet > .head { grid-column: margin; }
+.sheet > .full { grid-column: 1 / -1; }
+
+/* ---------- 7. Tipografi ---------- */
+
+.display {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-variation-settings: 'wdth' 76, 'wght' 800;
+  font-size: clamp(2.75rem, 9vw, 5.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.display--sm {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+/* Univers rolü: bölüm başlıkları, kenar sütununda asılı */
+.head {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-variation-settings: 'wdth' 88, 'wght' 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--ink);
+  padding-top: 0.3rem;
+}
+
+.head small {
+  display: block;
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  font-variation-settings: normal;
+  color: var(--ink-2);
+  margin-top: 0.4rem;
+}
+
+.machine a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: var(--rule-strong);
+}
+.machine a:hover { color: var(--ink); text-decoration-color: currentColor; }
+
+/* Makine sesi — yalnız kod, sürüm, alan adı, ölçü */
+.machine {
+  font-family: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+/* Gövde: tek boy iş görür */
+.prose { max-width: var(--measure); }
+.prose p + p { margin-top: 0.8125rem; }
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--board-face) 55%, var(--ink) 45%);
+}
+.prose a:hover { text-decoration-thickness: 2px; }
+
+.lede { font-size: 1.1875rem; line-height: 1.5; }
+
+/* ---------- 7b. İlk görüntü alanı: künye sağda ---------- */
+
+.fold {
+  display: grid;
+  grid-template-columns:
+    [margin] minmax(0, 9.5rem)
+    [main] minmax(0, 1fr)
+    [side] minmax(15rem, 19rem);
+  column-gap: var(--gutter);
+  row-gap: clamp(1.25rem, 3vh, 2.25rem);
+  align-items: start;
+}
+
+.fold__title { grid-column: main / side; }
+.fold__head  { grid-column: margin; }
+.fold__bio   { grid-column: main; }
+.fold__side  { grid-column: side; grid-row: 1 / span 2; }
+
+/* Cetvelli okuma paneli — kalite çıtasının sağ üçte birindeki veri levhaları */
+.panel {
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.85rem 1rem 0.35rem;
+  background: color-mix(in srgb, var(--board-face) 6%, rgb(var(--leaf-rgb) / var(--leaf-a)));
+}
+
+.panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-variation-settings: 'wdth' 88, 'wght' 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 0.35rem;
+}
+
+.panel__head span {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-variation-settings: normal;
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-2);
+}
+
+.panel .spec th { width: 6.75rem; font-size: 0.5rem; }
+.panel .spec td { font-size: 0.8125rem; }
+.panel .spec tr:last-child th,
+.panel .spec tr:last-child td { border-bottom: none; }
+
+/* ---------- 8. Folio: sayfa başı şeridi ---------- */
+
+.folio {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: clamp(1.5rem, 3.5vh, 2.5rem);
+}
+
+.folio__set { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: baseline; }
+
+/* ---------- 9. Kılavuz indeksi: cetvelli giriş satırları ---------- */
+
+.index { list-style: none; border-top: 1px solid var(--rule); }
+
+.entry {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) minmax(9rem, 12rem);
+  column-gap: var(--gutter);
+  /* baseline hizası, yan sütuna pencere girince ilk taban çizgisini pencerenin
+     altına kaydırıyor ve satırın tamamını aşağı itiyordu. */
+  align-items: start;
+  padding: 0.9rem 0 1rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry::before {
+  content: '';
+  position: absolute;
+  left: -0.75rem;
+  top: 0;
+  bottom: -1px;
+  width: 3px;
+  background: var(--tone, var(--board-face));
+  opacity: 0;
+  transition: opacity var(--step) var(--hinge);
+}
+.entry:hover::before, .entry:focus-within::before { opacity: 1; }
+
+.entry__ref {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  padding-top: 0.28rem;
+}
+
+.entry__name {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-variation-settings: 'wdth' 90, 'wght' 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.entry__desc {
+  max-width: var(--measure);
+  margin-top: 0.35rem;
+  color: color-mix(in srgb, var(--ink) 82%, var(--board-face) 18%);
+}
+
+.entry__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.entry__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.22rem;
+  text-align: right;
+  gap: 0.4rem;
+}
+
+.entry__side .jump { overflow-wrap: anywhere; text-align: right; }
+
+/* Teknoloji künyesi — kutu değil, cetvelli künye satırı */
+.spec-tag {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 0.1rem;
+}
+
+/* ---------- 10. Durum: işaret, yalnız renk değil ---------- */
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-2);
+}
+
+.state__mark { width: 0.7rem; height: 0.7rem; flex: none; }
+
+/* Canlı = zımbalanmış delik */
+/* Zımba deliği. Tam karton değerinde boyanınca sitenin kendi delik grameriyle
+   uyuşmuyor ve koyu temada yapraktan açık kalıp LED gibi okunuyordu; cilt
+   deliğiyle aynı formül kullanılır. */
+.state--live .state__mark {
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--board-face) 62%, #000 38%);
+  box-shadow: inset 0 1px 1.5px rgb(0 0 0 / 0.45), 0 1px 0 rgb(255 255 255 / 0.14);
+}
+/* Geliştirme = yarım menteşeli köşe */
+.state--wip .state__mark {
+  border: 1px solid var(--rule-strong);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%);
+  background: repeating-linear-gradient(-45deg, transparent 0 2px, var(--rule-strong) 2px 3px);
+}
+
+/* Errata şeridi — vermilyonun tek yeri */
+/* İliştirilmiş düzeltme fişi. Dolu vermilyon zemin, çalışan yazılım listesinde
+   bir sütun alarm gibi okunuyordu; vermilyon artık yalnız kenar ve işaret. */
+.errata {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--h-vermilion) 8%, rgb(var(--leaf-rgb) / var(--leaf-a)));
+  border: 1px solid color-mix(in srgb, var(--h-vermilion) 55%, transparent);
+  border-radius: 1px;
+  padding: 0.24rem 0.5rem 0.26rem;
+}
+.errata::before {
+  content: '';
+  width: 0.34rem;
+  height: 0.34rem;
+  flex: none;
+  background: var(--h-vermilion);
+}
+
+/* ---------- 11. Bağlantılar ---------- */
+
+.jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.09em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 0.12rem;
+  transition: border-color var(--step) var(--hinge);
+}
+.jump:hover { border-bottom-color: var(--ink); }
+.jump svg { width: 0.7rem; height: 0.7rem; flex: none; stroke-width: 2; }
+
+/* İçindekiler satırı: nokta dolgulu */
+.toc { list-style: none; }
+.toc li { border-bottom: 1px solid var(--rule); }
+.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+.toc a:hover .toc__name { text-decoration: underline; text-underline-offset: 0.2em; }
+.toc__num {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+.toc__name {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-variation-settings: 'wdth' 90, 'wght' 600;
+  font-size: 0.9375rem;
+}
+.toc__lead {
+  flex: 1;
+  border-bottom: 1px dotted var(--rule-strong);
+  translate: 0 -0.2em;
+  min-width: 1.5rem;
+}
+/* Alan adları büyük harfe çevrilmez: sayfa lang="tr" olduğu için
+   uppercase, ASCII "i"yi "İ"ye döndürüp logitech.com'u LOGİTECH.COM yapar.
+   Küçük harf hem doğru hem projeler sayfasındaki .jump ile tutarlı. */
+.toc__val {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+  flex: none;
+}
+.toc a svg { width: 0.8rem; height: 0.8rem; flex: none; fill: currentColor; opacity: 0.7; }
+
+/* Numune plakası: dış görsel (favicon) çerçevesiz dolaşmaz */
+.mark {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: none;
+  padding: 1px;
+  background: rgb(var(--leaf-rgb) / 1);
+  border: 1px solid var(--rule);
+  border-radius: 1px;
+  object-fit: contain;
+  translate: 0 0.16em;
+}
+html.dark .mark { filter: saturate(0.9) brightness(0.94); }
+
+/* ---------- 12. Künye tablosu ---------- */
+
+.spec { width: 100%; border-collapse: collapse; }
+.spec th, .spec td {
+  text-align: left;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+.spec th {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--ink-2);
+  width: 8.5rem;
+  padding-right: 1rem;
+}
+.spec td { font-size: 0.9375rem; font-variant-numeric: tabular-nums; line-height: 1.45; }
+/* Çok satırlı künye değeri (iki okul gibi) satırları birbirine yapışmasın */
+.spec td br + * , .spec td { text-wrap: pretty; }
+
+/* ---------- 13. Delikli pencere: yabancı görsel buradan girer ---------- */
+
+.window {
+  position: relative;
+  background: color-mix(in srgb, var(--board-face) 12%, rgb(var(--leaf-rgb)) 88%);
+  padding: 0.75rem 0.75rem 0.75rem 1.65rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.window::before,
+.window::after {
+  content: '';
+  position: absolute;
+  left: 0.62rem;
+  width: 0.42rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--board-face) 60%, #000 40%);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 0.5);
+}
+.window::before { top: 22%; }
+.window::after  { bottom: 22%; }
+
+/* Oran kırpması özneyi karenin dışında bırakıyordu ve altyazı orada olmayan
+   birini adlandırıyordu. Kırpma kaldırıldı: kare bütün, kütle genişlikle
+   sınırlanıyor. */
+.window img { width: 100%; border-radius: 1px; }
+.window--plate img { max-width: 30rem; }
+
+/* Kontak baskısı ölçeğinde pencere: dış görsel yine yalnız buradan girer,
+   ama delikler ve dolgu küçük ölçeğe göre kısılır. */
+.window--thumb {
+  padding: 0.32rem 0.32rem 0.32rem 0.95rem;
+  width: 100%;
+  margin-bottom: 0.1rem;
+}
+.window--thumb::before,
+.window--thumb::after {
+  left: 0.36rem;
+  width: 0.3rem;
+}
+.window--thumb img {
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: top center;
+  max-height: none;
+}
+
+.window__cap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+  margin-top: 0.55rem;
+}
+/* Dar ekranda iki parca yan yana sigmayinca isim ortadan bolunuyordu. */
+.window__cap > * { white-space: nowrap; }
+
+/* ---------- 14. Filtre kolu: tek kontrol, tüm alan ---------- */
+
+.lever {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  border: 1px solid var(--rule-strong);
+  padding: 3px;
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.lever button {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: transparent;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: background var(--step) var(--hinge), color var(--step) var(--hinge);
+}
+.lever button:hover { color: var(--ink); }
+.lever button[aria-pressed='true'] {
+  background: var(--board-face);
+  color: var(--on-board, #fff);
+}
+
+/* Alan yeniden dizilirken: menteşe adımı, solma yok */
+.entry[hidden], [data-group][hidden], .head[hidden] { display: none; }
+
+/* ---------- 15. Kumanda çubuğu: tema + dil ---------- */
+
+.controls {
+  position: fixed;
+  top: 0;
+  right: var(--rail-w);
+  z-index: 5;
+  display: flex;
+  gap: 3px;
+  padding: 0.45rem;
+}
+
+.ctl {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgb(var(--leaf-rgb) / var(--leaf-a));
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.34rem 0.55rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background var(--step) var(--hinge);
+}
+.ctl:hover { background: rgb(var(--leaf-rgb) / 1); }
+.ctl svg { width: 0.7rem; height: 0.7rem; fill: currentColor; }
+.ctl__off { opacity: 0.38; }
+
+/* ---------- 16. Alt künye ---------- */
+
+.colophon {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+/* ---------- 17. Tarayıcı yüzeyleri ---------- */
+
+::selection { background: var(--board-face); color: var(--on-board, #fff); }
+html.dark ::selection { background: var(--board-face); color: var(--ink); }
+
+/* Halka kartonun saf tonuyla cizilirse krom sarisi yaprakta 1.56:1'e dusuyor
+   ve klavyeyle gezen kisi odagi goremiyor. Ton korunur, degeri murekkebe cekilir. */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--board-face) 32%, var(--ink) 68%);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--board-face); }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--board-face) 45%, #000 55%);
+  border: 3px solid var(--board-face);
+  border-radius: 99px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 20;
+  background: rgb(var(--leaf-rgb) / 1);
+  color: var(--ink);
+  padding: 0.65rem 1rem;
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+}
+.skip:focus { left: 0.5rem; top: 0.5rem; }
+
+.vh {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- 18. Genişlik: dört sütun → iki → bir ---------- */
+
+@media (max-width: 1180px) {
+  .sheet { grid-template-columns: [margin] minmax(0, 7rem) repeat(2, [col] minmax(0, 1fr)); }
+  /* İlk görüntü alanı iki kolona inince künye paneli ana kolonun altına geçer */
+  .fold {
+    grid-template-columns: [margin] minmax(0, 7rem) [main] minmax(0, 1fr);
+  }
+  .fold__title, .fold__bio { grid-column: main; }
+  .fold__side { grid-column: main; grid-row: auto; }
+  /* Üç sütunluk giriş satırı burada açıklamayı boğar: yan sütun alta iner */
+  .entry { grid-template-columns: 3rem minmax(0, 1fr); }
+  .entry__side {
+    grid-column: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem 1.25rem;
+    margin-top: 0.7rem;
+    padding-top: 0;
+    text-align: left;
+  }
+  .entry__side .jump { text-align: left; }
+  /* Yan sütun satıra dönünce pencere genişliği serbest kalıyor ve indeksin
+     yoğunluğunu eziyor; kontak baskısı ölçeğinde tutulur. */
+  .window--thumb { width: auto; flex: 0 0 auto; max-width: 14rem; }
+  .window--thumb img { width: 12.6rem; }
+}
+
+@media (max-width: 760px) {
+  /* Ray fore-edge'de kalır — kılavuzun kimliği o kenarda.
+     Daralan tek şey yaprak: dört sütun bire iner. */
+  :root {
+    /* Öteleme (--tab-x) rayın içinden yiyor: hedef 44px'i tutmak için ray
+       genişliği ötelemeyi de karşılamalı. 3rem - 0.2rem = 44.8px. */
+    --rail-w: 3rem;
+    --bind-w: 1.15rem;
+  }
+  .fold { grid-template-columns: [main] minmax(0, 1fr); }
+  .fold__title, .fold__bio, .fold__side { grid-column: main; }
+  .fold__head {
+    grid-column: main;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 0.45rem;
+    margin-bottom: -0.5rem;
+  }
+  .panel { padding: 0.75rem 0.85rem 0.3rem; }
+  .sheet { grid-template-columns: [col] minmax(0, 1fr); }
+  .sheet > .head {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 0.45rem;
+    margin-bottom: -1rem;
+  }
+  .leaf { margin: 0.75rem 0; }
+  .tab { font-size: 0.5625rem; letter-spacing: 0.09em; padding: 0.6rem 0; --tab-x: 0.2rem; }
+  .tab:hover { --tab-x: 0.1rem; }
+  .tab[aria-current='page'] { --tab-x: 0rem; }
+  .tab[aria-current='page']::after { width: 0.4rem; top: 0.6rem; }
+  .controls { padding: 0.3rem; gap: 2px; }
+  .ctl { padding: 0.3rem 0.5rem; font-size: 0.5rem; min-height: 44px; }
+  .spine { font-size: 0.5rem; letter-spacing: 0.16em; }
+  .entry { grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 0.75rem; }
+  .entry__side { grid-column: 2; align-items: flex-start; margin-top: 0.6rem; }
+  .window--thumb { max-width: 13rem; }
+  .window--thumb img { width: 11.6rem; }
+  .display { font-size: clamp(2.25rem, 11.5vw, 3.25rem); }
+  .spec th { width: 6.5rem; }
+  .folio { font-size: 0.9em; }
+  .lede { font-size: 1.0625rem; }
+  .entry__side { text-align: left; align-items: flex-start; }
+  .entry__side .jump { text-align: left; }
+  /* Dar ekranda nokta dolgusu için yer yok: alan adı kendi satırına iner,
+     aksi halde uzun tanıtıcılar sağdan kesilir. */
+  .toc a { flex-wrap: wrap; row-gap: 0.15rem; }
+  .toc__lead { display: none; }
+  .toc__name { flex: 1 1 auto; }
+  .toc__val { flex: 1 0 100%; padding-left: 2.4rem; }
+}
+
+@media (max-width: 420px) {
+  .spec, .spec tbody, .spec tr, .spec th, .spec td { display: block; width: 100%; }
+  .spec th { border-bottom: none; padding-bottom: 0.15rem; }
+  .spec td { padding-top: 0; }
+}
+
+/* ---------- 19. Hareket tercihi ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --step: 1ms; }
+  * { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* ---------- 20. Baskı ---------- */
+
+@media print {
+  body { padding: 0; background: #fff; }
+  .rail, .binding, .controls, .lever { display: none; }
+  .leaf { box-shadow: none; background: #fff; margin: 0; padding: 0; }
+  body::before { display: none; }
+}
