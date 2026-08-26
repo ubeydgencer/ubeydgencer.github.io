@@ -34,6 +34,7 @@ Site iki dillidir: Türkçe kök dizinde, İngilizce /en/ altında.
 
 ### Web Projeleri / Web Projects
 
+- **Gerede'de 15 Yıl** — Yüksek lisans tezi için interaktif veri hikâyesi sitesi. PDF'den çekilen 76 tablo, 2004–2019 Gerede karşılaştırması. Özel SVG grafikler, iki dilli (TR/EN). React, TypeScript, Vite, Cloudflare Pages.
 - **Haramain News** — Mekke & Medine haberlerini sunan üç dilli (Arapça/Türkçe/İngilizce) haber sitesi. Gazete düzeni, namaz vakitleri, Kuran dinleme ve azkar özellikleri içeren vanilla JS SPA. [haramainnews.com](https://haramainnews.com)
 - **Dünya Kupası 2026 — Canlı Takip** — FIFA 2026 Dünya Kupası için canlı skor takip PWA’sı. Grup puan tabloları, fikstür, eleme turu bracket görselleştirmesi. [world-cup-26-sja.pages.dev](https://world-cup-26-sja.pages.dev)
 - **İkiz Yapı** — Pergole, cam balkon ve otomatik kapı sistemleri firması için proje galerisi sitesi. Cloudinary fotoğraf altyapısı ve WhatsApp entegrasyonu. [ikizyapi.com](https://ikizyapi.com)
