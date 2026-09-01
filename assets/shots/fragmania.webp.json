@@ -1,0 +1,10 @@
+{
+ "prompt": "SOURCED, NOT GENERATED. Fragmania Android uygulamasinin ekran goruntusu: 1 Eylul 2026'da Android emulatorde (Pixel 8, API 36) yatay yonde, uygulamanin kendi debug derlemesi calistirilarak `adb exec-out screencap` ile 2400x1080 ham olarak alindi. Kadraj disinda duzenleme yapilmadi: 1728x1080'e soldan kirpilip (640x400 icin gereken 1.6 oran) 640x400'e olceklendi, WebP q76. Ekrandaki afisler TMDB CDN'inden canli geliyor. Yeniden uretmek icin: emulatoru -dns-server 1.1.1.1 ile baslat, uygulamayi ac, yatay cevir, ana ekran yuklenince yakala.",
+ "origin": "Fragmania Android uygulamasi (com.fragmania) — emulator, Pixel 8 / API 36",
+ "captured": "2026-09-01",
+ "method": "adb exec-out screencap -p",
+ "viewport": "2400x1080 yatay @1x",
+ "output": "640x400 webp q76 (soldan 1728x1080 kadraj)",
+ "generated": false,
+ "edited": false
+}
