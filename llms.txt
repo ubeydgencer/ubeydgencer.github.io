@@ -49,6 +49,7 @@ Site iki dillidir: Türkçe kök dizinde, İngilizce /en/ altında.
 - **Toparla** — macOS için AI destekli klasör organizasyon uygulaması. Yerel Ollama modelleriyle dosyaları otomatik kategorize eder, veri buluta gitmez. (dahili / bağlantı yok)
 - **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma masaüstü uygulaması. Trendyol API ile entegre, tek tıkla toplu etiket yazdırma. (dahili / bağlantı yok)
 - **İnterkom Bot** — ESP32 tabanlı akıllı interkom otomasyon sistemi. Bina kapısı zili çaldığında Telegram bildirimi, uzaktan kapı açma. (dahili / bağlantı yok)
+- **Fragmania** — Film ve dizi fragmanı izleme uygulaması (Android). TMDB'den canlı veri, fragmanlar YouTube'un resmi oynatıcısında; kendi sunucusu yok, favoriler cihazda. [Google Play](https://play.google.com/store/apps/details?id=com.fragmania)
 
 ## İletişim
 
