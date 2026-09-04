@@ -43,7 +43,7 @@ var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
 var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
 var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
 r.classList.toggle('dark',dark);
-var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118]};
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
 function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
 function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
 window.solveLeaf=function(){
@@ -88,6 +88,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <li style="--extent:1"><a class="tab t-yellow" href="/en"><span>1 · Introduction</span></a></li>
     <li style="--extent:3.1"><a class="tab t-orange" href="/en/projects"><span>2 · Projects</span></a></li>
     <li style="--extent:2.4"><a class="tab t-teal" href="/en/bookmarks" aria-current="page"><span>3 · Bookmarks</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/en/blog/"><span>4 · Blog</span></a></li>
   </ul>
 </nav>
 
@@ -108,7 +109,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <span class="machine">Bookmarks</span>
         </div>
         <div class="folio__set">
-          <span class="machine">Page 3 of 3</span>
+          <span class="machine">Page 3 of 4</span>
           <span class="machine">Rev. 2026.08</span>
         </div>
       </div>
@@ -281,7 +282,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
       <div class="colophon">
         <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
-        <a class="jump" href="/en">Section 1 · Introduction
+        <a class="jump" href="/en/blog/">Section 4 · Blog
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <span class="machine">Reference manual · Revision 2026.08</span>

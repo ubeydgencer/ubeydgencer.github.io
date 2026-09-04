@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Ubeyd Gencer</title>
+<meta name="description" content="Ubeyd Gencer’in yazıları — kurduğu araçların yapım notları, aldığı kararlar ve yanlış dönüşler." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/blog/" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Blog — Ubeyd Gencer" />
+<meta property="og:description" content="Ubeyd Gencer’in yazıları — kurduğu araçların yapım notları, aldığı kararlar ve yanlış dönüşler." />
+<meta property="og:url" content="https://ubeydgencer.com/blog/" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Blog — Ubeyd Gencer" />
+<meta name="twitter:description" content="Ubeyd Gencer’in yazıları — kurduğu araçların yapım notları, aldığı kararlar ve yanlış dönüşler." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Blog — Ubeyd Gencer","description":"Ubeyd Gencer’in yazıları — kurduğu araçların yapım notları, aldığı kararlar ve yanlış dönüşler.","url":"https://ubeydgencer.com/blog/","inLanguage":"tr","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"isPartOf":{"@type":"WebSite","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"}}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<!--
+IMPECCABLE DIRECTION CONTRACT
+THESIS: Kişisel site, kutulu yazılım referans kılavuzu olarak kurulur; ortalanmış tek sütun + yuvarlak sosyal buton düzenini reddeder.
+OWN-WORLD: Tam doygun ayraç kartonu zemin (yedi renkli çark; vermilyon yalnız errata şeridinde), üstünde alfası çalışma zamanında çözülen süt asetat yaprak. Delikli cilt kenarı, sırt yazısı, fore-edge'de hacimle orantılı kademeli sekme rayı. Archivo sıkışık ağır başlık, EB Garamond 17/26 62ch gövde, Azeret Mono makine sesi. Yumuşama yok: her değişim 90ms iki kare menteşe.
+STORY: Ziyaretçi on saniyede kim olduğunu, ne sevk ettiğini ve nereden ulaşacağını anlar; bölümler arasında sekme rayıyla gezer.
+BÖLÜM 4: Karton çim yeşili (#3C7429) — çözücünün kelepçesine takılmayan tek aday ton; sevk edilmiş üç tonla aynı okuma kontrastını veriyor.
+FORM: Asetat yapraklı kullanım kılavuzu — dealt challenger, kullanıcı seçimi (kendi sıralamamı devirdi); seed 8cb63b78.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+<a class="skip" href="#main">İçeriğe geç</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERANS KILAVUZU · SÜRÜM 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Bölümler">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/"><span>1 · Giriş</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/projects"><span>2 · Projeler</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/bookmarks"><span>3 · Yer İmleri</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Tema">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Tema</span>
+  </button>
+  <a class="ctl" href="/en/blog/" hreflang="en" title="Switch to English">EN</a>
+</div>
+
+<main class="leaf" id="main">
+  <div class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Bölüm 4</span>
+          <span class="machine">Blog</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine">Sayfa 4 / 4</span>
+          <span class="machine">Sürüm 2026.08</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">Blog</h1>
+    </div>
+
+    <h2 class="head">Kapsam<small>4.0</small></h2>
+    <div class="prose lede"><p>Kurduğum araçların yapım notları. Ne yaptığımdan çok neye karar verdiğim, hangi kısıtın hangi mimariyi dayattığı ve nerede yanlış döndüğüm.</p></div>
+
+    <h2 class="head t-grass">Yazılar<small>4.1 · 1 kayıt</small></h2>
+    <section class="t-grass" aria-label="Yazılar">
+      <ul class="index">
+        <li class="entry">
+          <span class="entry__ref">4.1.1</span>
+          <div>
+            <h3 class="entry__name"><a href="/blog/sifir-maliyetli-asistan">Sıfır maliyetli bir asistanı ayağa kaldırmak</a></h3>
+            <p class="entry__desc">Bir takviye gıda markası için mikrobiyota sorularına cevap veren bir asistan kurduk. Asıl iş modeli seçmek değildi; bütçe sınırını baştan bir tasarım kısıtı saymaktı. Kapsam düzeltmesi, ikinci bir ajanla çalışmanın bedeli, bir yanlış dönüş ve ücretsiz katmanın kuyruğa girdiği gün.</p>
+            <div class="entry__meta">
+              <span class="spec-tag">Yapım notu</span>
+              <span class="spec-tag" lang="en">LLM</span>
+              <span class="spec-tag">Mikrobiyota</span>
+              <span class="spec-tag">Sıfır maliyet</span>
+            </div>
+          </div>
+          <div class="entry__side">
+            <span class="machine"><time datetime="2026-08-28">28 Ağustos 2026</time></span>
+            <span class="machine">8 dk okuma</span>
+            <a class="jump" href="/blog/sifir-maliyetli-asistan">Yazıyı oku
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/">Bölüm 1 · Giriş
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Referans kılavuzu · Sürüm 2026.08</span>
+      </div>
+  </div>
+</main>
+<script src="/assets/manual.js" defer></script>
+</body>
+</html>

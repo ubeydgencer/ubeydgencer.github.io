@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Standing up an assistant at zero cost — Ubeyd Gencer</title>
+<meta name="description" content="We built an assistant that answers gut-microbiota questions for a supplement brand. A scope correction, the cost of working with a second agent, one wrong turn, and the day the free tier went into a queue." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/en/blog/zero-cost-assistant" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/sifir-maliyetli-asistan" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/zero-cost-assistant" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/sifir-maliyetli-asistan" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Standing up an assistant at zero cost" />
+<meta property="og:description" content="We built an assistant that answers gut-microbiota questions for a supplement brand. The real work was not picking a model; it was treating the budget limit as a design constraint from day one." />
+<meta property="og:url" content="https://ubeydgencer.com/en/blog/zero-cost-assistant" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-08-28" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Standing up an assistant at zero cost" />
+<meta name="twitter:description" content="We built an assistant that answers gut-microbiota questions for a supplement brand. The real work was not picking a model; it was treating the budget limit as a design constraint from day one." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Standing up an assistant at zero cost","description":"We built an assistant that answers gut-microbiota questions for a supplement brand. A scope correction, the cost of working with a second agent, one wrong turn, and the day the free tier went into a queue.","datePublished":"2026-08-28","dateModified":"2026-08-28","inLanguage":"en","url":"https://ubeydgencer.com/en/blog/zero-cost-assistant","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/en/blog/zero-cost-assistant"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/en/blog/"}}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERENCE MANUAL · REVISION 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Sections">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/en"><span>1 · Introduction</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/en/projects"><span>2 · Projects</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/en/bookmarks"><span>3 · Bookmarks</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/en/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Theme">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Theme</span>
+  </button>
+  <a class="ctl" href="/blog/sifir-maliyetli-asistan" hreflang="tr" title="Türkçe sürüme geç">TR</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Section 4</span>
+          <span class="machine">Blog · 4.1.1</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine"><time datetime="2026-08-28">28 August 2026</time></span>
+          <span class="machine">8 min read</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">Standing up an<br />assistant at zero cost</h1>
+      <p class="machine" style="margin-top:.9rem">Build note · Microbiota assistant · Four days</p>
+    </div>
+
+    <h2 class="head">Summary<small>&sect;1</small></h2>
+    <div class="prose lede">
+      <p>We built an assistant for a supplement brand that answers questions about gut microbiota. It went live in four days. The hard part was not choosing a model; it was accepting that the budget limit was not a detail but the constraint that shaped the architecture. What follows is what happened, in order &mdash; corrections and one wrong turn included.</p>
+    </div>
+
+    <h2 class="head">The start<small>&sect;2</small></h2>
+    <div class="prose">
+      <p>The job began with a link to a conversation. There was no specification, just a brief along the lines of &ldquo;turn the subject of this conversation into an assistant app.&rdquo; That is a better starting point than it sounds: a specification tells you what the product is, while a conversation carries what people actually ask. The second is worth more, because the assistant&rsquo;s job is not to describe the product but to answer the question.</p>
+    </div>
+
+    <h2 class="head">The first cut drew the scope wrong<small>&sect;3</small></h2>
+    <div class="prose">
+      <p>In the first version I wired every question to the brand&rsquo;s knowledge base. Anything without an entry there got &ldquo;that is not in my knowledge base.&rdquo; Correct on paper, useless in practice.</p>
+      <p>It broke on a question like this: for patients with hypertension and diabetes, which probiotic strains matter most, and which prebiotics suit those strains best? The brand&rsquo;s product is one example inside that question &mdash; not its boundary. Pulling the assistant&rsquo;s limit down to the product reduces it to a catalogue front end.</p>
+      <p>So the scope was split in two:</p>
+      <p><strong>The brand layer.</strong> Product positioning, red lines, what may and may not be claimed. This layer is binding: with no entry it says &ldquo;not in my knowledge base&rdquo; and invents nothing.</p>
+      <p><strong>The scientific field.</strong> Strains, mechanisms, doses, clinical evidence. Here it does not go silent. Nor is it free: a strain code is written in full as genus + species + strain, every claim carries an evidence label (meta-analysis, randomised trial, observational, animal, in vitro), and drug-interaction warnings are never dropped.</p>
+      <p>An assistant saying &ldquo;I don&rsquo;t know&rdquo; is bad; sounding certain without naming a source is worse. The format rules on the second layer exist for exactly that.</p>
+    </div>
+
+    <h2 class="head">A budget limit is a design constraint<small>&sect;4</small></h2>
+    <div class="prose">
+      <p>&ldquo;How do I run this for free?&rdquo; determined the rest of the project. The search had two stops.</p>
+      <p><strong>A local model.</strong> A model installed on my own machine looks like it solves everything &mdash; until you remember the app has to run on a server, not on my desk. Local models are good for development, not for shipping.</p>
+      <p><strong>Free cloud models.</strong> The free tier works, but you pay for it in <em>uncertainty</em> rather than money: requests join a queue, a model occasionally disappears, an answer sometimes takes minutes.</p>
+      <p>The lesson here is not which model won. Deciding to stay free is not a preference to optimise later; it is a constraint that shapes the architecture from the first day. Both sections below are consequences of it.</p>
+    </div>
+
+    <h2 class="head">Why not Vercel<small>&sect;5</small></h2>
+    <div class="prose">
+      <p>Free models answer in one and a half to five and a half minutes. On Vercel&rsquo;s free plan, serverless functions are cut off at sixty seconds. The platform was closing the connection before the model could finish; the error that surfaced looked like a model problem, when the real limit was the ceiling itself.</p>
+      <p>We moved the app to an environment that allows long-running requests (Render). The slowness of a free model is not a defect but a known cost &mdash; the hosting side had to be able to absorb it.</p>
+    </div>
+
+    <h2 class="head">Working with a second agent<small>&sect;6</small></h2>
+    <div class="prose">
+      <p>I was not the only assistant touching the codebase: a second agent ran inside the editor, wired to a cheap, fast model. I wrote it a long rules file &mdash; what to do, what never to do, with the reasoning for each.</p>
+      <p>The agent wrote a file of unsourced clinical figures into the knowledge folder. The rules file did say &ldquo;never invent a study, a number or a strain code&rdquo;; the small model did not see that line among the reasoning around it.</p>
+      <p>Three things changed. The file was deleted. The project had not been under version control until that day &mdash; the git repository was created right then, because not being able to see what an agent changed was the actual problem. And the rules file was rewritten: the reasoning was cut short, the prohibitions were put in the imperative, and write access to the knowledge folder was removed entirely.</p>
+      <p>Small, fast models skip long justifications and obey short, absolute prohibitions. A rules file is not a persuasive essay; it is a list of boundaries.</p>
+    </div>
+
+    <h2 class="head">A wrong turn<small>&sect;7</small></h2>
+    <div class="prose">
+      <p>This one started with the assistant I was working with rather than with me &mdash; but I am the one who paid for it, so it belongs here.</p>
+      <p>A provider&rsquo;s name came up mid-conversation. I repeated the sentence. The other side read that as &ldquo;let&rsquo;s do it&rdquo; and switched the entire provider configuration. The next day I found myself asking why we had opened an account with that provider at all <span class="errata">Correction</span> &mdash; and fairly so: I had not approved it, I had only echoed what was said.</p>
+      <p>Undoing it was not hard, but it cost hours. The rule that came out of it applies to both sides: repeating a name is not approval. On decisions that change the architecture, one explicit sentence of consent is cheaper than a half-hour rollback later.</p>
+    </div>
+
+    <h2 class="head">28 August: the queue<small>&sect;8</small></h2>
+    <div class="prose">
+      <p>Today the app started timing out. The cause was not in the code: the free model tier was busy, requests were waiting in a queue, and now and then the model itself returned nothing.</p>
+      <p>The easy fix was obvious. The paid variant of the same model costs about $0.003 per question &mdash; a few dollars a month in practice. We did not take it. The account deliberately sits at zero balance; here &ldquo;free&rdquo; is not an aspiration but a line in the specification.</p>
+      <p>So the fix was sought in resilience rather than in budget: several free models were arranged into a fallback chain. If one queues or disappears, the request moves to the next; timeouts are defined inside the app; a half-finished answer is not thrown away.</p>
+      <p>The system is still slow &mdash; but the slowness is now expected behaviour rather than a fault. The difference shows in what you tell the user: saying &ldquo;free models are busy right now, your request is queued&rdquo; instead of &ldquo;an error occurred&rdquo; turns the same delay from a malfunction into a status report.</p>
+    </div>
+
+    <h2 class="head">Three notes left over<small>&sect;9</small></h2>
+    <div class="prose">
+      <p><strong>One.</strong> State the constraint early. &ldquo;This has to be free&rdquo; is an architectural decision on day one and a rollback on day four.</p>
+      <p><strong>Two.</strong> Do not try to persuade an agent in its rules file. Write short prohibitions in the imperative and keep the reasoning somewhere else.</p>
+      <p><strong>Three.</strong> Repeating a sentence is not approval. Whether the other party is a person or a model, ask for explicit consent on decisions that are expensive to reverse.</p>
+    </div>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/en/blog/">Section 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Reference manual · Rev. 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js" defer></script>
+</body>
+</html>

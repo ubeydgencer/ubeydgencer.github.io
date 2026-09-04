@@ -43,7 +43,7 @@ var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
 var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
 var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
 r.classList.toggle('dark',dark);
-var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118]};
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
 function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
 function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
 window.solveLeaf=function(){
@@ -88,6 +88,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <li style="--extent:1"><a class="tab t-yellow" href="/"><span>1 · Giriş</span></a></li>
     <li style="--extent:3.1"><a class="tab t-orange" href="/projects" aria-current="page"><span>2 · Projeler</span></a></li>
     <li style="--extent:2.4"><a class="tab t-teal" href="/bookmarks"><span>3 · Yer İmleri</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/blog/"><span>4 · Blog</span></a></li>
   </ul>
 </nav>
 
@@ -108,7 +109,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <span class="machine">Projeler</span>
         </div>
         <div class="folio__set">
-          <span class="machine">Sayfa 2 / 3</span>
+          <span class="machine">Sayfa 2 / 4</span>
           <span class="machine">Sürüm 2026.08</span>
         </div>
       </div>

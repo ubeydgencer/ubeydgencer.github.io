@@ -78,6 +78,7 @@ html.dark {
 html[data-board="yellow"] { --board-face: var(--h-yellow); --on-board: var(--ink); }
 html[data-board="orange"] { --board-face: var(--h-orange); --on-board: #fff; }
 html[data-board="teal"]   { --board-face: var(--h-teal);   --on-board: #fff; }
+html[data-board="grass"]  { --board-face: var(--h-grass);  --on-board: #fff; }
 
 /* Alt bölüm tonları. --on-tone, o ton üstünde 4.5:1'i geçen tek ön plandır;
    krom sarısı beyazla 2.08'de kalır, bu yüzden tek koyu mürekkepli tondur. */

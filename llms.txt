@@ -12,6 +12,11 @@ Site iki dillidir: Türkçe kök dizinde, İngilizce /en/ altında.
 - [Ana Sayfa](https://ubeydgencer.com/) · [Home (EN)](https://ubeydgencer.com/en/)
 - [Projeler](https://ubeydgencer.com/projects) · [Projects (EN)](https://ubeydgencer.com/en/projects)
 - [Yer İmleri](https://ubeydgencer.com/bookmarks) · [Bookmarks (EN)](https://ubeydgencer.com/en/bookmarks)
+- [Blog](https://ubeydgencer.com/blog/) · [Blog (EN)](https://ubeydgencer.com/en/blog/)
+
+## Blog (1 yazı / 1 post)
+
+- **Sıfır maliyetli bir asistanı ayağa kaldırmak** (28.08.2026) — Bir takviye gıda markası için kurulan mikrobiyota asistanının yapım notu: kapsamın ürüne değil bilimsel alana çekilmesi, ücretsiz model katmanının dayattığı mimari, ikinci bir kod ajanıyla çalışmanın bedeli ve ücretsiz katman kuyruğa girdiğinde yedek model zinciriyle çözüm. [/blog/sifir-maliyetli-asistan](https://ubeydgencer.com/blog/sifir-maliyetli-asistan) · [EN](https://ubeydgencer.com/en/blog/zero-cost-assistant)
 
 ## Projeler (22 — 19 canlı, 3 geliştirmede)
 

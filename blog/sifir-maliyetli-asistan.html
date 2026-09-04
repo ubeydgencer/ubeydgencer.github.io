@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sıfır maliyetli bir asistanı ayağa kaldırmak — Ubeyd Gencer</title>
+<meta name="description" content="Bir takviye gıda markası için mikrobiyota sorularına cevap veren bir asistan kurduk. Kapsam düzeltmesi, ikinci bir ajanla çalışmanın bedeli, bir yanlış dönüş ve ücretsiz katmanın kuyruğa girdiği gün." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/blog/sifir-maliyetli-asistan" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/sifir-maliyetli-asistan" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/zero-cost-assistant" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/sifir-maliyetli-asistan" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Sıfır maliyetli bir asistanı ayağa kaldırmak" />
+<meta property="og:description" content="Bir takviye gıda markası için mikrobiyota sorularına cevap veren bir asistan kurduk. Asıl iş modeli seçmek değil, bütçe sınırını baştan bir tasarım kısıtı saymaktı." />
+<meta property="og:url" content="https://ubeydgencer.com/blog/sifir-maliyetli-asistan" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-08-28" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Sıfır maliyetli bir asistanı ayağa kaldırmak" />
+<meta name="twitter:description" content="Bir takviye gıda markası için mikrobiyota sorularına cevap veren bir asistan kurduk. Asıl iş modeli seçmek değil, bütçe sınırını baştan bir tasarım kısıtı saymaktı." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sıfır maliyetli bir asistanı ayağa kaldırmak","description":"Bir takviye gıda markası için mikrobiyota sorularına cevap veren bir asistan kurduk. Kapsam düzeltmesi, ikinci bir ajanla çalışmanın bedeli, bir yanlış dönüş ve ücretsiz katmanın kuyruğa girdiği gün.","datePublished":"2026-08-28","dateModified":"2026-08-28","inLanguage":"tr","url":"https://ubeydgencer.com/blog/sifir-maliyetli-asistan","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/blog/sifir-maliyetli-asistan"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/blog/"}}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<a class="skip" href="#main">İçeriğe geç</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERANS KILAVUZU · SÜRÜM 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Bölümler">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/"><span>1 · Giriş</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/projects"><span>2 · Projeler</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/bookmarks"><span>3 · Yer İmleri</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Tema">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Tema</span>
+  </button>
+  <a class="ctl" href="/en/blog/zero-cost-assistant" hreflang="en" title="Switch to English">EN</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Bölüm 4</span>
+          <span class="machine">Blog · 4.1.1</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine"><time datetime="2026-08-28">28 Ağustos 2026</time></span>
+          <span class="machine">8 dk okuma</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">Sıfır maliyetli bir<br />asistanı ayağa kaldırmak</h1>
+      <p class="machine" style="margin-top:.9rem">Yapım notu · Mikrobiyota asistanı · Dört gün</p>
+    </div>
+
+    <h2 class="head">Özet<small>§1</small></h2>
+    <div class="prose lede">
+      <p>Bir takviye gıda markası için, bağırsak mikrobiyotası sorularına cevap veren bir asistan kurduk. Dört günde canlıya çıktı. Zor kısım model seçmek değildi; bütçe sınırının bir detay değil, mimariyi belirleyen kısıt olduğunu kabul etmekti. Aşağısı, sırasıyla ne olduğu — düzeltmeler ve bir yanlış dönüş dahil.</p>
+    </div>
+
+    <h2 class="head">Başlangıç<small>§2</small></h2>
+    <div class="prose">
+      <p>İş, bir sohbet bağlantısıyla başladı. Şartname yoktu; “bu konuşmada geçen konuyu bir asistan uygulamasına çevir” kadar bir tarif vardı. Bu, göründüğü kadar kötü bir başlangıç değil: şartname ürünün ne olduğunu anlatır, sohbet ise insanların gerçekten ne sorduğunu taşır. İkincisi daha kıymetli, çünkü asistanın işi ürünü anlatmak değil, soruya cevap vermek.</p>
+    </div>
+
+    <h2 class="head">Kapsamı ilk kurgu yanlış çizdi<small>§3</small></h2>
+    <div class="prose">
+      <p>İlk sürümde her soruyu markanın bilgi tabanına bağladım. Bilgi tabanında karşılığı olmayan her şeye “bu bilgi tabanımda yok” diyordu. Kâğıt üzerinde doğru, pratikte işe yaramaz bir davranış.</p>
+      <p>Şöyle bir soru geldiğinde kırıldı: tansiyon ve şeker hastalarında hangi probiyotik suşlarını desteklemek daha elzem, bu suşların en iyi prebiyotikleri hangileri? Markanın ürünü bu sorunun içinde sadece bir örnek — sınırı değil. Asistanın sınırını ürüne çekmek, onu bir katalog arayüzüne indirger.</p>
+      <p>Kapsamı ikiye ayırdık:</p>
+      <p><strong>Markaya özel katman.</strong> Ürün konumlandırması, kırmızı çizgiler, iddia edilebilecek ve edilemeyecekler. Burası bağlayıcı: karşılığı yoksa “bilgi tabanımda yok” der ve uydurmaz.</p>
+      <p><strong>Bilimsel alan.</strong> Suşlar, mekanizmalar, dozlar, klinik kanıt. Burada susmaz. Ama serbest de değil: suş kodu cins + tür + suş olarak tam yazılır, her iddia kanıt etiketiyle gelir (meta-analiz, randomize çalışma, gözlemsel, hayvan, in vitro) ve ilaç etkileşimi uyarıları atlanmaz.</p>
+      <p>Bir asistanın “bilmiyorum” demesi kadar, kaynağını söylemeden biliyormuş gibi yapması da kötü. İkinci katmanın biçim zorunlulukları tam olarak bunun için var.</p>
+    </div>
+
+    <h2 class="head">Bütçe sınırı bir tasarım kısıtıdır<small>§4</small></h2>
+    <div class="prose">
+      <p>“Bunu nasıl ücretsiz çalıştırabilirim?” sorusu projenin geri kalanını belirledi. Cevabı ararken iki durak oldu:</p>
+      <p><strong>Yerel model.</strong> Kendi makinemde kurulu bir model her şeyi çözüyor gibi görünüyor — ta ki uygulamanın benim makinemde değil, bir sunucuda çalışması gerektiği hatırlanana kadar. Yerel model geliştirme için iyi, yayın için değil.</p>
+      <p>
+        <strong>Ücretsiz bulut modelleri.</strong> Sağlayıcıların ücretsiz katmanı iş görüyor, ama bedeli parayla değil <em>belirsizlikle</em> ödüyorsunuz: istek kuyruğa giriyor, model bazen yok oluyor, cevap bazen dakikalarca sürüyor.
+      </p>
+      <p>Buradaki asıl ders, hangi modelin seçildiği değil: ücretsiz kalma kararı sonradan optimize edilecek bir tercih değil, en baştan mimariyi şekillendiren bir kısıt. Aşağıdaki iki bölüm de bu kısıtın sonucu.</p>
+    </div>
+
+    <h2 class="head">Neden Vercel değil<small>§5</small></h2>
+    <div class="prose">
+      <p>Ücretsiz modeller cevabı 1,5 ile 5,5 dakika arasında veriyor. Vercel’in ücretsiz planında sunucusuz fonksiyonlar 60 saniyede kesiliyor. Yani platform, modelin cevabını bitirmesine izin vermeden bağlantıyı kapatıyordu; ortaya çıkan hata mesajı da modelle ilgili görünüyor, oysa sorun tavanın kendisiydi.</p>
+      <p>Uygulamayı uzun süreli isteklere izin veren bir ortama (Render) taşıdık. Ücretsiz modelin yavaşlığı bir kusur değil, bilinen bir maliyet — barındırma tarafının bunu kaldırması gerekiyordu.</p>
+    </div>
+
+    <h2 class="head">İkinci bir ajanla çalışmak<small>§6</small></h2>
+    <div class="prose">
+      <p>Projede kod tabanına dokunan tek yardımcı ben değildim: editörün içinde çalışan ikinci bir ajan da vardı, ucuz ve hızlı bir modele bağlıydı. Ona uzun bir kural dosyası yazdım — ne yapacağı, neyi asla yapmayacağı, gerekçeleriyle.</p>
+      <p>Ajan, bilgi klasörüne kaynaksız klinik rakamlar içeren bir dosya yazdı. Kural dosyasında “asla uydurma çalışma, sayı veya suş kodu üretme” maddesi vardı; küçük model o maddeyi gerekçelerin arasında görmedi.</p>
+      <p>Üç şey değişti. Dosya silindi. Proje o güne kadar sürüm kontrolü altında değildi — git deposu o gün kuruldu, çünkü bir ajanın ne değiştirdiğini görememek asıl sorunun kendisiydi. Ve kural dosyası yeniden yazıldı: gerekçeler kısaldı, yasaklar emir kipine çevrildi, bilgi klasörüne yazma yetkisi tümden kaldırıldı.</p>
+      <p>Küçük ve hızlı modeller uzun gerekçeleri atlıyor, kısa ve kesin yasaklara uyuyor. Kural dosyası bir ikna metni değil, bir sınır listesi.</p>
+    </div>
+
+    <h2 class="head">Yanlış dönüş<small>§7</small></h2>
+    <div class="prose">
+      <p>Bu bölüm bende değil, birlikte çalıştığım asistanda başlayan bir hata — ama sonucu bana kaldığı için buraya yazıyorum.</p>
+      <p>Konuşmanın içinde bir sağlayıcının adı geçti. Ben o cümleyi tekrarladım. Karşı taraf bunu “hadi bunu yapalım” diye okudu ve tüm sağlayıcı yapılandırmasını değiştirdi. Ertesi gün kendimi “bu sağlayıcıyı neden açtık, anlamadım” diye sorarken buldum <span class="errata">Düzeltme</span> — ve haklı olarak: onay vermemiştim, sadece söyleneni tekrarlamıştım.</p>
+      <p>Geri alması zor olmadı, ama saat kaybettirdi. Buradan çıkan kural bende de karşı tarafta da geçerli: bir ismi tekrarlamak onay değildir. Mimariyi değiştiren kararlarda tek cümlelik açık bir onay, sonradan yapılacak yarım saatlik bir geri almadan ucuz.</p>
+    </div>
+
+    <h2 class="head">28 Ağustos: kuyruk<small>§8</small></h2>
+    <div class="prose">
+      <p>Bugün uygulama zaman aşımı vermeye başladı. Sebep kodda değildi: ücretsiz model katmanı yoğundu, istekler kuyrukta bekliyordu, arada modelin kendisi yanıt vermiyordu.</p>
+      <p>Kolay çözüm ortadaydı. Aynı modelin ücretli sürümü soru başına yaklaşık 0,003 dolar — pratikte aylık birkaç dolarlık bir gider. Onu seçmedik. Hesapta bilerek sıfır bakiye duruyor; “ücretsiz” bu projede bir hedef değil, şartname maddesi.</p>
+      <p>Bu yüzden çözüm bütçede değil dayanıklılıkta arandı: birden fazla ücretsiz model bir yedek zincirine dizildi. Biri kuyruğa girerse veya kaybolursa istek sıradakine geçiyor; zaman aşımı sınırları uygulamanın kendi içinde tanımlı; yarım gelen cevap atılmıyor.</p>
+      <p>Yani sistem hâlâ yavaş — ama artık yavaşlık, hata değil beklenen davranış. Aradaki fark, kullanıcıya ne söylediğinizde ortaya çıkıyor: “bir hata oluştu” yerine “ücretsiz modeller şu anda yoğun, isteğiniz kuyrukta” demek, aynı gecikmeyi arıza olmaktan çıkarıp bir durum bilgisine dönüştürüyor.</p>
+    </div>
+
+    <h2 class="head">Geriye kalan üç not<small>§9</small></h2>
+    <div class="prose">
+      <p><strong>Bir.</strong> Kısıtı erken söyleyin. “Ücretsiz olacak” cümlesi ilk gün söylendiğinde bir mimari kararı, dördüncü gün söylendiğinde bir geri alma işidir.</p>
+      <p><strong>İki.</strong> Ajanlara kural yazarken ikna etmeye çalışmayın. Kısa, emir kipinde ve yasak listesi hâlinde yazın; gerekçeyi ayrı bir yere koyun.</p>
+      <p><strong>Üç.</strong> Bir cümleyi tekrarlamak onay değildir. Karşınızdaki ister insan ister model olsun, geri dönüşü pahalı kararlarda açık onay isteyin.</p>
+    </div>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/blog/">Bölüm 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Referans kılavuzu · Sürüm 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js" defer></script>
+</body>
+</html>
