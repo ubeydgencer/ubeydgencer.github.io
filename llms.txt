@@ -20,7 +20,7 @@ Yapım notları, kararlar ve hayatın içinden konular. / Build notes, decisions
 
 - **Sıfır bütçeyle bir asistan kurduk** (28.08.2026) — Bir takviye gıda markası için kurulan mikrobiyota asistanının yapım notu: kapsamın ürüne değil bilimsel alana çekilmesi, ücretsiz model katmanının dayattığı mimari, ikinci bir kod ajanıyla çalışmanın bedeli ve ücretsiz katman kuyruğa girdiğinde yedek model zinciriyle çözüm. [/blog/sifir-maliyetli-asistan](https://ubeydgencer.com/blog/sifir-maliyetli-asistan) · [EN](https://ubeydgencer.com/en/blog/zero-cost-assistant)
 
-## Projeler (22 — 19 canlı, 3 geliştirmede)
+## Projeler (24 — 20 canlı, 4 geliştirmede)
 
 ### Açsa Otomotiv / Açsa Otomotiv
 
