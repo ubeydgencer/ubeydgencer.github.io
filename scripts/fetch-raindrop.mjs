@@ -53,11 +53,27 @@ async function loadDotEnv() {
   }
 }
 
+/** Token'ın kendisini değil, yalnızca biçimini anlatır — log'a sızmaz. */
+function describeToken(t) {
+  const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (t !== t.trim()) return 'başında/sonunda boşluk veya satır sonu var — secret\'ı yeniden yapıştır';
+  if (uuid.test(t)) return `biçim doğru görünüyor (UUID, ${t.length} karakter)`;
+  return `biçim beklenenden farklı (${t.length} karakter, UUID değil) — Client ID veya Client Secret kopyalanmış olabilir`;
+}
+
 async function api(pathname, token) {
   const res = await fetch(`${API}${pathname}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  if (res.status === 401) throw new Error('Token geçersiz veya süresi dolmuş (401).');
+  if (res.status === 401) {
+    throw new Error(
+      'Token geçersiz veya süresi dolmuş (401).\n' +
+        `  Token biçimi: ${describeToken(token)}\n\n` +
+        '  Raindrop test token\'ı UUID biçimindedir: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\n' +
+        '  app.raindrop.io/settings/integrations → uygulamanı aç → sayfanın ALTINDAKİ\n' +
+        '  "Create test token" butonu. Üstteki Client ID / Client Secret DEĞİL.',
+    );
+  }
   if (res.status === 429) throw new Error('Raindrop hız sınırı aşıldı (429). Biraz bekleyip tekrar dene.');
   if (!res.ok) throw new Error(`Raindrop ${res.status} ${res.statusText} — ${pathname}`);
   return res.json();
