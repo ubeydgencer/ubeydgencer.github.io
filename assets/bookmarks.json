@@ -1,11 +1,17 @@
 {
-  "updated": "2026-09-11T08:04:54.959Z",
-  "total": 32,
+  "updated": "2026-09-11T08:17:28.488Z",
+  "total": 33,
   "collections": [
     {
       "title": "Bookmark",
-      "count": 2,
+      "count": 3,
       "items": [
+        {
+          "title": "Wera Aletleri | Wera",
+          "link": "https://www.wera.de/tr/",
+          "domain": "wera.de",
+          "created": "2026-09-11T08:10:31.343Z"
+        },
         {
           "title": "Movie Scene Map — Where Films & TV Series Were Actually Filmed",
           "link": "https://moviescenemap.com/",
