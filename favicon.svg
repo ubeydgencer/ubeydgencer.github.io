@@ -1,13 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" fill="white"/>
-  <text
-    x="50"
-    y="72"
-    text-anchor="middle"
-    font-family="-apple-system, BlinkMacSystemFont, 'Arial Rounded MT Bold', 'Arial Black', sans-serif"
-    font-weight="900"
-    font-size="58"
-    fill="black"
-    letter-spacing="-3"
-  >UG</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ubeyd Gencer">
+  <!-- Ayraç kartonu sarısı (--h-yellow) + cilt delikleri + mürekkep versaller.
+       16px'te delikler iki nokta olarak kalır, UG okunur; sarı zemin hem açık
+       hem koyu sekme çubuğunda ayırt edilir. -->
+  <rect width="64" height="64" fill="#E9A81C"/>
+  <circle cx="9" cy="22" r="3.8" fill="#17150F" opacity=".4"/>
+  <circle cx="9" cy="42" r="3.8" fill="#17150F" opacity=".4"/>
+  <text x="38" y="45" text-anchor="middle"
+        font-family="Archivo, Helvetica, Arial, 'Liberation Sans', sans-serif"
+        font-weight="800" font-size="32" fill="#17150F" letter-spacing="-2">UG</text>
 </svg>
