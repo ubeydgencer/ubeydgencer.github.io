@@ -53,12 +53,17 @@ async function loadDotEnv() {
   }
 }
 
-/** Token'ın kendisini değil, yalnızca biçimini anlatır — log'a sızmaz. */
+/**
+ * Token'ın kendisini değil, yalnızca biçimini anlatır — log'a sızmaz.
+ * Dikkat: Raindrop'ta test token, Client ID ve Client Secret'ın üçü de
+ * UUID biçiminde. Yani biçim doğru olması doğru değeri kopyaladığını
+ * göstermez; ayırt etmenin tek yolu API'ye sormak.
+ */
 function describeToken(t) {
   const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-  if (t !== t.trim()) return 'başında/sonunda boşluk veya satır sonu var — secret\'ı yeniden yapıştır';
-  if (uuid.test(t)) return `biçim doğru görünüyor (UUID, ${t.length} karakter)`;
-  return `biçim beklenenden farklı (${t.length} karakter, UUID değil) — Client ID veya Client Secret kopyalanmış olabilir`;
+  if (t !== t.trim()) return "başında/sonunda boşluk veya satır sonu var — secret'ı yeniden yapıştır";
+  if (uuid.test(t)) return `UUID (${t.length} karakter) — ama Client Secret de böyle görünür, bu ayırt etmez`;
+  return `UUID değil (${t.length} karakter) — test token beklenen biçimde değil`;
 }
 
 async function api(pathname, token) {
@@ -73,9 +78,11 @@ async function api(pathname, token) {
         `  Raindrop yanıtı: ${body.slice(0, 300) || '(boş)'}\n` +
         `  İstek: ${pathname}\n` +
         `  Token biçimi: ${describeToken(token)}\n\n` +
-        '  Raindrop test token\'ı UUID biçimindedir: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\n' +
-        '  app.raindrop.io/settings/integrations → uygulamanı aç → sayfanın ALTINDAKİ\n' +
-        '  "Create test token" butonu. Üstteki Client ID / Client Secret DEĞİL.',
+        '  En sık sebep: Client Secret kopyalanmış oluyor. O da UUID biçiminde\n' +
+        '  olduğu için gözle ayırt edilmiyor ama API kabul etmiyor.\n\n' +
+        '  Doğrusu: app.raindrop.io/settings/integrations → uygulamanı aç →\n' +
+        '  sayfayı en alta kaydır → "Create test token" butonu.\n' +
+        '  Client ID / Client Secret alanları DEĞİL.',
     );
   }
   if (res.status === 429) throw new Error('Raindrop hız sınırı aşıldı (429). Biraz bekleyip tekrar dene.');
