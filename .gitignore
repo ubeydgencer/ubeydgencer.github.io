@@ -20,3 +20,6 @@ DESIGN.md
 # Raindrop token — asla repoya girmesin.
 # Bu token Raindrop hesabının tamamına okuma VE yazma yetkisi veriyor.
 .env
+
+# Hugo kalıntısı — site elle yazılmış HTML, Hugo kullanılmıyor.
+.hugo_build.lock
