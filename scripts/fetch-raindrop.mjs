@@ -66,8 +66,12 @@ async function api(pathname, token) {
     headers: { Authorization: `Bearer ${token}` },
   });
   if (res.status === 401) {
+    /* Raindrop'un kendi mesajı sebebi söylüyor; token içermez, log'a güvenli. */
+    const body = await res.text().catch(() => '');
     throw new Error(
       'Token geçersiz veya süresi dolmuş (401).\n' +
+        `  Raindrop yanıtı: ${body.slice(0, 300) || '(boş)'}\n` +
+        `  İstek: ${pathname}\n` +
         `  Token biçimi: ${describeToken(token)}\n\n` +
         '  Raindrop test token\'ı UUID biçimindedir: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\n' +
         '  app.raindrop.io/settings/integrations → uygulamanı aç → sayfanın ALTINDAKİ\n' +
