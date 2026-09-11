@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+# README'ler GitHub deposu için; arama sonucunda sayfa olarak çıkmasınlar.
+Disallow: /README.md
+Disallow: /README.en.md
 
 User-agent: GPTBot
 Allow: /
