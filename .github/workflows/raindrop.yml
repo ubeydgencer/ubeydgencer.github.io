@@ -1,0 +1,44 @@
+name: Raindrop senkronu
+
+# Token yalnızca burada, GitHub Secrets içinde durur; tarayıcıya hiç gitmez.
+# Kurulum: Settings → Secrets and variables → Actions → New repository secret
+#          Name: RAINDROP_TOKEN   Value: (Raindrop test token)
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # her gün 06:00 UTC (TR 09:00)
+  workflow_dispatch: # Actions sekmesinden elle tetikleme
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raindrop-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Yer imlerini çek
+        env:
+          RAINDROP_TOKEN: ${{ secrets.RAINDROP_TOKEN }}
+        run: node scripts/fetch-raindrop.mjs
+
+      - name: Değişiklik varsa commit et
+        run: |
+          if git diff --quiet; then
+            echo "Değişiklik yok, commit atlanıyor."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bookmarks.html en/bookmarks.html assets/bookmarks.json sitemap.xml
+          git commit -m "Yer imleri Raindrop'tan güncellendi ($(date -u +%Y-%m-%d))"
+          git push

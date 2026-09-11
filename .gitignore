@@ -16,3 +16,7 @@
 PRODUCT.md
 DESIGN.md
 .impeccable/
+
+# Raindrop token — asla repoya girmesin.
+# Bu token Raindrop hesabının tamamına okuma VE yazma yetkisi veriyor.
+.env
