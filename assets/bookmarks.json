@@ -1,11 +1,17 @@
 {
-  "updated": "2026-09-11T08:17:28.488Z",
-  "total": 33,
+  "updated": "2026-09-11T09:37:22.580Z",
+  "total": 34,
   "collections": [
     {
       "title": "Bookmark",
-      "count": 3,
+      "count": 4,
       "items": [
+        {
+          "title": "Eberspächer Climate Control Systems Turkey",
+          "link": "https://www.eberspaecher-climate.com/tr/tr",
+          "domain": "eberspaecher-climate.com",
+          "created": "2026-09-11T09:30:23.395Z"
+        },
         {
           "title": "Wera Aletleri | Wera",
           "link": "https://www.wera.de/tr/",
