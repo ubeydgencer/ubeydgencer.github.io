@@ -52,7 +52,7 @@
     <loc>https://ubeydgencer.com/blog/</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/" />
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -62,6 +62,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/zero-cost-assistant" />
     <lastmod>2026-09-11</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/blog/husi-suudi-arabistan-kronolojisi</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/husi-suudi-arabistan-kronolojisi" />
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>

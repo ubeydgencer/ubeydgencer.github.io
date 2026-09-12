@@ -299,6 +299,13 @@ html.dark .leaf {
   font-size: clamp(2rem, 6vw, 3.5rem);
 }
 
+/* Bölünemeyen uzun bir kelime (yer adı gibi) taşıyorsa: aynı düzen, daha
+   küçük ölçek. Varsayılan ölçü en uzun mevcut başlığa göre ayarlı, onu
+   aşan başlıklar bu sınıfı alır. */
+.display--long {
+  font-size: clamp(2rem, 4.9vw, 3.5rem);
+}
+
 /* Univers rolü: bölüm başlıkları, kenar sütununda asılı */
 .head {
   font-family: 'Archivo', system-ui, sans-serif;
@@ -351,6 +358,30 @@ html.dark .leaf {
   text-decoration-color: color-mix(in srgb, var(--board-face) 55%, var(--ink) 45%);
 }
 .prose a:hover { text-decoration-thickness: 2px; }
+
+/* Gövde listesi. Madde imi yerine kısa bir kural çizgisi — kılavuzun
+   çizgisel diliyle uyumlu, yuvarlak nokta o dile ait değil. Girinti
+   62ch ölçüsünü bozmasın diye metin hizası paragrafla aynı kalır. */
+.prose ul, .prose ol { margin-top: 0.8125rem; padding-left: 1.5rem; }
+.prose ul + p, .prose ol + p { margin-top: 0.8125rem; }
+.prose li + li { margin-top: 0.4375rem; }
+.prose ul { list-style: none; }
+.prose ul > li { position: relative; }
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.5rem;
+  top: 0.72em;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--rule-strong);
+}
+.prose ol { list-style: decimal; }
+.prose ol > li::marker {
+  font-family: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
 
 .lede { font-size: 1.1875rem; line-height: 1.5; }
 
@@ -471,6 +502,15 @@ html.dark .leaf {
   line-height: 1.25;
   color: var(--ink);
 }
+
+/* Başlık bir bağlantıysa rengi devralmaz; tarayıcı varsayılanı mavi basar
+   ve bu palette mavi yok. Sekme listesiyle aynı kural: durağanken çizgisiz,
+   üzerine gelince altı çizili. */
+.entry__name a {
+  color: inherit;
+  text-decoration: none;
+}
+.entry__name a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 
 .entry__desc {
   max-width: var(--measure);
@@ -927,6 +967,7 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
   .window--thumb { max-width: 13rem; }
   .window--thumb img { width: 11.6rem; }
   .display { font-size: clamp(2.25rem, 11.5vw, 3.25rem); }
+  .display--long { font-size: clamp(1.6rem, 8.2vw, 2.6rem); }
   .spec th { width: 6.5rem; }
   .folio { font-size: 0.9em; }
   .lede { font-size: 1.0625rem; }
