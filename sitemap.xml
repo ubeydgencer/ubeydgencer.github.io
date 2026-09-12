@@ -67,6 +67,7 @@
   <url>
     <loc>https://ubeydgencer.com/blog/husi-suudi-arabistan-kronolojisi</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/husi-suudi-arabistan-kronolojisi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/houthis-saudi-arabia-timeline" />
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -92,5 +93,13 @@
     <lastmod>2026-09-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/en/blog/houthis-saudi-arabia-timeline</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/husi-suudi-arabistan-kronolojisi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/houthis-saudi-arabia-timeline" />
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
