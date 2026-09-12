@@ -235,6 +235,27 @@ async function main() {
     console.log(`${file}: güncellendi`);
   }
 
+  /* Ana sayfa künyesindeki yer imi sayacı. Elle tutulursa her senkronda
+     bayatlıyor; kaynağı burası olduğu için buradan yazılır. */
+  if (!DRY_RUN) {
+    for (const [file, re] of [
+      ['index.html', /(<th scope="row">Yer imi<\/th><td>)\d+( kayıt<\/td>)/],
+      ['en/index.html', /(<th scope="row">Bookmarks<\/th><td>)\d+( entries<\/td>)/],
+    ]) {
+      const full = path.join(ROOT, file);
+      const html = await readFile(full, 'utf8');
+      if (!re.test(html)) {
+        console.warn(`UYARI: ${file} içinde yer imi sayacı bulunamadı, atlandı.`);
+        continue;
+      }
+      const next = html.replace(re, `$1${total}$2`);
+      if (next !== html) {
+        await writeFile(full, next);
+        console.log(`${file}: yer imi sayacı ${total}`);
+      }
+    }
+  }
+
   /* sitemap.xml — yalnızca iki yer imi sayfasının lastmod'u */
   if (!DRY_RUN) {
     const file = path.join(ROOT, 'sitemap.xml');

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>I built my own stationery briefing with AI — Ubeyd Gencer</title>
+<meta name="description" content="A curator that scans a hundred stationery brands and sends me one notification at 09:00 every morning. Built with Gemini. No ads, no spam, my own filter." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/en/blog/stationery-briefing" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/kirtasiye-bulteni" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/stationery-briefing" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/kirtasiye-bulteni" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="I built my own stationery briefing with AI" />
+<meta property="og:description" content="A curator that scans a hundred stationery brands and sends me one notification at 09:00 every morning. Built with Gemini. No ads, no spam, my own filter." />
+<meta property="og:url" content="https://ubeydgencer.com/en/blog/stationery-briefing" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="tr_TR" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-09-06" />
+<meta property="article:modified_time" content="2026-09-06" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta property="article:section" content="Build note" />
+<meta property="article:tag" content="AI" />
+<meta property="article:tag" content="Gemini" />
+<meta property="article:tag" content="Automation" />
+<meta property="article:tag" content="Stationery" />
+<meta property="article:tag" content="Fountain pens" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="I built my own stationery briefing with AI" />
+<meta name="twitter:description" content="A curator that scans a hundred stationery brands and sends me one notification at 09:00 every morning." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"I built my own stationery briefing with AI","description":"A curator that scans a hundred stationery brands and sends me one notification at 09:00 every morning. Built with Gemini. No ads, no spam, my own filter.","datePublished":"2026-09-06","dateModified":"2026-09-06","inLanguage":"en","url":"https://ubeydgencer.com/en/blog/stationery-briefing","image":"https://ubeydgencer.com/ubeydgencer.jpg","wordCount":460,"articleSection":"Build note","keywords":"AI, Gemini, automation, stationery, fountain pens, ink, Lamy, Sailor, Kaweco, Rhodia, Leuchtturm1917","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/en/blog/stationery-briefing"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/en/blog/"},"about":[{"@type":"Thing","name":"Fountain pen","sameAs":"https://en.wikipedia.org/wiki/Fountain_pen"},{"@type":"Thing","name":"Google Gemini","sameAs":"https://en.wikipedia.org/wiki/Gemini_(chatbot)"}]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ubeydgencer.com/en/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ubeydgencer.com/en/blog/"},{"@type":"ListItem","position":3,"name":"I built my own stationery briefing with AI","item":"https://ubeydgencer.com/en/blog/stationery-briefing"}]}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERENCE MANUAL · REVISION 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Sections">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/en/"><span>1 · Intro</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/en/projects"><span>2 · Projects</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/en/bookmarks"><span>3 · Bookmarks</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/en/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Theme">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Theme</span>
+  </button>
+  <a class="ctl" href="/blog/kirtasiye-bulteni" hreflang="tr" title="Türkçe’ye geç">TR</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Section 4</span>
+          <span class="machine">Blog · 4.1.2</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine"><time datetime="2026-09-06">6 September 2026</time></span>
+          <span class="machine">3 min read</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">A morning briefing<br />for stationery</h1>
+      <p class="machine" style="margin-top:.9rem">Build note · Gemini · 100 brands · 09:00 daily</p>
+    </div>
+
+    <h2 class="head">In short<small>&sect;1</small></h2>
+    <div class="prose lede">
+      <p>I built a curator that scans a hundred stationery brands around the world and sends me a single notification at 09:00 every morning. It was built with Gemini. No ads, no spam, and I set the filter myself.</p>
+    </div>
+
+    <h2 class="head">Why stationery<small>&sect;2</small></h2>
+    <div class="prose">
+      <p>When your life is bound up with technology, staring at screens and thinking about how algorithms behave eventually pushes you toward physical, tactile things. For me that escape has always been good stationery: fountain pens and notebooks with a particular paper texture. Lamy&rsquo;s German engineering, Sailor&rsquo;s Japanese craftsmanship, Italian resin work.</p>
+      <p>But keeping up with the limited runs, new inks, and industry news that hundreds of brands put out every day is a job in itself.</p>
+    </div>
+
+    <h2 class="head">Turning the automation on a hobby<small>&sect;3</small></h2>
+    <div class="prose">
+      <p>Setting up cloud inventory syncs or designing complicated workflows in n8n is part of what I build day to day. This time I used the same muscles for something entirely personal.</p>
+      <p>The goal was simple: at exactly 09:00 each morning, a briefing summarising the last twenty-four hours across the most respected stationery brands should land on my device.</p>
+    </div>
+
+    <h2 class="head">From three brands to a hundred<small>&sect;4</small></h2>
+    <div class="prose">
+      <p>We started by listing the obvious ones — Kaweco, Rhodia, Moleskine. But as the conversation with the assistant went deeper we decided to widen the scope, and mapped out a hundred-brand picture of the industry: from Japan&rsquo;s niche paper mills to century-old European fountain pen workshops.</p>
+      <p>The instruction was straightforward: don&rsquo;t track a handful of brands, scan and summarise what the respected stationery makers worldwide are releasing.</p>
+    </div>
+
+    <h2 class="head">What arrives in the morning<small>&sect;5</small></h2>
+    <div class="prose">
+      <p>One notification now brings me things like:</p>
+      <ul>
+        <li>Diamine&rsquo;s new-year ink calendar</li>
+        <li>The Unkai edition of the Platinum 3776</li>
+        <li>Leuchtturm1917&rsquo;s seventies retro colour palette</li>
+        <li>Titanium pocket pens from independent boutique makers</li>
+      </ul>
+      <p>The difference from a conventional email newsletter: it does not spam, it carries no advertising, and it only gives me a filtered summary of brands that clear the quality bar I set.</p>
+    </div>
+
+    <h2 class="head">What stayed with me<small>&sect;6</small></h2>
+    <div class="prose">
+      <p>At the end of the day, focusing on a physical object that excites you — the flow of ink at the tip of a fountain pen — is genuinely restful.</p>
+      <p>You can turn AI into a personal radar for your most elegant hobbies, not just a tool for writing code or running projects. That is one of the more enjoyable ways to use the technology.</p>
+    </div>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/en/blog/">Section 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Reference manual · Revision 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js" defer></script>
+</body>
+</html>
