@@ -1,0 +1,55 @@
+name: Sayaç senkronu
+
+# Sayfalardaki her sayı içerikten türetilir. Elle güncellenmesi gereken
+# sayaç kalmasın diye: içerik değişince bu iş sayaçları yeniden yazar ve
+# fark varsa commit eder. Elle push edilen bayat bir sayaç burada düzelir.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'projects.html'
+      - 'en/projects.html'
+      - 'bookmarks.html'
+      - 'en/bookmarks.html'
+      - 'blog/**'
+      - 'en/blog/**'
+      - 'index.html'
+      - 'en/index.html'
+      - 'llms.txt'
+      - 'sitemap.xml'
+      - 'scripts/sync-counts.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: counts-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sayaçları yeniden yaz
+        run: node scripts/sync-counts.mjs
+
+      - name: Fark varsa commit et
+        run: |
+          if git diff --quiet; then
+            echo "Sayaçlar zaten tutarlıydı."
+            exit 0
+          fi
+          echo "Düzeltilen dosyalar:"
+          git --no-pager diff --stat
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -aqm "Sayaçlar içerikten yeniden yazıldı"
+          git push

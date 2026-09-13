@@ -235,25 +235,14 @@ async function main() {
     console.log(`${file}: güncellendi`);
   }
 
-  /* Ana sayfa künyesindeki yer imi sayacı. Elle tutulursa her senkronda
-     bayatlıyor; kaynağı burası olduğu için buradan yazılır. */
+  /* Sayaçları bu script yazmaz. Yer imi sayısı değişince bölüm başlıkları
+     ve ana sayfa künyesi de bayatlıyor; hepsinin tek kaynağı sync-counts.
+     Burada da tekrarlarsak iki yerde iki farklı doğru oluşur. */
   if (!DRY_RUN) {
-    for (const [file, re] of [
-      ['index.html', /(<th scope="row">Yer imi<\/th><td>)\d+( kayıt<\/td>)/],
-      ['en/index.html', /(<th scope="row">Bookmarks<\/th><td>)\d+( entries<\/td>)/],
-    ]) {
-      const full = path.join(ROOT, file);
-      const html = await readFile(full, 'utf8');
-      if (!re.test(html)) {
-        console.warn(`UYARI: ${file} içinde yer imi sayacı bulunamadı, atlandı.`);
-        continue;
-      }
-      const next = html.replace(re, `$1${total}$2`);
-      if (next !== html) {
-        await writeFile(full, next);
-        console.log(`${file}: yer imi sayacı ${total}`);
-      }
-    }
+    const { execFileSync } = await import('node:child_process');
+    execFileSync(process.execPath, [path.join(ROOT, 'scripts/sync-counts.mjs'), '--quiet'], {
+      stdio: 'inherit',
+    });
   }
 
   /* sitemap.xml — yalnızca iki yer imi sayfasının lastmod'u */
