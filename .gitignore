@@ -23,3 +23,7 @@ DESIGN.md
 
 # Hugo kalıntısı — site elle yazılmış HTML, Hugo kullanılmıyor.
 .hugo_build.lock
+
+# Blog taslakları — yazı HTML olarak yayınlanıyor, kaynak markdown gitmesin.
+blog-yazisi.md
+blog-post-en.md

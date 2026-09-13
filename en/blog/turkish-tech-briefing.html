@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Removing the AI made it better — Ubeyd Gencer</title>
+<meta name="description" content="I built a single-file page to read 19 tech publications in Turkish. Dropping the API key didn't shrink the product — it led me to a more honest way of finding what mattered that day." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/en/blog/turkish-tech-briefing" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/teknoloji-gunlugu" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/turkish-tech-briefing" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/teknoloji-gunlugu" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Removing the AI made it better" />
+<meta property="og:description" content="I built a single-file page to read 19 tech publications in Turkish. Dropping the API key didn't shrink the product — it led me to a more honest way of finding what mattered that day." />
+<meta property="og:url" content="https://ubeydgencer.com/en/blog/turkish-tech-briefing" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="tr_TR" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-09-13" />
+<meta property="article:modified_time" content="2026-09-13" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta property="article:section" content="Build note" />
+<meta property="article:tag" content="Build note" />
+<meta property="article:tag" content="RSS" />
+<meta property="article:tag" content="Translation" />
+<meta property="article:tag" content="Browser" />
+<meta property="article:tag" content="Zero cost" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Removing the AI made it better" />
+<meta name="twitter:description" content="A single-file page that reads 19 tech publications in Turkish. Removing the key didn't shrink it — it fixed it." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Removing the AI made it better","description":"I built a single-file page to read 19 tech publications in Turkish. Dropping the API key didn't shrink the product — it led me to a more honest way of finding what mattered that day.","datePublished":"2026-09-13","dateModified":"2026-09-13","inLanguage":"en","url":"https://ubeydgencer.com/en/blog/turkish-tech-briefing","image":"https://ubeydgencer.com/ubeydgencer.jpg","wordCount":1036,"articleSection":"Build note","keywords":"AI, RSS, translation, CORS, browser, zero cost, tech news, Turkish","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/en/blog/turkish-tech-briefing"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/en/blog/"},"about":[{"@type":"Thing","name":"RSS","sameAs":"https://en.wikipedia.org/wiki/RSS"},{"@type":"Thing","name":"CORS","sameAs":"https://en.wikipedia.org/wiki/Cross-origin_resource_sharing"}]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ubeydgencer.com/en/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ubeydgencer.com/en/blog/"},{"@type":"ListItem","position":3,"name":"Removing the AI made it better","item":"https://ubeydgencer.com/en/blog/turkish-tech-briefing"}]}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERENCE MANUAL · REVISION 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Sections">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/en/"><span>1 · Intro</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/en/projects"><span>2 · Projects</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/en/bookmarks"><span>3 · Bookmarks</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/en/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Theme">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Theme</span>
+  </button>
+  <a class="ctl" href="/blog/teknoloji-gunlugu" hreflang="tr" title="Türkçe’ye geç">TR</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Section 4</span>
+          <span class="machine">Blog · 4.1.4</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine"><time datetime="2026-09-13">13 September 2026</time></span>
+          <span class="machine">5 min read</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">Removing the AI<br />made it better</h1>
+      <p class="machine" style="margin-top:.9rem">Build note · One HTML file · 19 publications · No keys</p>
+    </div>
+
+    <h2 class="head">In short<small>&sect;1</small></h2>
+    <div class="prose lede">
+      <p>I built a single-file page to read the world&rsquo;s tech publications in Turkish. It scans nineteen sources, translates the headlines, and when you click a story it puts the text in front of you in Turkish instead of sending you to the site. No server, no install, no API key.</p>
+      <p>Here is the interesting part: when I was forced to remove the key, the product didn&rsquo;t get smaller. It got better.</p>
+    </div>
+
+    <h2 class="head">Why build this<small>&sect;2</small></h2>
+    <div class="prose">
+      <p>Tech journalism happens in English. Turkish tech media usually runs the same story a day later and shorter. I want to read the source, but scanning forty English headlines at the end of a long day is work in itself.</p>
+      <p>What I wanted was simple: the day&rsquo;s picture, in Turkish, on one page. No sign-up, no notification prompt, no company in the middle.</p>
+    </div>
+
+    <h2 class="head">The constraint that decided everything<small>&sect;3</small></h2>
+    <div class="prose">
+      <p>The first version called an AI model. Write the daily summary, translate the headlines into proper Turkish. It worked, and it worked well.</p>
+      <p>Then I counted what the page actually required: I had to get an API key, load a balance, and keep that key in the browser. A chat subscription doesn&rsquo;t help here &mdash; a web page can&rsquo;t use one. The programmatic API is a separate product, billed per use.</p>
+      <p>I had filed this under &ldquo;detail, deal with it later.&rdquo; It wasn&rsquo;t. The moment I removed the key I had to make every decision again &mdash; and what came out was better than what I had. I learned the same lesson <a href="/en/blog/zero-cost-assistant">building an assistant</a>: &ldquo;make it free&rdquo; is not a feature, it&rsquo;s an architectural decision.</p>
+    </div>
+
+    <h2 class="head">The browser&rsquo;s walls<small>&sect;4</small></h2>
+    <div class="prose">
+      <p>A browser can&rsquo;t simply fetch another site&rsquo;s data. Not even a public RSS feed &mdash; it&rsquo;s blocked by design. So the page routes the request through an intermediary, and if one doesn&rsquo;t answer it tries the next. With three in the chain, all nineteen sources come through.</p>
+      <p>For translation I wanted DeepL first; the quality beats Google. I tried. It doesn&rsquo;t work. DeepL refuses browser-origin requests on both its free API and its web endpoint. Even with a key it can&rsquo;t be called from an HTML file &mdash; I&rsquo;d need my own server in between, which would break the &ldquo;no install&rdquo; promise. Google&rsquo;s open translation endpoint it is. It does better than I expected.</p>
+    </div>
+
+    <h2 class="head">Reading the story without going to the site<small>&sect;5</small></h2>
+    <div class="prose">
+      <p>Translating the headline wasn&rsquo;t enough; I wanted to read the story. The page now fetches the full article, strips the menu, the ads and the &ldquo;related stories&rdquo; blocks, and translates it paragraph by paragraph. On the right it lists the important English words from that article with their Turkish meanings.</p>
+      <p>One small, maddening detail: formatting marks survive translation and leave residue like <code>##</code> in the middle of sentences. I had to clean them at the source and recognise headings by their shape instead &mdash; a short line that doesn&rsquo;t end in punctuation is probably a heading.</p>
+    </div>
+
+    <h2 class="head">The best wrong turn<small>&sect;6</small></h2>
+    <div class="prose">
+      <p>I clicked a WIRED story. What came back was clean, fluent Turkish:</p>
+      <blockquote><p>Already a subscriber? Sign in. Read this story for free. To continue reading, sign up for the newsletter&hellip; See offers.</p></blockquote>
+      <p>The page had mistaken the subscription screen for the article and translated it with great care. This is my favourite kind of bug: the system works perfectly, it just works on the wrong thing.</p>
+      <p>There were two ways to fix it. I could have looked for ways around the wall; I didn&rsquo;t, that&rsquo;s the publication&rsquo;s call. Instead the page now recognises the subscription screen, refuses to translate it, shows the summary the RSS feed provides, and says plainly underneath: this publication reserves the story for subscribers, open the original to continue.</p>
+      <p>An honest gap serves the reader better than a fake fullness.</p>
+    </div>
+
+    <h2 class="head">The glossary and the useless-word problem<small>&sect;7</small></h2>
+    <div class="prose">
+      <p>The first version of the glossary was worthless. It gave me <em>completely</em>, <em>without</em>, <em>testing</em>, <em>officially</em>. Technically correct, practically pointless &mdash; I already know those.</p>
+      <p>So I added filters. Everyday words went. <em>-ly</em> adverbs went; most of them are transparent. Proper nouns went &mdash; if a word appears capitalised mid-sentence it&rsquo;s Nvidia, and Nvidia doesn&rsquo;t need translating.</p>
+      <p>The most useful filter was the last one: words whose Turkish looks like their English. <em>performance &rarr; performans</em> teaches nobody anything. What survived:</p>
+      <ul>
+        <li><em>connector</em> &rarr; bağlayıcı</li>
+        <li><em>incendiary</em> &rarr; yangın çıkarıcı</li>
+        <li><em>instability</em> &rarr; istikrarsızlık</li>
+      </ul>
+    </div>
+
+    <h2 class="head">A daily summary without AI<small>&sect;8</small></h2>
+    <div class="prose">
+      <p>I assumed the daily summary would go when the key went. Then I asked the right question: how do I know a story matters?</p>
+      <p>The answer was in front of me. It matters if more than one publication ran it. The page now builds topic clusters from shared words in the headlines; if three outlets covered the same event, that story goes to the top of the list with the names of those outlets underneath.</p>
+      <p>On the first run the list collapsed into one site&rsquo;s feed &mdash; WIRED had simply published a lot that day. I capped it at two stories per publication and the list balanced out.</p>
+      <p>What I realised afterwards is that this is more honest than a model&rsquo;s guess at what mattered today. It isn&rsquo;t a guess, it&rsquo;s a measurement: of what the world&rsquo;s newsrooms actually spent their day on.</p>
+    </div>
+
+    <h2 class="head">What stayed with me<small>&sect;9</small></h2>
+    <div class="prose">
+      <p>We fear that constraints will shrink the product. This time the opposite happened. Removing the key took away the convenience of &ldquo;let me just ask the model&rdquo; and forced me to look for a signal already sitting in the data. The signal I found turned out to be more defensible than the answer the model would have given.</p>
+      <p>So where is the AI in all this? It was next to me while I wrote the page &mdash; but the page doesn&rsquo;t need it to run. Those are two different things, and telling them apart has been the most useful decision I&rsquo;ve made lately.</p>
+    </div>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · Istanbul, Türkiye</span>
+        <a class="jump" href="/en/blog/">Section 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Reference manual · Revision 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js" defer></script>
+</body>
+</html>

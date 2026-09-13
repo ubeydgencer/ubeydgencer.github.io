@@ -118,4 +118,20 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://ubeydgencer.com/blog/teknoloji-gunlugu</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/teknoloji-gunlugu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/turkish-tech-briefing" />
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/en/blog/turkish-tech-briefing</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/teknoloji-gunlugu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/turkish-tech-briefing" />
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

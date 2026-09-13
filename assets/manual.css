@@ -385,6 +385,30 @@ html.dark .leaf {
 
 .lede { font-size: 1.1875rem; line-height: 1.5; }
 
+/* Alıntı. Tırnak işareti ya da italik yerine sol kural çizgisi — listelerdeki
+   madde çizgisiyle aynı dil. Girinti 62ch ölçüsünü daraltmasın diye ölçüye
+   girintinin kendisi kadar pay eklenir. */
+.prose blockquote {
+  margin: 0.8125rem 0 0;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--rule-strong);
+  color: var(--ink-2);
+  max-width: calc(var(--measure) + 1.25rem);
+}
+.prose blockquote p + p { margin-top: 0.5rem; }
+.prose blockquote + p { margin-top: 0.8125rem; }
+
+/* Satır içi kod: makine sesi zaten Azeret Mono, kod da oraya ait. Gövde
+   Garamond 17px olduğu için mono aynı boyutta iri durur, 0.875em'e çekilir. */
+.prose code {
+  font-family: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875em;
+  padding: 0.1em 0.3em;
+  background: color-mix(in srgb, var(--board-face) 14%, transparent);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
 /* ---------- 7b. İlk görüntü alanı: künye sağda ---------- */
 
 .fold {
