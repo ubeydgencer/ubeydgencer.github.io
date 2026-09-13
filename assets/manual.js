@@ -53,6 +53,10 @@
     var entries = Array.prototype.slice.call(document.querySelectorAll('.entry[data-state]'));
     var groups = Array.prototype.slice.call(document.querySelectorAll('[data-group]'));
     var tally = document.querySelector('[data-tally]');
+    /* Payda da buradan yazılır; HTML'e elle yazılırsa proje eklendiğinde
+       bayatlıyor ve "27 / 24" gibi tutarsız bir sayaç çıkıyordu. */
+    var total = document.querySelector('[data-total]');
+    if (total) total.textContent = String(entries.length);
 
     var deal = function (want) {
       entries.forEach(function (el) {
