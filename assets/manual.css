@@ -385,6 +385,49 @@ html.dark .leaf {
 
 .lede { font-size: 1.1875rem; line-height: 1.5; }
 
+/* ---------- 7a. Gövde içi levha: fotoğraf ve video ----------
+   Dış görsel yalnız .window'dan girer (delikli sayfa tutacağı). Levha
+   62ch ölçüsünden geniştir — fotoğraf metin sütununa hapsedilirse
+   posta pulu kalıyor; ölçüyü aşar ama yaprağı taşmaz. */
+
+.plate {
+  margin: 1.375rem 0 0;
+  max-width: min(46rem, 100%);
+}
+.plate + .plate { margin-top: 0.875rem; }
+.plate + p, .prose > .plate + div { margin-top: 1.375rem; }
+
+.plate img, .plate video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--board-face) 20%, #000 80%);
+}
+
+/* Altyazı makine sesinde: neyin nerede çekildiği kayıttır, süsleme değil. */
+.plate figcaption {
+  font-family: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* İki kare yan yana; dar ekranda alt alta iner. */
+.plate--pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; align-items: start; }
+.plate--pair figcaption { padding-top: 0.4rem; }
+
+/* Sessiz döngü videosu: kontrol çubuğu yok, kullanıcı isterse tıklar.
+   Ses akışı dosyada zaten yok, muted yalnız otomatik oynatma şartı. */
+.plate video { cursor: pointer; }
+
+@media (max-width: 760px) {
+  .plate--pair { grid-template-columns: 1fr; gap: 0.875rem; }
+}
+
 /* Alıntı. Tırnak işareti ya da italik yerine sol kural çizgisi — listelerdeki
    madde çizgisiyle aynı dil. Girinti 62ch ölçüsünü daraltmasın diye ölçüye
    girintinin kendisi kadar pay eklenir. */

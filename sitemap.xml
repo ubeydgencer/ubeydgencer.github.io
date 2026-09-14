@@ -134,4 +134,20 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://ubeydgencer.com/blog/bolu-narven-bir-hafta</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/bolu-narven-bir-hafta" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/a-week-in-bolu" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/en/blog/a-week-in-bolu</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/bolu-narven-bir-hafta" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/a-week-in-bolu" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

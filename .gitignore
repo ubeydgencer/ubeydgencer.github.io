@@ -27,3 +27,6 @@ DESIGN.md
 # Blog taslakları — yazı HTML olarak yayınlanıyor, kaynak markdown gitmesin.
 blog-yazisi.md
 blog-post-en.md
+
+# Ham tatil medyası — işlenmiş hali assets/bolu altında, 213MB ham repoya girmesin.
+bolu tatil/
