@@ -39,6 +39,10 @@ jobs:
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bookmarks.html en/bookmarks.html assets/bookmarks.json sitemap.xml
-          git commit -m "Yer imleri Raindrop'tan güncellendi ($(date -u +%Y-%m-%d))"
+          # Sabit dosya listesi kullanma: sync-counts yer imi sayısı değişince
+          # ana sayfa künyelerine de dokunuyor. Liste sayılınca o değişiklikler
+          # commit'e girmiyor ve sessizce kayboluyordu.
+          echo "Commit edilecekler:"
+          git --no-pager diff --stat
+          git commit -aqm "Yer imleri Raindrop'tan güncellendi ($(date -u +%Y-%m-%d))"
           git push

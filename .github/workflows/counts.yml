@@ -3,6 +3,12 @@ name: Sayaç senkronu
 # Sayfalardaki her sayı içerikten türetilir. Elle güncellenmesi gereken
 # sayaç kalmasın diye: içerik değişince bu iş sayaçları yeniden yazar ve
 # fark varsa commit eder. Elle push edilen bayat bir sayaç burada düzelir.
+#
+# DİKKAT: Bu iş, GITHUB_TOKEN ile atılan commit'lerde tetiklenmez —
+# GitHub sonsuz döngüyü önlemek için bot commit'lerinden workflow
+# başlatmıyor. Yani raindrop.yml'nin commit'i buraya hiç uğramaz.
+# O yüzden raindrop.yml sync-counts'u kendi içinde çağırır ve sonucu
+# `git commit -a` ile bütünüyle commit eder; buna güvenmez.
 
 on:
   push:
