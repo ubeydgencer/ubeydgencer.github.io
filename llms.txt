@@ -24,7 +24,7 @@ Yapım notları, kararlar ve hayatın içinden konular. / Build notes, decisions
 - **Kırtasiye için bir sabah bülteni** (06.09.2026) — Yüz kırtasiye markasını tarayıp her sabah 09:00'da tek bildirim gönderen bir küratör. Gemini ile kuruldu; reklam ve spam yok, filtre kullanıcının belirlediği kalite eşiği. Otomasyonu iş yerine kişisel bir hobiye yöneltmek üzerine bir yapım notu. [/blog/kirtasiye-bulteni](https://ubeydgencer.com/blog/kirtasiye-bulteni) · [EN](https://ubeydgencer.com/en/blog/stationery-briefing)
 - **Sıfır bütçeyle bir asistan kurduk** (28.08.2026) — Bir takviye gıda markası için kurulan mikrobiyota asistanının yapım notu: kapsamın ürüne değil bilimsel alana çekilmesi, ücretsiz model katmanının dayattığı mimari, ikinci bir kod ajanıyla çalışmanın bedeli ve ücretsiz katman kuyruğa girdiğinde yedek model zinciriyle çözüm. [/blog/sifir-maliyetli-asistan](https://ubeydgencer.com/blog/sifir-maliyetli-asistan) · [EN](https://ubeydgencer.com/en/blog/zero-cost-assistant)
 
-## Projeler (27 — 20 canlı, 7 geliştirmede)
+## Projeler (28 — 20 canlı, 8 geliştirmede)
 
 ### Açsa Otomotiv / Açsa Otomotiv
 
@@ -62,6 +62,7 @@ Yapım notları, kararlar ve hayatın içinden konular. / Build notes, decisions
 - **Trendyol Etiket** — Trendyol siparişleri için kargo etiketi yazdırma masaüstü uygulaması. Trendyol API ile entegre, tek tıkla toplu etiket yazdırma. (dahili / bağlantı yok)
 - **İnterkom Bot** — ESP32 tabanlı akıllı interkom otomasyon sistemi. Bina kapısı zili çaldığında Telegram bildirimi, uzaktan kapı açma. (dahili / bağlantı yok)
 - **Fragmania** — Film ve dizi fragmanı izleme uygulaması (Android). TMDB'den canlı veri, fragmanlar YouTube'un resmi oynatıcısında; kendi sunucusu yok, favoriler cihazda. [Google Play](https://play.google.com/store/apps/details?id=com.fragmania)
+- **Pofi TV** — Küçük çocuklar için güvenli kısa video uygulaması (Android TV, geliştirmede). Videolar yalnızca elle onaylanmış çocuk kanallarından; arama ve algoritma yok, ebeveyn PIN'i, veri toplamaz. [Gizlilik politikası](https://ubeydgencer.com/pofi-tv/gizlilik)
 - **Claude Konuşma Geçmişi** — Yereldeki Claude Code oturum kayıtlarını taranabilir tek bir HTML panosuna çeviren Python aracı. Çevrimdışı çalışır, veri bilgisayardan çıkmaz. (dahili / bağlantı yok)
 - **Bookmark Shelf** — X yer işaretlerini konuya göre sınıflandıran, tamamen yerel çalışan kişisel kütüphane. OAuth 2.0 + PKCE ile bağlanır, yirmi beş başlıkta kredi harcamadan sınıflandırır, düzenlemeleri yerel JSON'da tutar. (dahili / bağlantı yok)
 
