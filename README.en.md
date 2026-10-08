@@ -66,6 +66,28 @@ node scripts/fetch-raindrop.mjs             # update bookmarks.html
 
 Copy `.env.example` to `.env` for the token. If a bookmark's title looks wrong, fix it in Raindrop itself — editing the HTML won't hold, the next sync overwrites it.
 
+## Checking content counters
+
+Project, post, and bookmark counts are derived from the content. With Node 22, run this check from the repository root:
+
+```bash
+node scripts/sync-counts.mjs --check
+```
+
+The command writes no files and requires no token. It exits with code `1` when it finds stale counters or consistency issues. To update the counters:
+
+```bash
+node scripts/sync-counts.mjs
+git diff
+node scripts/sync-counts.mjs --check
+```
+
+The script updates section headings, filter counters, home-page summaries, and counts in `llms.txt`. It also checks the entry counts in the Turkish/English project and blog indexes, the number of `llms.txt` entries, and whether sitemap URLs have corresponding local files.
+
+Issues listed under “Elle bakılmalı” need manual attention. The script does not create projects, posts, translations, or sitemap URLs; matching entry counts do not verify the translated content.
+
+`.github/workflows/counts.yml` recalculates counters when its watched content files change on `main` and commits any differences. It can also run manually from Actions. The Raindrop sync calls the same script itself.
+
 ## Running locally
 
 There's no build step, so any static server will do:

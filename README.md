@@ -66,6 +66,28 @@ node scripts/fetch-raindrop.mjs             # bookmarks.html'i güncelle
 
 Token için `.env.example`'ı `.env` olarak kopyala. Bir yer iminin başlığı bozuksa düzeltme yeri Raindrop'un kendisi — HTML'i elle düzeltmek işe yaramaz, bir sonraki senkronda üzerine yazılır.
 
+## İçerik sayaçlarını doğrulama
+
+Proje, yazı ve yer imi sayıları içerikten türetilir. Node 22 ile proje kökünde şu kontrolü çalıştır:
+
+```bash
+node scripts/sync-counts.mjs --check
+```
+
+Bu komut dosya yazmaz ve token gerektirmez. Bayat sayaç veya tutarlılık sorunu bulursa çıkış kodu `1` döner. Sayaçları güncellemek için:
+
+```bash
+node scripts/sync-counts.mjs
+git diff
+node scripts/sync-counts.mjs --check
+```
+
+Script; bölüm başlıklarını, filtre sayaçlarını, ana sayfa künyelerini ve `llms.txt` içindeki sayıları günceller. Türkçe/İngilizce proje ve blog dizinlerinin kayıt sayılarını, `llms.txt` madde sayısını ve sitemap'te listelenen adreslerin yerel dosya karşılıklarını da kontrol eder.
+
+“Elle bakılmalı” çıktısındaki eksik içerik veya bulunamayan desenler ayrıca düzeltilmelidir. Script yeni proje, yazı, çeviri veya sitemap adresi oluşturmaz; iki dilde aynı kayıt sayısının bulunması çeviri içeriğini doğrulamaz.
+
+`.github/workflows/counts.yml`, kapsadığı içerik dosyaları `main` üzerinde değiştiğinde sayaçları yeniden yazar ve fark varsa commit eder; Actions'tan elle de çalıştırılabilir. Raindrop senkronu aynı scripti kendi içinde çağırır.
+
 ## Yerelde çalıştırma
 
 Build adımı olmadığı için herhangi bir statik sunucu yeter:
