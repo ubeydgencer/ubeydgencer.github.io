@@ -23,7 +23,7 @@ Tasarım bir **referans kılavuzu** olarak kurulu: tam doygun ayraç kartonu zem
 
 ```
 ├── index.html              1 · Giriş
-├── projects.html           2 · Projeler      (24 proje, 4 kategori)
+├── projects.html           2 · Projeler      proje dizini
 ├── bookmarks.html          3 · Yer İmleri    ← Raindrop.io'dan otomatik
 ├── blog/                   4 · Blog
 ├── en/                     İngilizce sürüm — çeviri değil, eşdeğer
@@ -36,9 +36,11 @@ Tasarım bir **referans kılavuzu** olarak kurulu: tam doygun ayraç kartonu zem
 │   ├── manual.js           3.9 KB · tema menteşesi ve sekme rayı
 │   └── fonts/              136 KB · self-host değişken woff2
 ├── scripts/
-│   └── fetch-raindrop.mjs  yer imi senkronu
+│   ├── fetch-raindrop.mjs  yer imi senkronu
+│   └── sync-counts.mjs     içerikten sayaç kontrolü ve güncelleme
 └── .github/workflows/
-    └── raindrop.yml        günlük çalışır
+    ├── raindrop.yml        günlük yer imi senkronu
+    └── counts.yml          içerik değişince veya elle sayaç senkronu
 ```
 
 ## Tasarım sistemi
@@ -102,7 +104,7 @@ Tek uyarı: yayındaki temiz URL'ler (`/projects`, `/bookmarks`) GitHub Pages'in
 
 Her sayfada canonical, `hreflang` (TR/EN/x-default), Open Graph, Twitter Card ve JSON-LD var. Ek olarak:
 
-- [`sitemap.xml`](sitemap.xml) — 11 URL, dil alternatifleriyle
+- [`sitemap.xml`](sitemap.xml) — kanonik URL'ler ve dil alternatifleri
 - [`llms.txt`](llms.txt) — dil modelleri için kanonik proje listesi
 - [`robots.txt`](robots.txt) — GPTBot, Claude-Web, PerplexityBot ve anthropic-ai dahil açık izin
 

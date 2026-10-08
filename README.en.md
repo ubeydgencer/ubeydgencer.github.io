@@ -23,7 +23,7 @@ The design is built as a **reference manual**: a fully saturated divider-board g
 
 ```
 ├── index.html              1 · Intro
-├── projects.html           2 · Projects      (24 projects, 4 categories)
+├── projects.html           2 · Projects      project index
 ├── bookmarks.html          3 · Bookmarks     ← synced from Raindrop.io
 ├── blog/                   4 · Blog
 ├── en/                     English version — an equal, not a translation
@@ -36,9 +36,11 @@ The design is built as a **reference manual**: a fully saturated divider-board g
 │   ├── manual.js           3.9 KB · theme hinge and tab rail
 │   └── fonts/              136 KB · self-hosted variable woff2
 ├── scripts/
-│   └── fetch-raindrop.mjs  bookmark sync
+│   ├── fetch-raindrop.mjs  bookmark sync
+│   └── sync-counts.mjs     check and update counts from content
 └── .github/workflows/
-    └── raindrop.yml        runs daily
+    ├── raindrop.yml        daily bookmark sync
+    └── counts.yml          sync counts on content changes or manual runs
 ```
 
 ## Design system
@@ -102,7 +104,7 @@ One caveat: the clean URLs in production (`/projects`, `/bookmarks`) rely on Git
 
 Every page carries a canonical link, `hreflang` (TR/EN/x-default), Open Graph, Twitter Card, and JSON-LD. On top of that:
 
-- [`sitemap.xml`](sitemap.xml) — 11 URLs with language alternates
+- [`sitemap.xml`](sitemap.xml) — canonical URLs with language alternates
 - [`llms.txt`](llms.txt) — the canonical project list, written for language models
 - [`robots.txt`](robots.txt) — explicit allow for GPTBot, Claude-Web, PerplexityBot, and anthropic-ai
 
