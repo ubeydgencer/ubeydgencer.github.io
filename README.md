@@ -33,14 +33,18 @@ Tasarım bir **referans kılavuzu** olarak kurulu: tam doygun ayraç kartonu zem
 │   └── blog/
 ├── assets/
 │   ├── manual.css          29 KB · tüm sayfaların paylaştığı tek stil
-│   ├── manual.js           3.9 KB · tema menteşesi ve sekme rayı
+│   ├── manual.js           tema menteşesi, sekme rayı, dinleme şeridi
+│   ├── audio/              yazıların sesli sürümü ← scripts/tts.py
 │   └── fonts/              136 KB · self-host değişken woff2
 ├── scripts/
 │   ├── fetch-raindrop.mjs  yer imi senkronu
-│   └── sync-counts.mjs     içerikten sayaç kontrolü ve güncelleme
+│   ├── sync-counts.mjs     içerikten sayaç kontrolü ve güncelleme
+│   ├── tts.py              blog seslendirme
+│   └── tts-sozluk.json     modelin yanlış okuduğu kelimeler
 └── .github/workflows/
     ├── raindrop.yml        günlük yer imi senkronu
-    └── counts.yml          içerik değişince veya elle sayaç senkronu
+    ├── counts.yml          içerik değişince veya elle sayaç senkronu
+    └── tts.yml             yazı değişince sesi yeniden üretir
 ```
 
 ## Tasarım sistemi
@@ -89,6 +93,21 @@ Script; bölüm başlıklarını, filtre sayaçlarını, ana sayfa künyelerini 
 “Elle bakılmalı” çıktısındaki eksik içerik veya bulunamayan desenler ayrıca düzeltilmelidir. Script yeni proje, yazı, çeviri veya sitemap adresi oluşturmaz; iki dilde aynı kayıt sayısının bulunması çeviri içeriğini doğrulamaz.
 
 `.github/workflows/counts.yml`, kapsadığı içerik dosyaları `main` üzerinde değiştiğinde sayaçları yeniden yazar ve fark varsa commit eder; Actions'tan elle de çalıştırılabilir. Raindrop senkronu aynı scripti kendi içinde çağırır.
+
+## Yazıların sesli sürümü
+
+Türkçe blog yazılarının başında bir "Dinle" şeridi var. Ses tarayıcıda üretilmiyor: [antalia-mini](https://huggingface.co/cloud0day3/antalia-mini) (Türkçe TTS, 7,6M parametre, Apache-2.0) ile önceden üretilip `assets/audio/` altına MP3 olarak konuyor. Site yine build'siz ve bağımlılıksız; Python yalnızca seslendirme aşamasında, GitHub Actions'ta çalışıyor.
+
+`blog/*.html` değişince `tts.yml` devreye girer. `scripts/tts.py` metni değişen yazının sesini yeniden üretir, oynatıcı bloğunu (`<!-- dinle -->`) ve JSON-LD'deki `audio` alanını yazar. Metni değişmeyen yazıya dokunmaz; metnin özeti oynatıcının `data-tts` özniteliğinde durur. Oynatıcı bloğu elle düzenlenmez, bir sonraki üretimde üzerine yazılır.
+
+```bash
+pip install -r scripts/requirements-tts.txt   # Python 3.10+
+python3 scripts/tts.py                        # değişenleri seslendir
+python3 scripts/tts.py --check                # bayat ses var mı
+python3 scripts/tts.py --force teknoloji-gunlugu   # tek yazıyı yeniden üret
+```
+
+Model bir kelimeyi yanlış okuyorsa (yabancı özel isimler, İngilizce kelimeler) düzeltme yeri `scripts/tts-sozluk.json`: `"WIRED": "Vayırd"` gibi. Ses tek, sentetik bir erkek sesi; oynatıcıda bu açıkça yazıyor. İngilizce yazılar seslendirilmez, model yalnız Türkçe.
 
 ## Yerelde çalıştırma
 

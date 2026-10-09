@@ -865,6 +865,96 @@ html.dark .mark { filter: saturate(0.9) brightness(0.94); }
 /* Alan yeniden dizilirken: menteşe adımı, solma yok */
 .entry[hidden], [data-group][hidden], .head[hidden] { display: none; }
 
+/* ---------- 14b. Dinleme şeridi: yazının sesli sürümü ----------
+   Blok scripts/tts.py tarafından yazılır. Filtre koluyla aynı kasa:
+   cetvel çerçeve, 3px iç pay, basılı düğme kartonun tonunu alır. */
+
+.listen { max-width: var(--measure); }
+
+.listen__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--rule-strong);
+  padding: 3px;
+  border-radius: 2px;
+}
+
+.listen__play,
+.listen__rate {
+  font-family: 'Azeret Mono', ui-monospace, monospace;
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  transition: background var(--step) var(--hinge), color var(--step) var(--hinge);
+}
+
+.listen__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+  min-width: 7.5rem;
+  background: var(--board-face);
+  color: var(--on-board, #fff);
+}
+.listen__play svg { width: 0.6rem; height: 0.6rem; fill: currentColor; }
+.listen__i-pause,
+.listen[data-state='playing'] .listen__i-play { display: none; }
+.listen[data-state='playing'] .listen__i-pause { display: inline; }
+.listen[data-state='loading'] .listen__play { cursor: progress; }
+
+.listen__rate {
+  flex: none;
+  background: transparent;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  min-width: 3.25rem;
+}
+.listen__rate:hover { color: var(--ink); }
+
+.listen__time { flex: none; white-space: nowrap; }
+
+/* Konum: ince cetvel, dolu kısım mürekkep. --p manual.js'ten. */
+.listen__seek {
+  --p: 0%;
+  flex: 1 1 auto;
+  min-width: 4rem;
+  height: 1.5rem;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.listen__seek::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(to right, var(--ink) var(--p), var(--rule) var(--p));
+}
+.listen__seek::-moz-range-track { height: 2px; background: var(--rule); }
+.listen__seek::-moz-range-progress { height: 2px; background: var(--ink); }
+.listen__seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.5rem;
+  height: 0.875rem;
+  margin-top: calc(1px - 0.4375rem);
+  background: var(--board-face);
+  border: 1px solid var(--ink);
+  border-radius: 1px;
+}
+.listen__seek::-moz-range-thumb {
+  width: 0.5rem;
+  height: 0.875rem;
+  background: var(--board-face);
+  border: 1px solid var(--ink);
+  border-radius: 1px;
+}
+
+.listen__note { margin-top: 0.5rem; }
+
 /* ---------- 15. Kumanda çubuğu: tema + dil ---------- */
 
 .controls {
@@ -1028,6 +1118,11 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
   .tab[aria-current='page'] { --tab-x: 0rem; }
   .controls { padding: 0.3rem; gap: 2px; }
   .ctl { padding: 0.3rem 0.5rem; font-size: 0.5rem; min-height: 44px; }
+  /* Dar ekranda konum çubuğu kendi satırına iner; düğmeler 44px dokunma hedefi */
+  .listen__bar { flex-wrap: wrap; gap: 0.25rem 0.35rem; }
+  .listen__play, .listen__rate { min-height: 44px; min-width: 0; padding-inline: 0.55rem; }
+  .listen__time { margin-left: auto; letter-spacing: 0.08em; }
+  .listen__seek { order: 3; flex-basis: 100%; height: 2rem; margin: 0 0.35rem; }
   .spine { font-size: 0.5rem; letter-spacing: 0.16em; }
   .entry { grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 0.75rem; }
   .entry__side { grid-column: 2; align-items: flex-start; margin-top: 0.6rem; }
@@ -1065,7 +1160,7 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
 
 @media print {
   body { padding: 0; background: #fff; }
-  .rail, .binding, .controls, .lever { display: none; }
+  .rail, .binding, .controls, .lever, .listen { display: none; }
   .leaf { box-shadow: none; background: #fff; margin: 0; padding: 0; }
   body::before { display: none; }
 }

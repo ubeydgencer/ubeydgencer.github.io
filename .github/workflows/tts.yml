@@ -1,0 +1,72 @@
+name: Seslendirme
+
+# Blog yazılarının sesli sürümü. Yazı metni değişince scripts/tts.py o yazının
+# MP3'ünü yeniden üretir, oynatıcı bloğunu ve JSON-LD'yi günceller, commit eder.
+# Metni değişmeyen yazıya dokunmaz (özet oynatıcının data-tts özniteliğinde).
+#
+# Model: antalia-mini (Apache-2.0) · https://huggingface.co/cloud0day3/antalia-mini
+# GPU gerekmez; 6 dakikalık yazı CPU'da ~15 sn.
+#
+# Not: Buradaki commit GITHUB_TOKEN ile atıldığı için ne bu işi ne counts.yml'i
+# yeniden tetikler. Aynı push'ta counts.yml de commit atabildiği için push
+# öncesi rebase yapılır.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blog/*.html'
+      - 'scripts/tts.py'
+      - 'scripts/tts-sozluk.json'
+      - 'scripts/requirements-tts.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tts
+  cancel-in-progress: false
+
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: scripts/requirements-tts.txt
+
+      # Model ağırlıkları (~30 MB) her seferinde indirilmesin
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/antalia-mini
+            ~/.cache/huggingface
+          key: antalia-${{ hashFiles('scripts/requirements-tts.txt') }}
+
+      # CPU sürümü torch: CUDA'lı sürüm ~2 GB, burada gereksiz
+      - name: Bağımlılıklar
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r scripts/requirements-tts.txt
+
+      - name: Değişen yazıları seslendir
+        run: python scripts/tts.py
+
+      - name: Fark varsa commit et
+        run: |
+          git add -A assets/audio blog
+          if git diff --cached --quiet; then
+            echo "Sesler zaten güncel."
+            exit 0
+          fi
+          git --no-pager diff --cached --stat
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -qm "Blog sesleri yeniden üretildi"
+          git pull --rebase -q origin main
+          git push
