@@ -107,7 +107,7 @@ def blok(ad, h, sn):
     <div class="listen" data-listen data-tts="{h}">
       <div class="listen__bar">
         <button type="button" class="listen__play" data-play aria-label="Yazıyı dinle">
-          <svg viewBox="0 0 10 10" aria-hidden="true"><path class="listen__i-play" d="M2 1v8l7-4z"/><path class="listen__i-pause" d="M2 1h2v8H2zM6 1h2v8H6z"/></svg>
+          <svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path class="listen__i-play" d="M2 1v8l7-4z"/><path class="listen__i-pause" d="M2 1h2v8H2zM6 1h2v8H6z"/></svg>
           <span data-label>Dinle</span>
         </button>
         <input class="listen__seek" data-seek type="range" min="0" max="{round(sn)}" step="1" value="0" aria-label="Konum" aria-valuetext="0:00 / {sure_metni(sn)}" />

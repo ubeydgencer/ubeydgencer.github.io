@@ -58,6 +58,12 @@ Tasarım bir **referans kılavuzu** olarak kurulu: tam doygun ayraç kartonu zem
 
 Fontlar sitede fiilen kullanılan karaktere indirgenmiş; üçüncü taraf font isteği yok.
 
+`manual.css` ve `manual.js` her sayfada `?v=YYYYMMDD` ile çağrılır. GitHub Pages bu dosyaları 4 saat önbellekte tuttuğu için ikisinden biri değişince sürüm bütün sayfalarda artırılmalı; yoksa yeni HTML eski stille açılır:
+
+```bash
+git ls-files '*.html' | xargs sed -i '' -E 's#(/assets/manual\.(css|js))\?v=[0-9]+#\1?v='"$(date +%Y%m%d)"'#g'
+```
+
 ## Yer imleri Raindrop'tan gelir
 
 `bookmarks.html`'deki üç bölüm elle yazılmıyor. [Raindrop.io](https://raindrop.io) hesabımdaki `Bookmark`, `Product` ve `Wish List` koleksiyonlarından her gün çekiliyor.
