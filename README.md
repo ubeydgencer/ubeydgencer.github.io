@@ -100,6 +100,17 @@ Script; bölüm başlıklarını, filtre sayaçlarını, ana sayfa künyelerini,
 
 `.github/workflows/counts.yml`, kapsadığı içerik dosyaları `main` üzerinde değiştiğinde sayaçları yeniden yazar ve fark varsa commit eder; Actions'tan elle de çalıştırılabilir. Raindrop senkronu aynı scripti kendi içinde çağırır.
 
+## Dış bağlantı tıklamaları
+
+Projeler ve blog sayfalarındaki dış bağlantılar [Dub](https://dub.co) kısa linkleri (`ubyd.link/…`) üzerinden geçer; tıklamalar Dub panelinde ülke, cihaz, tarayıcı ve gelinen sayfa kırılımıyla görünür. Kişi kimliği tutulmaz. Bağlantı metni değişmez, asıl adres her `<a>` etiketinin `data-dest` özniteliğinde durur.
+
+```bash
+node scripts/dub-links.mjs --check                 # anahtarsız: çevrilmemiş bağlantı var mı
+DUB_API_KEY=dub_… node scripts/dub-links.mjs       # LINKS'teki eksik kısa linkleri oluştur, HTML'i güncelle
+```
+
+Hangi adresin takip edileceği `scripts/dub-links.mjs` içindeki `LINKS` listesinde; eşleme `scripts/dub-links.json`'da (gizli bilgi içermez). Ücretsiz plan ayda 25 yeni link verdiği için listede olmayan adres kendiliğinden kısa linke çevrilmez, yalnızca raporlanır. API anahtarı hiçbir dosyaya yazılmaz; depo herkese açık. Yer imleri, ana sayfa ve gizlilik sayfaları kapsam dışıdır.
+
 ## Yazıların sesli sürümü
 
 Türkçe blog yazılarının başında bir "Dinle" şeridi var. Ses tarayıcıda üretilmiyor: [antalia-mini](https://huggingface.co/cloud0day3/antalia-mini) (Türkçe TTS, 7,6M parametre, Apache-2.0) ile önceden üretilip `assets/audio/` altına MP3 olarak konuyor. Site yine build'siz ve bağımlılıksız; Python yalnızca seslendirme aşamasında, GitHub Actions'ta çalışıyor.
