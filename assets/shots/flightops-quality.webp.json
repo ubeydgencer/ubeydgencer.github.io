@@ -1,0 +1,9 @@
+{
+ "prompt": "SOURCED, NOT GENERATED. FlightOps Quality deposundaki docs/banner.svg (github.com/ubeydgencer/flightops-quality) rsvg-convert ile 1280 genişlikte çizildi, 600 genişliğe ölçeklenip görselin kendi lacivert tonunda (#0A1626) 640x400 tuvale ortalandı; cwebp -q 76. Görselin içeriğinde düzenleme yok, yalnızca kenar boşluğu eklendi.",
+ "origin": "https://github.com/ubeydgencer/flightops-quality/blob/main/docs/banner.svg",
+ "captured": "2026-10-14",
+ "method": "rsvg-convert + ffmpeg pad",
+ "output": "640x400 webp q76",
+ "generated": false,
+ "edited": false
+}

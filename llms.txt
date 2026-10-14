@@ -27,7 +27,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Kırtasiye için bir sabah bülteni** (06.09.2026) — Yüz kırtasiye markasını tarayıp her sabah 09:00'da tek bildirim gönderen bir küratör. Gemini ile kuruldu; reklam ve spam yok, filtre kullanıcının belirlediği kalite eşiği. Otomasyonu iş yerine kişisel bir hobiye yöneltmek üzerine bir yapım notu. [/blog/kirtasiye-bulteni](https://ubeydgencer.com/blog/kirtasiye-bulteni) · [EN](https://ubeydgencer.com/en/blog/stationery-briefing)
 - **Sıfır bütçeyle bir asistan kurduk** (28.08.2026) — Bir takviye gıda markası için kurulan mikrobiyota asistanının yapım notu: kapsamın ürüne değil bilimsel alana çekilmesi, ücretsiz model katmanının dayattığı mimari, ikinci bir kod ajanıyla çalışmanın bedeli ve ücretsiz katman kuyruğa girdiğinde yedek model zinciriyle çözüm. [/blog/sifir-maliyetli-asistan](https://ubeydgencer.com/blog/sifir-maliyetli-asistan) · [EN](https://ubeydgencer.com/en/blog/zero-cost-assistant)
 
-## Projeler (29 — 21 canlı, 8 geliştirmede)
+## Projeler (32 — 21 canlı, 11 geliştirmede)
 
 ### Açsa Otomotiv / Açsa Otomotiv
 
@@ -69,6 +69,12 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Claude Konuşma Geçmişi** — Yereldeki Claude Code oturum kayıtlarını taranabilir tek bir HTML panosuna çeviren Python aracı. Çevrimdışı çalışır, veri bilgisayardan çıkmaz. (dahili / bağlantı yok)
 - **Bookmark Shelf** — X yer işaretlerini konuya göre sınıflandıran, tamamen yerel çalışan kişisel kütüphane. OAuth 2.0 + PKCE ile bağlanır, yirmi beş başlıkta kredi harcamadan sınıflandırır, düzenlemeleri yerel JSON'da tutar. (dahili / bağlantı yok)
 - **İstima** — Gezilen sitelerdeki Türkçe haberleri tek tıkla sesli okuyan Chrome eklentisi. Antalia-2 Mini ve EMA Lightning ses modelleri tarayıcıda WebAssembly ile çalışır; sunucu yok, metin cihazdan çıkmaz. Açık kaynak. [istima.ubeydgencer.com](https://istima.ubeydgencer.com) · [Chrome Web Mağazası](https://chromewebstore.google.com/detail/idnhjopkmlgdhipcfplknfdfpkcehhle) · [GitHub](https://github.com/ubeydgencer/istima)
+
+### Havacılık / Aviation
+
+- **Uçuşa Hazır** — Rotayı, bileti ve ihtiyaçları kişisel bir uçuş hazırlık listesine çeviren açık kaynak yolcu asistanı. THY ile başlar; bagaj, aktarma, özel ihtiyaçlar ve belgeler için resmi kaynaklı, tarihli kurallar. PNR veya kişisel bilgi istemez, kayıt tarayıcıda kalır. (geliştirmede) [GitHub](https://github.com/ubeydgencer/ucusa-hazir)
+- **Mil Pusulası** — Miles&Smiles üyeleri için bağımsız mil ve statü planlayıcısı: ödül bölgeleri, mil mi nakit mi karşılaştırması, THY/Lufthansa/United mil kazanımı tahmini ve statü planı. TR/EN; hesap bağlantısı yok, veriler cihazda. (geliştirmede) [GitHub](https://github.com/ubeydgencer/mil-pusulasi)
+- **FlightOps Quality** — Sivil havacılık ETL'i için açıklanabilir veri kalitesi katmanı: yerel uçuş saatlerinden UTC'ye çeviri, saat dilimi/yaz saati belirsizliği raporu, çelişen kayıtların karantinası ve kaynağa izlenebilir denetim raporları. Python, alfa. (geliştirmede) [GitHub](https://github.com/ubeydgencer/flightops-quality)
 
 ## İletişim
 
