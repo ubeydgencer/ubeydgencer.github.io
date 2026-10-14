@@ -126,11 +126,27 @@ window.solveLeaf();})();</script>
     <div class="prose lede">
       <p>I built a Chrome extension that reads Turkish news aloud: <a href="https://istima.ubeydgencer.com">İstima</a>. On a news site you click its icon, it pulls the article out of the page and reads it in a natural Turkish voice. The paragraph being read is highlighted, and reading continues when you switch tabs.</p>
       <p>The voice is generated on your own computer. No server, no account, and the article you are reading goes nowhere. The extension is free and open source.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/okuma.webp" width="1400" height="875" loading="lazy" decoding="async"
+               alt="İstima on a news page: the paragraph being read is highlighted in light red, with the player and paragraph count in the bottom right" />
+        </div>
+        <figcaption>İstima on a news page · current paragraph highlighted, player in the corner</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">Why now<small>&sect;2</small></h2>
     <div class="prose">
       <p>Reading the news with your eyes is not always possible: while cooking, when your eyes are tired, while doing something else. Built-in browser read-aloud sounds robotic in Turkish and often gets numbers, dates and abbreviations wrong. The good voices live in the cloud, which means sending the text to a company and usually paying for it.</p>
       <p>In early October the PatientDesk AI team released <a href="https://huggingface.co/cloud0day3/antalia-mini" rel="noopener">Antalia-2 Mini</a> as open source: a small Turkish voice model with 7.6 million parameters that needs no graphics card. Its own demo page ran entirely in the browser. That was the missing piece.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/antalia-duyuru.webp" width="1136" height="874" loading="lazy" decoding="async"
+               alt="Sez Saygılı’s X post announcing Antalia-2 Mini as open source, above a video frame comparing the model with cloud voices" />
+        </div>
+        <figcaption>The Antalia-2 Mini announcement (in Turkish) · X · 9 October 2026</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">Moving the model into the browser<small>&sect;3</small></h2>
     <div class="prose">
@@ -147,17 +163,49 @@ window.solveLeaf();})();</script>
     <div class="prose">
       <p>The Chrome Web Store did not even accept the first upload: the package contained two <code>manifest.json</code> files, one of them the model&rsquo;s own info file. I renamed it.</p>
       <p>The second warning was about permissions. To work on every site by itself, the extension asked for access to all sites, and the store said that meant a longer review. Fair enough. I changed the default: İstima now touches no site when installed and reads a tab only when you click its icon. If you want the automatic &ldquo;Listen&rdquo; button in the corner, you turn it on in the settings and grant the permission yourself.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/otomatik-bulma.webp" width="1400" height="248" loading="lazy" decoding="async"
+               alt="The “Find articles automatically?” card on İstima’s welcome page, with a button to turn it on (Turkish interface)" />
+        </div>
+        <figcaption>Automatic detection is now opt-in · the user grants the permission</figcaption>
+      </figure>
+
       <p>The third was a rejection for keyword spam. I had listed the browsers the extension works in at the end of the description. I removed that line, resubmitted, and it went live.</p>
     </div>
     <h2 class="head">First feedback, first contribution<small>&sect;6</small></h2>
     <div class="prose">
       <p>After launch, Sez Saygılı from the team behind the model pointed out that the jump from the headline to the first paragraph felt abrupt. Fair point: there was no silence between paragraphs at all. The new version takes a short breath after headings and a small pause between paragraphs.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/geri-bildirim.webp" width="1108" height="330" loading="lazy" decoding="async"
+               alt="Sez Saygılı’s X reply suggesting a longer pause after headlines (in Turkish)" />
+        </div>
+        <figcaption>The first piece of feedback (in Turkish) · X · 12 October 2026</figcaption>
+      </figure>
+
       <p>Then the first outside contribution arrived. Ahmet Bedir sent a change that adds a second Turkish voice: Canberk Aslan&rsquo;s <a href="https://huggingface.co/canberkkkkkk/ema-lightning" rel="noopener">EMA Lightning</a> model. A careful contribution that came with its own tests. You can now choose between two voices in the settings.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/ema-katki.webp" width="1078" height="1122" loading="lazy" decoding="async"
+               alt="Ahmet Bedir’s X post announcing EMA Lightning support, above a frame from a demo video of İstima reading with EMA (in Turkish)" />
+        </div>
+        <figcaption>The EMA Lightning contribution (in Turkish) · X · 12 October 2026</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">The price of staying serverless<small>&sect;7</small></h2>
     <div class="prose">
       <p>The easy way to add the second model was to download it when a user picks it. I did not. İstima&rsquo;s promise from day one was that the article you read never leaves your computer and the extension never connects anywhere. A single download would break that sentence.</p>
       <p>The price was size: the extension grew from 25 MB to 57 MB. That is a few seconds on a fast connection and about a minute on a slow one. Only the voice you pick is loaded while reading, so speed and quality stay the same. I made that trade on purpose.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/ses-modeli.webp" width="1400" height="545" loading="lazy" decoding="async"
+               alt="The Reading section of İstima’s settings: voice model choice between Antalia-2 Mini and EMA Lightning, and default speed (Turkish interface)" />
+        </div>
+        <figcaption>Choosing the voice in the settings · only the selected model is loaded</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">What stayed with me<small>&sect;8</small></h2>
     <div class="prose">

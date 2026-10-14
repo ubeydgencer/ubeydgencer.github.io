@@ -142,11 +142,27 @@ window.solveLeaf();})();</script>
     <div class="prose lede">
       <p>Türkçe haberleri sesli okuyan bir Chrome eklentisi yaptım: <a href="https://istima.ubeydgencer.com">İstima</a>. Bir haber sitesindeyken simgesine basıyorsunuz, eklenti haberi sayfadan ayıklıyor ve doğal bir Türkçe sesle okuyor. Okunan paragraf sayfada vurgulanıyor; başka sekmeye geçseniz de okuma sürüyor.</p>
       <p>Ses bilgisayarın içinde üretiliyor. Sunucu yok, hesap yok, okuduğunuz haber hiçbir yere gitmiyor. Eklenti ücretsiz ve açık kaynak.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/okuma.webp" width="1400" height="875" loading="lazy" decoding="async"
+               alt="Bir haber sayfasında İstima: okunan paragraf açık kırmızıyla vurgulanmış, sağ altta oynatıcı ve okunan paragraf sayısı görünüyor" />
+        </div>
+        <figcaption>İstima bir haber sayfasında · okunan paragraf vurgulu, oynatıcı sağ altta</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">Neden şimdi<small>&sect;2</small></h2>
     <div class="prose">
       <p>Bir haberi gözle okumak her zaman mümkün olmuyor: yemek yaparken, gözler yorgunken, başka bir işle uğraşırken. Tarayıcıların kendi sesli okuma özelliği Türkçede robotik kalıyor; sayıları, tarihleri, kısaltmaları çoğu zaman yanlış okuyor. İyi sesler ise bulutta duruyor ve metni bir şirkete göndermeyi, çoğu zaman da ödeme yapmayı gerektiriyor.</p>
       <p>Ekimin başında PatientDesk AI ekibi <a href="https://huggingface.co/cloud0day3/antalia-mini" rel="noopener">Antalia-2 Mini</a>&rsquo;yi açık kaynak olarak yayınladı. 7,6 milyon parametrelik, ekran kartı istemeyen küçük bir Türkçe ses modeli. Üstelik modelin kendi demo sayfası tamamen tarayıcıda çalışıyordu. Aradığım parça buydu.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/antalia-duyuru.webp" width="1136" height="874" loading="lazy" decoding="async"
+               alt="Sez Saygılı’nın Antalia-2 Mini’yi açık kaynak olarak duyurduğu X gönderisi; altında modelin bulut tabanlı seslerle karşılaştırıldığı bir video karesi" />
+        </div>
+        <figcaption>Antalia-2 Mini’nin duyurusu · X · 9 Ekim 2026</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">Modeli tarayıcıya taşımak<small>&sect;3</small></h2>
     <div class="prose">
@@ -163,17 +179,49 @@ window.solveLeaf();})();</script>
     <div class="prose">
       <p>Chrome Web Mağazası ilk denemede paketi yüklemedi bile: içinde iki tane <code>manifest.json</code> vardı, biri modelin kendi bilgi dosyasıydı. Adını değiştirdim.</p>
       <p>İkinci uyarı izinlerle ilgiliydi. Eklenti her sitede kendiliğinden çalışmak için tüm sitelere erişim istiyordu; mağaza bunun daha uzun bir incelemeye gireceğini söyledi. Haklıydı da. Varsayılanı değiştirdim: İstima artık kurulduğunda hiçbir siteye erişmiyor, yalnızca siz simgeye bastığınızda o sekmeyi okuyor. Köşedeki otomatik &ldquo;Haberi dinle&rdquo; düğmesini isteyen, ayarlardan açıp izni kendisi veriyor.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/otomatik-bulma.webp" width="1400" height="248" loading="lazy" decoding="async"
+               alt="İstima’nın hoş geldin sayfasındaki “Haberleri kendisi bulsun mu?” kartı ve Otomatik bulmayı aç düğmesi" />
+        </div>
+        <figcaption>Otomatik bulma artık isteğe bağlı · izni kullanıcı veriyor</figcaption>
+      </figure>
+
       <p>Üçüncüsü bir ret oldu: anahtar kelime spam&rsquo;i. Açıklamanın sonuna eklentinin çalıştığı tarayıcıları sıralamıştım. O satırı silip yeniden gönderdim, bu sefer yayına çıktı.</p>
     </div>
     <h2 class="head">İlk geri bildirim, ilk katkı<small>&sect;6</small></h2>
     <div class="prose">
       <p>Yayından sonra modeli geliştiren ekipten Sez Saygılı&rsquo;nın bir notu oldu: başlık bitip ilk paragrafa geçerken geçiş keskin kalıyordu. Haklıydı; paragrafların arasında hiç sessizlik yoktu. Yeni sürümde başlıklardan sonra kısa bir nefes payı, paragraflar arasında da küçük bir duraksama var.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/geri-bildirim.webp" width="1108" height="330" loading="lazy" decoding="async"
+               alt="Sez Saygılı’nın, başlıklardan sonraki duraksamanın uzatılmasını öneren X yanıtı" />
+        </div>
+        <figcaption>İlk geri bildirim · X · 12 Ekim 2026</figcaption>
+      </figure>
+
       <p>Bir de ilk dış katkı geldi. Ahmet Bedir, eklentiye ikinci bir Türkçe ses ekleyen bir değişiklik gönderdi: Canberk Aslan&rsquo;ın <a href="https://huggingface.co/canberkkkkkk/ema-lightning" rel="noopener">EMA Lightning</a> modeli. Testleriyle birlikte gelen, özenli bir katkıydı. Artık ayarlardan iki ses arasında seçim yapılabiliyor.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/ema-katki.webp" width="1078" height="1122" loading="lazy" decoding="async"
+               alt="Ahmet Bedir’in EMA Lightning desteğini duyurduğu X gönderisi; altında İstima’nın EMA ile okuma yaptığı demo videosunun karesi" />
+        </div>
+        <figcaption>EMA Lightning katkısının duyurusu · X · 12 Ekim 2026</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">Sunucusuz kalmanın bedeli<small>&sect;7</small></h2>
     <div class="prose">
       <p>İkinci modeli eklemenin en kolay yolu, kullanıcı onu seçtiğinde internetten indirmekti. Yapmadım. İstima&rsquo;nın baştan verdiği söz, okuduğunuz haberin bilgisayarınızdan çıkmaması ve eklentinin hiçbir yere bağlanmamasıydı. Tek bir indirme bile bu cümleyi bozuyordu.</p>
       <p>Bunun bedeli boyut oldu: eklenti 25 MB&rsquo;tan 57 MB&rsquo;a çıktı. Hızlı bir bağlantıda birkaç saniye, yavaş bir bağlantıda bir dakika demek. Okurken yalnızca seçtiğiniz ses belleğe yükleniyor; hız da kalite de aynı. Bu takası bilerek yaptım.</p>
+      <figure class="plate">
+        <div class="window">
+          <img src="/assets/istima/ses-modeli.webp" width="1400" height="545" loading="lazy" decoding="async"
+               alt="İstima ayarlarının Okuma bölümü: Antalia-2 Mini ve EMA Lightning arasında ses modeli seçimi ve varsayılan hız seçenekleri" />
+        </div>
+        <figcaption>Ayarlarda ses modeli seçimi · yalnızca seçilen model yüklenir</figcaption>
+      </figure>
+
     </div>
     <h2 class="head">Aklımda kalan<small>&sect;8</small></h2>
     <div class="prose">
