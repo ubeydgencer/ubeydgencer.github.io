@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Listening to the news instead of reading it — Ubeyd Gencer</title>
+<meta name="description" content="I built a Chrome extension that reads Turkish news aloud. The voice is generated entirely in the browser; the real work was extracting the article and dealing with the store’s rules." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/en/blog/istima" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/istima" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/istima" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/istima" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Listening to the news instead of reading it" />
+<meta property="og:description" content="I built a Chrome extension that reads Turkish news aloud. The voice is generated entirely in the browser; the real work was extracting the article and dealing with the store’s rules." />
+<meta property="og:url" content="https://ubeydgencer.com/en/blog/istima" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="tr_TR" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-10-14" />
+<meta property="article:modified_time" content="2026-10-14" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta property="article:section" content="Build note" />
+<meta property="article:tag" content="Build note" />
+<meta property="article:tag" content="Chrome extension" />
+<meta property="article:tag" content="Text to speech" />
+<meta property="article:tag" content="Browser" />
+<meta property="article:tag" content="Open source" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Listening to the news instead of reading it" />
+<meta name="twitter:description" content="Build note for a Chrome extension that voices Turkish news on-device. No server, the text never leaves your computer." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Listening to the news instead of reading it","description":"I built a Chrome extension that reads Turkish news aloud. The voice is generated entirely in the browser; the real work was extracting the article and dealing with the store’s rules.","datePublished":"2026-10-14","dateModified":"2026-10-14","inLanguage":"en","url":"https://ubeydgencer.com/en/blog/istima","image":"https://ubeydgencer.com/ubeydgencer.jpg","wordCount":964,"articleSection":"Build note","keywords":"İstima, text to speech, Turkish voice model, Antalia-2 Mini, EMA Lightning, Chrome extension, WebAssembly, listen to news, privacy","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/en/blog/istima"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/en/blog/"},"about":[{"@type":"SoftwareApplication","name":"İstima","url":"https://istima.ubeydgencer.com","applicationCategory":"BrowserApplication"},{"@type":"Thing","name":"Speech synthesis","sameAs":"https://en.wikipedia.org/wiki/Speech_synthesis"},{"@type":"Thing","name":"WebAssembly","sameAs":"https://en.wikipedia.org/wiki/WebAssembly"}]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ubeydgencer.com/en/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ubeydgencer.com/en/blog/"},{"@type":"ListItem","position":3,"name":"Listening to the news instead of reading it","item":"https://ubeydgencer.com/en/blog/istima"}]}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css?v=20261010" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERENCE MANUAL · REVISION 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Sections">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/en/"><span>1 · Intro</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/en/projects"><span>2 · Projects</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/en/bookmarks"><span>3 · Bookmarks</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/en/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Theme">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Theme</span>
+  </button>
+  <a class="ctl" href="/blog/istima" hreflang="tr" title="Türkçe’ye geç">TR</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Section 4</span>
+          <span class="machine">Blog · 4.1.6</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine"><time datetime="2026-10-14">14 October 2026</time></span>
+          <span class="machine">5 min read</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">Listening to the news<br />instead of reading it</h1>
+      <p class="machine" style="margin-top:.9rem">Build note · Chrome extension · Two voices · Zero servers</p>
+    </div>
+    <h2 class="head">In short<small>&sect;1</small></h2>
+    <div class="prose lede">
+      <p>I built a Chrome extension that reads Turkish news aloud: <a href="https://istima.ubeydgencer.com">İstima</a>. On a news site you click its icon, it pulls the article out of the page and reads it in a natural Turkish voice. The paragraph being read is highlighted, and reading continues when you switch tabs.</p>
+      <p>The voice is generated on your own computer. No server, no account, and the article you are reading goes nowhere. The extension is free and open source.</p>
+    </div>
+    <h2 class="head">Why now<small>&sect;2</small></h2>
+    <div class="prose">
+      <p>Reading the news with your eyes is not always possible: while cooking, when your eyes are tired, while doing something else. Built-in browser read-aloud sounds robotic in Turkish and often gets numbers, dates and abbreviations wrong. The good voices live in the cloud, which means sending the text to a company and usually paying for it.</p>
+      <p>In early October the PatientDesk AI team released <a href="https://huggingface.co/cloud0day3/antalia-mini" rel="noopener">Antalia-2 Mini</a> as open source: a small Turkish voice model with 7.6 million parameters that needs no graphics card. Its own demo page ran entirely in the browser. That was the missing piece.</p>
+    </div>
+    <h2 class="head">Moving the model into the browser<small>&sect;3</small></h2>
+    <div class="prose">
+      <p>The model comes in four parts and runs in the browser through WebAssembly. I took the inference code and the model&rsquo;s Turkish text normaliser from the demo page and put them inside the extension; the roughly 23 MB model ships with it.</p>
+      <p>The background part of a Chrome extension cannot play sound, so the voice is generated and played in a separate, invisible page. Once that page ran in the most isolated mode the browser allows, the model could use four cores: it is ready in under a second on a laptop and speaks much faster than real time. It prepares the next paragraphs while you listen, so reading never stalls.</p>
+    </div>
+    <h2 class="head">The real work: getting the article out<small>&sect;4</small></h2>
+    <div class="prose">
+      <p>The hard part was the text, not the voice. On a news page the article is a small island surrounded by menus, ads, &ldquo;you may also like&rdquo; boxes and comments. I extracted the body with Mozilla Readability, the library behind Firefox&rsquo;s reader view, but Turkish news sites left behind debris it could not handle.</p>
+      <p>Category labels were taken for paragraphs. Bylines like &ldquo;Newsroom, 10 October 2026, 09:45&rdquo; were read aloud. One site had &ldquo;Follow our news on Google&rdquo; in the middle of the article, another a copyright note at the end, another a list of tags. Each got a small rule. A short line without closing punctuation is a label unless it is a heading. A short line carrying a date and time is a byline.</p>
+      <p>Then I tried the extension one by one on Anadolu Agency, NTV, Hürriyet, Sözcü, Cumhuriyet, Habertürk, Milliyet and TRT Haber. TRT&rsquo;s short news items failed Readability&rsquo;s &ldquo;is this page readable&rdquo; pre-check, so I added a fallback that checks whether the page declares itself an article. On Anadolu Agency the article arrived a moment after the page loaded; the extension now takes a second look a few seconds later.</p>
+    </div>
+    <h2 class="head">Three rounds with the store<small>&sect;5</small></h2>
+    <div class="prose">
+      <p>The Chrome Web Store did not even accept the first upload: the package contained two <code>manifest.json</code> files, one of them the model&rsquo;s own info file. I renamed it.</p>
+      <p>The second warning was about permissions. To work on every site by itself, the extension asked for access to all sites, and the store said that meant a longer review. Fair enough. I changed the default: İstima now touches no site when installed and reads a tab only when you click its icon. If you want the automatic &ldquo;Listen&rdquo; button in the corner, you turn it on in the settings and grant the permission yourself.</p>
+      <p>The third was a rejection for keyword spam. I had listed the browsers the extension works in at the end of the description. I removed that line, resubmitted, and it went live.</p>
+    </div>
+    <h2 class="head">First feedback, first contribution<small>&sect;6</small></h2>
+    <div class="prose">
+      <p>After launch, Sez Saygılı from the team behind the model pointed out that the jump from the headline to the first paragraph felt abrupt. Fair point: there was no silence between paragraphs at all. The new version takes a short breath after headings and a small pause between paragraphs.</p>
+      <p>Then the first outside contribution arrived. Ahmet Bedir sent a change that adds a second Turkish voice: Canberk Aslan&rsquo;s <a href="https://huggingface.co/canberkkkkkk/ema-lightning" rel="noopener">EMA Lightning</a> model. A careful contribution that came with its own tests. You can now choose between two voices in the settings.</p>
+    </div>
+    <h2 class="head">The price of staying serverless<small>&sect;7</small></h2>
+    <div class="prose">
+      <p>The easy way to add the second model was to download it when a user picks it. I did not. İstima&rsquo;s promise from day one was that the article you read never leaves your computer and the extension never connects anywhere. A single download would break that sentence.</p>
+      <p>The price was size: the extension grew from 25 MB to 57 MB. That is a few seconds on a fast connection and about a minute on a slow one. Only the voice you pick is loaded while reading, so speed and quality stay the same. I made that trade on purpose.</p>
+    </div>
+    <h2 class="head">What stayed with me<small>&sect;8</small></h2>
+    <div class="prose">
+      <p>The hardest part of this project was not the AI; it was the mess of news sites and the rules of the store. The model was ready and worked well. My job was to carry it to where people already are every day: the corner of their browser. I had an AI coding assistant beside me while building it, but the extension itself needs no cloud to run.</p>
+      <p>A small coincidence: the Turkish posts on this blog are voiced with the same model. Press &ldquo;Listen&rdquo; on the Turkish version of this post and you will hear İstima&rsquo;s voice.</p>
+      <p>The extension is on the <a href="https://chromewebstore.google.com/detail/idnhjopkmlgdhipcfplknfdfpkcehhle" rel="noopener">Chrome Web Store</a> and the source is on <a href="https://github.com/ubeydgencer/istima" rel="noopener">GitHub</a>.</p>
+    </div>
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · Istanbul, Türkiye</span>
+        <a class="jump" href="/en/blog/">Section 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Reference manual · Revision 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js?v=20261010" defer></script>
+</body>
+</html>

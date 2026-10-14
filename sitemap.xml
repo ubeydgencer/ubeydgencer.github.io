@@ -12,7 +12,7 @@
     <loc>https://ubeydgencer.com/projects</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/projects" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/projects" />
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -36,7 +36,7 @@
     <loc>https://ubeydgencer.com/en/projects</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/projects" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/projects" />
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -52,7 +52,7 @@
     <loc>https://ubeydgencer.com/blog/</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/" />
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -76,7 +76,7 @@
     <loc>https://ubeydgencer.com/en/blog/</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/" />
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -159,6 +159,22 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/bolu-narven-bir-hafta" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/a-week-in-bolu" />
     <lastmod>2026-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/blog/istima</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/istima" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/istima" />
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/en/blog/istima</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/istima" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/istima" />
+    <lastmod>2026-10-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

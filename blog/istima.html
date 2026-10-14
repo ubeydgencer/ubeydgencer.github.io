@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Haberi okumadan dinlemek — Ubeyd Gencer</title>
+<meta name="description" content="Türkçe haberleri sesli okuyan bir Chrome eklentisi yaptım. Ses tamamen tarayıcıda üretiliyor; asıl iş haberi sayfadan ayıklamak ve mağazanın kurallarıyla uğraşmak oldu." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/blog/istima" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/istima" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/istima" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/istima" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Haberi okumadan dinlemek" />
+<meta property="og:description" content="Türkçe haberleri sesli okuyan bir Chrome eklentisi yaptım. Ses tamamen tarayıcıda üretiliyor; asıl iş haberi sayfadan ayıklamak ve mağazanın kurallarıyla uğraşmak oldu." />
+<meta property="og:url" content="https://ubeydgencer.com/blog/istima" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-10-14" />
+<meta property="article:modified_time" content="2026-10-14" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta property="article:section" content="Yapım notu" />
+<meta property="article:tag" content="Yapım notu" />
+<meta property="article:tag" content="Chrome eklentisi" />
+<meta property="article:tag" content="Metinden sese" />
+<meta property="article:tag" content="Tarayıcı" />
+<meta property="article:tag" content="Açık kaynak" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Haberi okumadan dinlemek" />
+<meta name="twitter:description" content="Türkçe haberleri cihazda seslendiren bir Chrome eklentisinin yapım notu. Sunucu yok, metin bilgisayardan çıkmıyor." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Haberi okumadan dinlemek","description":"Türkçe haberleri sesli okuyan bir Chrome eklentisi yaptım. Ses tamamen tarayıcıda üretiliyor; asıl iş haberi sayfadan ayıklamak ve mağazanın kurallarıyla uğraşmak oldu.","datePublished":"2026-10-14","dateModified":"2026-10-14","inLanguage":"tr","url":"https://ubeydgencer.com/blog/istima","image":"https://ubeydgencer.com/ubeydgencer.jpg","wordCount":710,"articleSection":"Yapım notu","keywords":"İstima, metinden sese, Türkçe ses modeli, Antalia-2 Mini, EMA Lightning, Chrome eklentisi, WebAssembly, haber dinle, gizlilik","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/blog/istima"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/blog/"},"about":[{"@type":"SoftwareApplication","name":"İstima","url":"https://istima.ubeydgencer.com","applicationCategory":"BrowserApplication"},{"@type":"Thing","name":"Speech synthesis","sameAs":"https://en.wikipedia.org/wiki/Speech_synthesis"},{"@type":"Thing","name":"WebAssembly","sameAs":"https://en.wikipedia.org/wiki/WebAssembly"}]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://ubeydgencer.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://ubeydgencer.com/blog/"},{"@type":"ListItem","position":3,"name":"Haberi okumadan dinlemek","item":"https://ubeydgencer.com/blog/istima"}]}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css?v=20261010" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+</head>
+<body>
+<a class="skip" href="#main">İçeriğe geç</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERANS KILAVUZU · SÜRÜM 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Bölümler">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/"><span>1 · Giriş</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/projects"><span>2 · Projeler</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/bookmarks"><span>3 · Yer İmleri</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Tema">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Tema</span>
+  </button>
+  <a class="ctl" href="/en/blog/istima" hreflang="en" title="Switch to English">EN</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+      <div class="folio">
+        <div class="folio__set">
+          <span class="machine">Bölüm 4</span>
+          <span class="machine">Blog · 4.1.6</span>
+        </div>
+        <div class="folio__set">
+          <span class="machine"><time datetime="2026-10-14">14 Ekim 2026</time></span>
+          <span class="machine">5 dk okuma</span>
+        </div>
+      </div>
+
+    <div class="full">
+      <h1 class="display display--sm">Haberi okumadan<br />dinlemek</h1>
+      <p class="machine" style="margin-top:.9rem">Yapım notu · Chrome eklentisi · İki ses modeli · Sıfır sunucu</p>
+    </div>
+    <h2 class="head">Kısaca<small>&sect;1</small></h2>
+    <div class="prose lede">
+      <p>Türkçe haberleri sesli okuyan bir Chrome eklentisi yaptım: <a href="https://istima.ubeydgencer.com">İstima</a>. Bir haber sitesindeyken simgesine basıyorsunuz, eklenti haberi sayfadan ayıklıyor ve doğal bir Türkçe sesle okuyor. Okunan paragraf sayfada vurgulanıyor; başka sekmeye geçseniz de okuma sürüyor.</p>
+      <p>Ses bilgisayarın içinde üretiliyor. Sunucu yok, hesap yok, okuduğunuz haber hiçbir yere gitmiyor. Eklenti ücretsiz ve açık kaynak.</p>
+    </div>
+    <h2 class="head">Neden şimdi<small>&sect;2</small></h2>
+    <div class="prose">
+      <p>Bir haberi gözle okumak her zaman mümkün olmuyor: yemek yaparken, gözler yorgunken, başka bir işle uğraşırken. Tarayıcıların kendi sesli okuma özelliği Türkçede robotik kalıyor; sayıları, tarihleri, kısaltmaları çoğu zaman yanlış okuyor. İyi sesler ise bulutta duruyor ve metni bir şirkete göndermeyi, çoğu zaman da ödeme yapmayı gerektiriyor.</p>
+      <p>Ekimin başında PatientDesk AI ekibi <a href="https://huggingface.co/cloud0day3/antalia-mini" rel="noopener">Antalia-2 Mini</a>&rsquo;yi açık kaynak olarak yayınladı. 7,6 milyon parametrelik, ekran kartı istemeyen küçük bir Türkçe ses modeli. Üstelik modelin kendi demo sayfası tamamen tarayıcıda çalışıyordu. Aradığım parça buydu.</p>
+    </div>
+    <h2 class="head">Modeli tarayıcıya taşımak<small>&sect;3</small></h2>
+    <div class="prose">
+      <p>Model dört ayrı parçadan oluşuyor ve tarayıcıda WebAssembly üzerinden çalışıyor. Demo sayfasındaki çalıştırma kodunu ve modelin Türkçe metin düzelticisini eklentinin içine aldım; yaklaşık 23 MB&rsquo;lık model eklentiyle birlikte geliyor.</p>
+      <p>Chrome eklentilerinde arka planda çalışan kısım ses çalamıyor. Bu yüzden ses, görünmeyen ayrı bir sayfada üretilip çalınıyor. Bu sayfayı tarayıcının izin verdiği en yalıtılmış hâle getirince model dört çekirdekle çalışabildi: dizüstünde bir saniyenin altında hazır oluyor, konuşmayı gerçek zamandan çok daha hızlı üretiyor. Sıradaki paragrafları siz dinlerken önceden hazırladığı için okuma takılmıyor.</p>
+    </div>
+    <h2 class="head">Asıl iş: haberi sayfadan çıkarmak<small>&sect;4</small></h2>
+    <div class="prose">
+      <p>En çok uğraştıran kısım ses değil, metin oldu. Bir haber sayfasında haberin kendisi küçük bir ada; etrafı menü, reklam, &ldquo;ilginizi çekebilir&rdquo; kutuları ve yorumlarla çevrili. Gövdeyi Firefox&rsquo;un okuma modunun da kullandığı Mozilla Readability ile ayıkladım. Ama Türk haber siteleri ona yetmeyen kendi kalıntılarını bırakıyordu.</p>
+      <p>Kategori etiketi paragraf sanılıyordu. &ldquo;Haber Merkezi, 10 Ekim 2026, 09:45&rdquo; gibi künyeler okunuyordu. Bir sitede haberin ortasında &ldquo;Haberlerimizi Google&rsquo;da takip edin&rdquo;, bir başkasında sonunda telif notu, bir diğerinde etiket listesi vardı. Her biri için küçük bir kural yazdım. Kısa ve noktalamayla bitmeyen bir satır, başlık değilse etikettir. Tarih ve saat taşıyan kısa satır künyedir.</p>
+      <p>Sonra eklentiyi Anadolu Ajansı, NTV, Hürriyet, Sözcü, Cumhuriyet, Habertürk, Milliyet ve TRT Haber&rsquo;de tek tek denedim. TRT&rsquo;nin kısa haberleri &ldquo;bu sayfa okunur mu&rdquo; ön kontrolünden geçemiyordu; sayfanın kendini haber olarak tanıtıp tanıtmadığına bakan bir yedek ekledim. Anadolu Ajansı&rsquo;nda haber, sayfa açıldıktan biraz sonra geliyordu; eklenti artık birkaç saniye sonra bir kez daha bakıyor.</p>
+    </div>
+    <h2 class="head">Mağazayla üç tur<small>&sect;5</small></h2>
+    <div class="prose">
+      <p>Chrome Web Mağazası ilk denemede paketi yüklemedi bile: içinde iki tane <code>manifest.json</code> vardı, biri modelin kendi bilgi dosyasıydı. Adını değiştirdim.</p>
+      <p>İkinci uyarı izinlerle ilgiliydi. Eklenti her sitede kendiliğinden çalışmak için tüm sitelere erişim istiyordu; mağaza bunun daha uzun bir incelemeye gireceğini söyledi. Haklıydı da. Varsayılanı değiştirdim: İstima artık kurulduğunda hiçbir siteye erişmiyor, yalnızca siz simgeye bastığınızda o sekmeyi okuyor. Köşedeki otomatik &ldquo;Haberi dinle&rdquo; düğmesini isteyen, ayarlardan açıp izni kendisi veriyor.</p>
+      <p>Üçüncüsü bir ret oldu: anahtar kelime spam&rsquo;i. Açıklamanın sonuna eklentinin çalıştığı tarayıcıları sıralamıştım. O satırı silip yeniden gönderdim, bu sefer yayına çıktı.</p>
+    </div>
+    <h2 class="head">İlk geri bildirim, ilk katkı<small>&sect;6</small></h2>
+    <div class="prose">
+      <p>Yayından sonra modeli geliştiren ekipten Sez Saygılı&rsquo;nın bir notu oldu: başlık bitip ilk paragrafa geçerken geçiş keskin kalıyordu. Haklıydı; paragrafların arasında hiç sessizlik yoktu. Yeni sürümde başlıklardan sonra kısa bir nefes payı, paragraflar arasında da küçük bir duraksama var.</p>
+      <p>Bir de ilk dış katkı geldi. Ahmet Bedir, eklentiye ikinci bir Türkçe ses ekleyen bir değişiklik gönderdi: Canberk Aslan&rsquo;ın <a href="https://huggingface.co/canberkkkkkk/ema-lightning" rel="noopener">EMA Lightning</a> modeli. Testleriyle birlikte gelen, özenli bir katkıydı. Artık ayarlardan iki ses arasında seçim yapılabiliyor.</p>
+    </div>
+    <h2 class="head">Sunucusuz kalmanın bedeli<small>&sect;7</small></h2>
+    <div class="prose">
+      <p>İkinci modeli eklemenin en kolay yolu, kullanıcı onu seçtiğinde internetten indirmekti. Yapmadım. İstima&rsquo;nın baştan verdiği söz, okuduğunuz haberin bilgisayarınızdan çıkmaması ve eklentinin hiçbir yere bağlanmamasıydı. Tek bir indirme bile bu cümleyi bozuyordu.</p>
+      <p>Bunun bedeli boyut oldu: eklenti 25 MB&rsquo;tan 57 MB&rsquo;a çıktı. Hızlı bir bağlantıda birkaç saniye, yavaş bir bağlantıda bir dakika demek. Okurken yalnızca seçtiğiniz ses belleğe yükleniyor; hız da kalite de aynı. Bu takası bilerek yaptım.</p>
+    </div>
+    <h2 class="head">Aklımda kalan<small>&sect;8</small></h2>
+    <div class="prose">
+      <p>Bu projede beni en çok uğraştıran şey yapay zekâ değildi; haber sitelerinin dağınıklığı ve mağazanın kurallarıydı. Model hazırdı ve iyi çalışıyordu. Benim işim onu insanların her gün açtığı yere, tarayıcının köşesine taşımaktı. Eklentiyi yazarken yanımda bir yapay zekâ kod asistanı vardı; ama eklentinin çalışması için hiçbir buluta ihtiyaç yok.</p>
+      <p>Bir de küçük bir tesadüf: bu blogdaki yazıların sesli sürümleri de aynı modelle üretiliyor. Bu yazının başındaki &ldquo;Dinle&rdquo; düğmesine basarsanız, İstima&rsquo;nın sesini duymuş olursunuz.</p>
+      <p>Eklenti <a href="https://chromewebstore.google.com/detail/idnhjopkmlgdhipcfplknfdfpkcehhle" rel="noopener">Chrome Web Mağazası&rsquo;nda</a>, kaynak kodu <a href="https://github.com/ubeydgencer/istima" rel="noopener">GitHub&rsquo;da</a>.</p>
+    </div>
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/blog/">Bölüm 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Referans kılavuzu · Sürüm 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js?v=20261010" defer></script>
+</body>
+</html>
