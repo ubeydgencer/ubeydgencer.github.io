@@ -61,6 +61,10 @@ const SAYAÇLAR = [
   S('en/index.html', 'künye yazı', /(Posts<\/th><td>)\d+( entr)/, `$1${G.yazi}$2`),
   S('en/index.html', 'bağlantı başlığı', /(<small>1\.2 · )\d+( entries)/, `$1${G.baglanti}$2`),
 
+  // Projeler sayfasının kapsam cümlesi
+  S('projects.html', 'kapsam cümlesi', /(<div class="prose lede"><p>Sevk edilmiş )\d+( iş\.)/, `$1${G.proje}$2`),
+  S('en/projects.html', 'kapsam cümlesi', /(<div class="prose lede"><p>)\d+( shipped things)/, `$1${G.proje}$2`),
+
   // Blog dizinleri
   S('blog/index.html', 'yazı sayısı', /(4\.1 · )\d+( kayıt)/, `$1${G.yazi}$2`),
   S('en/blog/index.html', 'yazı sayısı', /(4\.1 · )\d+( entries)/, `$1${G.yazi}$2`),

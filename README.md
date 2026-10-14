@@ -94,7 +94,7 @@ git diff
 node scripts/sync-counts.mjs --check
 ```
 
-Script; bölüm başlıklarını, filtre sayaçlarını, ana sayfa künyelerini ve `llms.txt` içindeki sayıları günceller. Türkçe/İngilizce proje ve blog dizinlerinin kayıt sayılarını, `llms.txt` madde sayısını ve sitemap'te listelenen adreslerin yerel dosya karşılıklarını da kontrol eder.
+Script; bölüm başlıklarını, filtre sayaçlarını, ana sayfa künyelerini, projeler sayfasının kapsam cümlesini ve `llms.txt` içindeki sayıları günceller. Türkçe/İngilizce proje ve blog dizinlerinin kayıt sayılarını, `llms.txt` madde sayısını ve sitemap'te listelenen adreslerin yerel dosya karşılıklarını da kontrol eder.
 
 “Elle bakılmalı” çıktısındaki eksik içerik veya bulunamayan desenler ayrıca düzeltilmelidir. Script yeni proje, yazı, çeviri veya sitemap adresi oluşturmaz; iki dilde aynı kayıt sayısının bulunması çeviri içeriğini doğrulamaz.
 

@@ -84,7 +84,7 @@ git diff
 node scripts/sync-counts.mjs --check
 ```
 
-The script updates section headings, filter counters, home-page summaries, and counts in `llms.txt`. It also checks the entry counts in the Turkish/English project and blog indexes, the number of `llms.txt` entries, and whether sitemap URLs have corresponding local files.
+The script updates section headings, filter counters, home-page summaries, the projects page scope sentence, and counts in `llms.txt`. It also checks the entry counts in the Turkish/English project and blog indexes, the number of `llms.txt` entries, and whether sitemap URLs have corresponding local files.
 
 Issues listed under “Elle bakılmalı” need manual attention. The script does not create projects, posts, translations, or sitemap URLs; matching entry counts do not verify the translated content.
 
