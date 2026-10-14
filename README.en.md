@@ -90,6 +90,17 @@ Issues listed under “Elle bakılmalı” need manual attention. The script doe
 
 `.github/workflows/counts.yml` recalculates counters when its watched content files change on `main` and commits any differences. It can also run manually from Actions. The Raindrop sync calls the same script itself.
 
+## Outbound link clicks
+
+External links on the projects and blog pages go through [Dub](https://dub.co) short links (`ubyd.link/…`); clicks show up in the Dub dashboard by country, device, browser and referring page. No personal identity is recorded. Link text stays the same, and the original address is kept in each `<a>` tag's `data-dest` attribute.
+
+```bash
+node scripts/dub-links.mjs --check                 # no key needed: any links not yet converted?
+DUB_API_KEY=dub_… node scripts/dub-links.mjs       # create missing short links from LINKS, update the HTML
+```
+
+Which addresses are tracked is set by the `LINKS` list in `scripts/dub-links.mjs`; the mapping lives in `scripts/dub-links.json` (no secrets). The free plan allows 25 new links a month, so an address not on the list is never converted automatically, only reported. The API key is never written to a file; the repository is public. Bookmarks, the home page and privacy pages are out of scope.
+
 ## Running locally
 
 There's no build step, so any static server will do:
