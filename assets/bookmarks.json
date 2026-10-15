@@ -1,11 +1,23 @@
 {
-  "updated": "2026-10-14T11:01:28.817Z",
-  "total": 41,
+  "updated": "2026-10-15T10:44:43.418Z",
+  "total": 43,
   "collections": [
     {
       "title": "Bookmark",
-      "count": 11,
+      "count": 13,
       "items": [
+        {
+          "title": "Google AI Studio",
+          "link": "https://aistudio.google.com/prompts/new_chat",
+          "domain": "aistudio.google.com",
+          "created": "2026-10-14T18:36:24.686Z"
+        },
+        {
+          "title": "SYNTX.AI: Unlock 100+ AI tools",
+          "link": "https://syntx.ai/trends/new/morning-parking-vibe",
+          "domain": "syntx.ai",
+          "created": "2026-10-14T18:35:43.768Z"
+        },
         {
           "title": "Bendy",
           "link": "https://trybendy.app/",
