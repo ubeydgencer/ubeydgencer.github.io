@@ -1149,6 +1149,96 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
   .spec td { padding-top: 0; }
 }
 
+/* ---------- 18b. Büyüteç ----------
+   Görsel kartondan kaldırılıp masaya konur: tam ekran koyu zemin, görsel kendi
+   çözünürlüğünde, altında makine sesinde künye. Açılış da menteşe: iki kare. */
+
+.window img.zoomable { cursor: zoom-in; }
+.window img.zoomable:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.loupe {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: clamp(0.75rem, 3vw, 2.5rem);
+  border: 0;
+  background: transparent;
+  color: #F3EFE6;
+  display: none;
+  place-items: center;
+  overflow: hidden;
+}
+.loupe[open] { display: grid; animation: loupe-in var(--step) var(--hinge); }
+.loupe::backdrop {
+  background: rgb(11 10 8 / 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+html.loupe-open { overflow: hidden; }
+
+.loupe__frame {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+  max-height: 100%;
+}
+.loupe__img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(100%, 92vw);
+  max-height: calc(100dvh - 7.5rem);
+  object-fit: contain;
+  background: #000;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), 0 1.5rem 3rem rgb(0 0 0 / 0.5);
+  cursor: zoom-out;
+}
+.loupe__cap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  width: 100%;
+  max-width: 62ch;
+  color: rgb(243 239 230 / 0.78);
+}
+.loupe__cap .machine { color: inherit; }
+
+.loupe__btn {
+  position: fixed;
+  border: 1px solid rgb(243 239 230 / 0.28);
+  background: rgb(11 10 8 / 0.55);
+  color: #F3EFE6;
+  cursor: pointer;
+  transition: background var(--step) var(--hinge), border-color var(--step) var(--hinge);
+}
+.loupe__btn:hover, .loupe__btn:focus-visible { background: #F3EFE6; color: #0B0A08; border-color: #F3EFE6; outline: none; }
+.loupe__close { top: clamp(0.75rem, 2vw, 1.25rem); right: clamp(0.75rem, 2vw, 1.25rem); padding: 0.5rem 0.75rem; }
+.loupe__nav {
+  top: 50%;
+  translate: 0 -50%;
+  width: 2.75rem;
+  height: 2.75rem;
+  font: 600 1.125rem/1 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.loupe__prev { left: clamp(0.5rem, 2vw, 1.25rem); }
+.loupe__next { right: clamp(0.5rem, 2vw, 1.25rem); }
+.loupe--single .loupe__nav { display: none; }
+
+@keyframes loupe-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 760px) {
+  .loupe__nav { top: auto; bottom: 0.75rem; translate: none; }
+  .loupe__img { max-height: calc(100dvh - 9rem); }
+}
+
 /* ---------- 19. Hareket tercihi ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1160,7 +1250,7 @@ html.dark ::selection { background: var(--board-face); color: var(--ink); }
 
 @media print {
   body { padding: 0; background: #fff; }
-  .rail, .binding, .controls, .lever, .listen { display: none; }
+  .rail, .binding, .controls, .lever, .listen, .loupe { display: none; }
   .leaf { box-shadow: none; background: #fff; margin: 0; padding: 0; }
   body::before { display: none; }
 }

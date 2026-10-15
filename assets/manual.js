@@ -1,7 +1,7 @@
 /* ============================================================
    UBEYD GENCER — REFERANS KILAVUZU · etkileşim katmanı
    Yaprak alfası head'deki önyükleyicide çözülür (boyamadan önce).
-   Burada: tema menteşesi, filtre kolu, ray klavye gezinimi, dinleme şeridi.
+   Burada: tema menteşesi, filtre kolu, ray klavye gezinimi, dinleme şeridi, büyüteç.
    Yumuşama yok — her değişim 90ms iki kare adım.
    ============================================================ */
 (function () {
@@ -243,5 +243,94 @@
         try { navigator.mediaSession.setActionHandler(k, handlers[k]); } catch (err) {}
       });
     }
+  }
+
+  /* ---- 6. Büyüteç ---------------------------------------------------------
+     .window içindeki görsele tıklayınca (ya da Enter/Boşluk) görsel kendi
+     çözünürlüğünde açılır; sayfadaki diğer görsellere ok tuşlarıyla geçilir.
+     data-full varsa büyük sürüm o dosyadır. Yer imi simgeleri ve videolar
+     dışarıda. Görsel kendi boyutunun üstüne büyütülmez: büyütmek bulanıklık
+     değil bilgi vermeli. */
+
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.window img'));
+  if (shots.length && typeof HTMLDialogElement === 'function') {
+    var en = (root.lang || '').indexOf('en') === 0;
+    var T = en
+      ? { open: 'Enlarge', close: 'Close', prev: 'Previous image', next: 'Next image', of: ' / ' }
+      : { open: 'Büyüt', close: 'Kapat', prev: 'Önceki görsel', next: 'Sonraki görsel', of: ' / ' };
+
+    var box = document.createElement('dialog');
+    box.className = 'loupe';
+    box.setAttribute('aria-label', T.open);
+    box.innerHTML =
+      '<figure class="loupe__frame">' +
+        '<img class="loupe__img" alt="" />' +
+        '<figcaption class="loupe__cap"><span class="machine" data-cap></span><span class="machine" data-count></span></figcaption>' +
+      '</figure>' +
+      '<button type="button" class="loupe__btn loupe__close machine" data-close>' + T.close + ' · Esc</button>' +
+      '<button type="button" class="loupe__btn loupe__nav loupe__prev" data-step="-1" aria-label="' + T.prev + '">&larr;</button>' +
+      '<button type="button" class="loupe__btn loupe__nav loupe__next" data-step="1" aria-label="' + T.next + '">&rarr;</button>';
+    document.body.appendChild(box);
+
+    var big = box.querySelector('.loupe__img');
+    var cap = box.querySelector('[data-cap]');
+    var count = box.querySelector('[data-count]');
+    var at = 0, opener = null;
+
+    // Künye: blog levhasının ya da pencerenin altyazısı; proje küçük resminde proje adı
+    var caption = function (img) {
+      var fig = img.closest('figure.plate') || img.closest('figure');
+      var fc = fig && fig.querySelector('figcaption');
+      var entry = img.closest('.entry');
+      var name = entry && entry.querySelector('.entry__name');
+      var text = fc ? fc.textContent : name ? name.textContent : img.alt;
+      return (text || '').replace(/\s+/g, ' ').trim();
+    };
+
+    var show = function (i) {
+      at = (i + shots.length) % shots.length;
+      var img = shots[at];
+      big.src = img.getAttribute('data-full') || img.currentSrc || img.src;
+      big.alt = img.alt;
+      cap.textContent = caption(img);
+      count.textContent = shots.length > 1 ? (at + 1) + T.of + shots.length : '';
+      box.classList.toggle('loupe--single', shots.length < 2);
+    };
+
+    var open = function (i) {
+      opener = shots[i];
+      show(i);
+      box.showModal();
+      root.classList.add('loupe-open');
+    };
+
+    box.addEventListener('close', function () {
+      root.classList.remove('loupe-open');
+      big.removeAttribute('src');
+      if (opener) opener.focus();
+    });
+
+    // Kenar boşluğuna ya da görselin dışına tık: kapat
+    box.addEventListener('click', function (e) {
+      var step = e.target.closest('[data-step]');
+      if (step) { show(at + Number(step.getAttribute('data-step'))); return; }
+      if (e.target.closest('[data-close]') || e.target === box || e.target.classList.contains('loupe__frame')) box.close();
+    });
+
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+    });
+
+    shots.forEach(function (img, i) {
+      img.classList.add('zoomable');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', T.open + ': ' + (img.alt || caption(img)));
+      img.addEventListener('click', function () { open(i); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+      });
+    });
   }
 })();
