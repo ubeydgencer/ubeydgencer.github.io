@@ -39,7 +39,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Araç Muayene & Sigorta Takip** — Şirket filosunun fenni muayene, egzoz, zorunlu trafik sigortası ve K2 yetki belgesi tarihlerini takip eden dahili uygulama. localStorage tabanlı, backend yok. (dahili / bağlantı yok)
 - **Açsa Teklif Hazırlama** — Dahili teklif hazırlama aracı. Ürün seçimi, fiyatlandırma ve PDF teklif çıktısını tek sayfada birleştiren web uygulaması. (dahili / bağlantı yok)
 - **Kalori — Ürün Kataloğu** — Eberspächer ısıtıcı ürünleri için dijital ürün kataloğu. Docker ile deploy, çok dilli ve PDF katalog desteği. (dahili / bağlantı yok)
-- **Açsa Portal** — Açsa Otomotiv iç uygulamalarının ortak kapısı. Çalışan tek girişle (SSO) yalnız yetkili olduğu araçları görür: depo, stok, teklif, izin, katalog ve fiyat listesi, her biri kendi alt alan adında. Herkese açık yüzü kurumsal ve ürün sitelerine bağlanır; arama motorlarına kapalıdır. Cloudflare Workers, Supabase Auth. [acsaotomotiv.com](https://acsaotomotiv.com)
+- **Açsa Portal** — Açsa Otomotiv iç uygulamalarının ortak giriş kapısı. Çalışan tek girişle (SSO) yalnız yetkili olduğu araçlara ulaşır. Herkese açık yüzü kurumsal ve ürün sitelerine bağlanır; arama motorlarına kapalıdır. [acsaotomotiv.com](https://acsaotomotiv.com)
 
 ### E-Ticaret / E-Commerce
 
