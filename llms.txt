@@ -27,7 +27,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Kırtasiye için bir sabah bülteni** (06.09.2026) — Yüz kırtasiye markasını tarayıp her sabah 09:00'da tek bildirim gönderen bir küratör. Gemini ile kuruldu; reklam ve spam yok, filtre kullanıcının belirlediği kalite eşiği. Otomasyonu iş yerine kişisel bir hobiye yöneltmek üzerine bir yapım notu. [/blog/kirtasiye-bulteni](https://ubeydgencer.com/blog/kirtasiye-bulteni) · [EN](https://ubeydgencer.com/en/blog/stationery-briefing)
 - **Sıfır bütçeyle bir asistan kurduk** (28.08.2026) — Bir takviye gıda markası için kurulan mikrobiyota asistanının yapım notu: kapsamın ürüne değil bilimsel alana çekilmesi, ücretsiz model katmanının dayattığı mimari, ikinci bir kod ajanıyla çalışmanın bedeli ve ücretsiz katman kuyruğa girdiğinde yedek model zinciriyle çözüm. [/blog/sifir-maliyetli-asistan](https://ubeydgencer.com/blog/sifir-maliyetli-asistan) · [EN](https://ubeydgencer.com/en/blog/zero-cost-assistant)
 
-## Projeler (32 — 21 canlı, 11 geliştirmede)
+## Projeler (35 — 24 canlı, 11 geliştirmede)
 
 ### Açsa Otomotiv / Açsa Otomotiv
 
@@ -39,6 +39,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Araç Muayene & Sigorta Takip** — Şirket filosunun fenni muayene, egzoz, zorunlu trafik sigortası ve K2 yetki belgesi tarihlerini takip eden dahili uygulama. localStorage tabanlı, backend yok. (dahili / bağlantı yok)
 - **Açsa Teklif Hazırlama** — Dahili teklif hazırlama aracı. Ürün seçimi, fiyatlandırma ve PDF teklif çıktısını tek sayfada birleştiren web uygulaması. (dahili / bağlantı yok)
 - **Kalori — Ürün Kataloğu** — Eberspächer ısıtıcı ürünleri için dijital ürün kataloğu. Docker ile deploy, çok dilli ve PDF katalog desteği. (dahili / bağlantı yok)
+- **Açsa Portal** — Açsa Otomotiv iç uygulamalarının ortak kapısı. Çalışan tek girişle (SSO) yalnız yetkili olduğu araçları görür: depo, stok, teklif, izin, katalog ve fiyat listesi, her biri kendi alt alan adında. Herkese açık yüzü kurumsal ve ürün sitelerine bağlanır; arama motorlarına kapalıdır. Cloudflare Workers, Supabase Auth. [acsaotomotiv.com](https://acsaotomotiv.com)
 
 ### E-Ticaret / E-Commerce
 
@@ -48,7 +49,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 
 ### Web Projeleri / Web Projects
 
-- **Gerede'de 15 Yıl** — Yüksek lisans tezi için interaktif veri hikâyesi sitesi. PDF'den çekilen 76 tablo, 2004–2019 Gerede karşılaştırması. Özel SVG grafikler, iki dilli (TR/EN). React, TypeScript, Vite, Cloudflare Pages. [gerede-tez.pages.dev](https://gerede-tez.pages.dev)
+- **Gerede'de 15 Yıl** — Yüksek lisans tezi için interaktif veri hikâyesi sitesi. PDF'den çekilen 76 tablo, 2004–2019 Gerede karşılaştırması. Özel SVG grafikler, iki dilli (TR/EN). React, TypeScript, Vite, Cloudflare Pages. [akademik.zehragencer.com](https://akademik.zehragencer.com)
 - **Haramain News** — Mekke & Medine haberlerini sunan üç dilli (Arapça/Türkçe/İngilizce) haber sitesi. Gazete düzeni, namaz vakitleri, Kuran dinleme ve azkar özellikleri içeren vanilla JS SPA. [haramainnews.com](https://haramainnews.com)
 - **Dünya Kupası 2026 — Canlı Takip** — FIFA 2026 Dünya Kupası için canlı skor takip PWA’sı. Grup puan tabloları, fikstür, eleme turu bracket görselleştirmesi. [world-cup-26-sja.pages.dev](https://world-cup-26-sja.pages.dev)
 - **İkiz Yapı** — Pergole, cam balkon ve otomatik kapı sistemleri firması için proje galerisi sitesi. Cloudinary fotoğraf altyapısı ve WhatsApp entegrasyonu. [ikizyapi.com](https://ikizyapi.com)
@@ -57,6 +58,8 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Hediye Ambalaj** — Hediye ambalaj firması için kurumsal web sitesi. Hizmet kataloğu, marka kimliği ve iletişim sayfalarını kapsayan landing page. (dahili / bağlantı yok)
 - **ugoto** — Yedek parça distribütörü için çok dilli kurumsal web sitesi. Fren, süspansiyon ve elektrik parçaları için marka ve ürün kataloğu. [www.ugotomotiv.com](https://www.ugotomotiv.com)
 - **Teknoloji Günlüğü** — Ondokuz teknoloji yayınını tarayıp günün haberlerini Türkçe gösteren tek dosyalık sayfa. Haber kaynağına gitmeden Türkçe okuma modunda açılıyor, yanında o metnin lügatı çıkıyor. Sunucu, kurulum ve API anahtarı yok. (dahili / bağlantı yok)
+- **Zehra Gencer** — Tarif, akademik çalışma ve çiniyi tek çatıda toplayan dört siteli kişisel alan. Tarif defteri D1 üzerinde; e-posta koduyla korunan yönetim panelinden taslak/yayın akışı, fotoğraf yükleme ve JSON yedeği. Akademik site tez bulgularını etkileşimli grafiklerle iki dilde sunar. React, TypeScript, Cloudflare Pages, D1. [zehragencer.com](https://zehragencer.com)
+- **Günün Kaydı** — Kaynak bağlantıları ve tam metniyle günlük Türkçe sesli haber özeti. Haberler yerel Qwen modeliyle hazırlanır, ses Antalia/EMA ile CPU üzerinde üretilir; ücretli model API'si yok. Kaynak tarihi, kanıt ve gerçek ses süresi geçitlerinden geçmeyen bölüm yayımlanmaz. TypeScript, Cloudflare Workers, D1, Python. [gununkaydi.com](https://gununkaydi.com)
 
 ### Uygulamalar & IoT / Applications & IoT
 

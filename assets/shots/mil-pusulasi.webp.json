@@ -1,10 +1,11 @@
 {
- "prompt": "SOURCED, NOT GENERATED. Ubeyd Gencer'in açık kaynak projesinin ekran görüntüsü: Mil Pusulası (github.com/ubeydgencer/mil-pusulasi, main dalı). Herkese açık canlı adresi olmadığı için depodaki dist/ klasörü yerel statik sunucuda açıldı; 14 Ekim 2026'da headless Chrome ile 1280x800 görüntü alanında, DPR 1, açık temada, ilk görüntü alanı olarak çekildi; kadraj dışında düzenleme yapılmadı. cwebp -q 76 ile 640x400'e ölçeklendi. Yeniden üretmek için: depoyu klonla, npm run dev, 1280x800'de ilk görüntü alanını yakala.",
+ "prompt": "SOURCED, NOT GENERATED. Ubeyd Gencer'in açık kaynak projesinin ekran görüntüsü: Mil Pusulası (github.com/ubeydgencer/mil-pusulasi, main dalı). Herkese açık canlı adresi olmadığı için depodaki dist/ klasörü yerel statik sunucuda açıldı; 19 Ekim 2026'da headless Chrome ile 1280x800 görüntü alanında, DPR 2, açık temada, ilk görüntü alanı olarak çekildi; kadraj dışında düzenleme yapılmadı. Küçük sürüm 960x600, büyüteç sürümü 2560x1600; ikisi de aynı çekimden, Chrome'un kendi webp kodlayıcısıyla q82.",
  "origin": "https://github.com/ubeydgencer/mil-pusulasi",
- "captured": "2026-10-14",
- "method": "headless Chrome CDP Page.captureScreenshot (yerel dist/)",
- "viewport": "1280x800 @1x",
- "output": "640x400 webp q76",
+ "captured": "2026-10-19",
+ "viewport": "1280x800 @2x",
  "generated": false,
- "edited": false
+ "edited": false,
+ "method": "headless Chrome CDP Page.captureScreenshot (yerel)",
+ "output": "960x600 webp q82",
+ "full": "mil-pusulasi-2560.webp"
 }

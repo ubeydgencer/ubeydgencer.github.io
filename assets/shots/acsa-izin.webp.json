@@ -1,0 +1,11 @@
+{
+ "prompt": "SOURCED, NOT GENERATED. Ubeyd Gencer'in dahili aracının ekran görüntüsü: Personel İzin Hesaplama (github.com/ubeydgencer/acsa-izin-hesaplama, main dalı). Herkese açık canlı adresi olmadığı (şirket içi giriş kapısının arkasında) için depodaki index.html, veri yüklenmeden yerel statik sunucuda açıldı; 19 Ekim 2026'da headless Chrome ile 1280x800 görüntü alanında, DPR 2, açık temada, ilk görüntü alanı olarak çekildi; kadraj dışında düzenleme yapılmadı. Küçük sürüm 960x600, büyüteç sürümü 2560x1600; ikisi de aynı çekimden, Chrome'un kendi webp kodlayıcısıyla q82.",
+ "origin": "https://github.com/ubeydgencer/acsa-izin-hesaplama",
+ "captured": "2026-10-19",
+ "viewport": "1280x800 @2x",
+ "generated": false,
+ "edited": false,
+ "method": "headless Chrome CDP Page.captureScreenshot (yerel)",
+ "output": "960x600 webp q82",
+ "full": "acsa-izin-2560.webp"
+}

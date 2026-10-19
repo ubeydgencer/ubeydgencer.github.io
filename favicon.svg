@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ubeyd Gencer">
-  <!-- Ayraç kartonu sarısı (--h-yellow) + cilt delikleri + mürekkep versaller.
+  <!-- Ayraç kartonu sarısı (h-yellow) + cilt delikleri + mürekkep versaller.
        16px'te delikler iki nokta olarak kalır, UG okunur; sarı zemin hem açık
        hem koyu sekme çubuğunda ayırt edilir. -->
   <rect width="64" height="64" fill="#E9A81C"/>

@@ -1,0 +1,11 @@
+{
+ "prompt": "SOURCED, NOT GENERATED. Ubeyd Gencer'in canlı projesinin ekran görüntüsü: https://akademik.zehragencer.com — 19 Ekim 2026'da headless Chrome ile 1280x800 görüntü alanında, DPR 2, açık temada, ilk görüntü alanı olarak çekildi; kadraj dışında düzenleme yapılmadı. Küçük sürüm 960x600, büyüteç sürümü 2560x1600; ikisi de aynı çekimden, Chrome'un kendi webp kodlayıcısıyla q82.",
+ "origin": "https://akademik.zehragencer.com",
+ "captured": "2026-10-19",
+ "viewport": "1280x800 @2x",
+ "generated": false,
+ "edited": false,
+ "method": "headless Chrome CDP Page.captureScreenshot",
+ "output": "960x600 webp q82",
+ "full": "gerede-tez-2560.webp"
+}
