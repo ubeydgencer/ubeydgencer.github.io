@@ -1,11 +1,17 @@
 {
-  "updated": "2026-10-19T11:53:18.137Z",
-  "total": 43,
+  "updated": "2026-10-20T10:49:41.279Z",
+  "total": 44,
   "collections": [
     {
       "title": "Bookmark",
-      "count": 13,
+      "count": 14,
       "items": [
+        {
+          "title": "Arena Leaderboard: Official AI Model Rankings & Benchmarks",
+          "link": "https://arena.ai/leaderboard",
+          "domain": "arena.ai",
+          "created": "2026-10-19T15:55:13.277Z"
+        },
         {
           "title": "Google AI Studio",
           "link": "https://aistudio.google.com/prompts/new_chat",
