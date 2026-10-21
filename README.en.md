@@ -92,14 +92,19 @@ Issues listed under “Elle bakılmalı” need manual attention. The script doe
 
 ## Outbound link clicks
 
-External links on the projects and blog pages go through [Dub](https://dub.co) short links (`ubyd.link/…`); clicks show up in the Dub dashboard by country, device, browser and referring page. No personal identity is recorded. Link text stays the same, and the original address is kept in each `<a>` tag's `data-dest` attribute.
+External links on the home, projects and all blog pages, in Turkish and English, go through our own Cloudflare Workers + D1 service at `ubyd.link/…`. Clicks appear in the [admin dashboard](https://admin.ubyd.link) by country, device, browser and referring domain. IP addresses, full User-Agent and full Referer values are not stored. Link text and opening behavior stay the same; the original destination is kept in `data-dest`. As of 22 October 2026, this covers 88 links to 38 distinct destinations across 18 pages.
 
 ```bash
-node scripts/dub-links.mjs --check                 # no key needed: any links not yet converted?
-DUB_API_KEY=dub_… node scripts/dub-links.mjs       # create missing short links from LINKS, update the HTML
+node --test scripts/short-links.test.mjs
+node scripts/short-links.mjs --check            # detect missing mappings or unconverted links
+node scripts/short-links.mjs --plan > /tmp/site-links.csv  # CSV for the dashboard import
+node scripts/short-links.mjs                    # apply mapped short links to HTML
+node scripts/short-links.mjs --check --verify   # verify live destinations with HEAD; no clicks counted
 ```
 
-Which addresses are tracked is set by the `LINKS` list in `scripts/dub-links.mjs`; the mapping lives in `scripts/dub-links.json` (no secrets). The free plan allows 25 new links a month, so an address not on the list is never converted automatically, only reported. The API key is never written to a file; the repository is public. Bookmarks, the home page and privacy pages are out of scope.
+For a new destination, preview and import the `--plan` CSV in the dashboard's import/export screen, skipping existing records. Suggested short names can be changed. Then add the canonical destination to `scripts/short-links.json` as `{ "key": "short-name", "shortLink": "https://ubyd.link/short-name" }`, run the script and live check, and commit the mapping with the HTML. Missing destinations stop the script before it writes any files. The dashboard stays owner-only; this public repository contains no token or new management API.
+
+The Dub API and its monthly link creation cap are gone; Cloudflare usage quotas still apply. The audio player is included, and `tts.py` reads its model link from the same mapping. Internal links, protocols such as `mailto:`/`tel:`, `<head>` and JSON-LD are preserved. Bookmarks (Raindrop sync) and privacy pages are outside this scan.
 
 ## Running locally
 

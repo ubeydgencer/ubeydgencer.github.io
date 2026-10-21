@@ -39,6 +39,8 @@ Tasarım bir **referans kılavuzu** olarak kurulu: tam doygun ayraç kartonu zem
 ├── scripts/
 │   ├── fetch-raindrop.mjs  yer imi senkronu
 │   ├── sync-counts.mjs     içerikten sayaç kontrolü ve güncelleme
+│   ├── short-links.mjs     dış bağlantı eşlemesi, CSV planı ve canlı kontrol
+│   ├── short-links.json    hedef → ubyd.link eşlemesi (sır içermez)
 │   ├── tts.py              blog seslendirme
 │   └── tts-sozluk.json     modelin yanlış okuduğu kelimeler
 └── .github/workflows/
@@ -102,14 +104,19 @@ Script; bölüm başlıklarını, filtre sayaçlarını, ana sayfa künyelerini,
 
 ## Dış bağlantı tıklamaları
 
-Projeler ve blog sayfalarındaki dış bağlantılar [Dub](https://dub.co) kısa linkleri (`ubyd.link/…`) üzerinden geçer; tıklamalar Dub panelinde ülke, cihaz, tarayıcı ve gelinen sayfa kırılımıyla görünür. Kişi kimliği tutulmaz. Bağlantı metni değişmez, asıl adres her `<a>` etiketinin `data-dest` özniteliğinde durur.
+Giriş, projeler ve bütün blog sayfalarının Türkçe/İngilizce sürümlerindeki dış bağlantılar kendi Cloudflare Workers + D1 servisimiz olan `ubyd.link/…` üzerinden geçer. Tıklamalar [yönetim panelinde](https://admin.ubyd.link) ülke, cihaz, tarayıcı ve yönlendiren alan adı kırılımıyla görünür. IP, tam User-Agent ve tam Referer tutulmaz. Bağlantı metni ve açılma davranışı değişmez; asıl adres `data-dest` özniteliğinde durur. 22 Ekim 2026 itibarıyla 18 sayfada 88 dış bağlantı, 38 farklı hedef kapsamdadır.
 
 ```bash
-node scripts/dub-links.mjs --check                 # anahtarsız: çevrilmemiş bağlantı var mı
-DUB_API_KEY=dub_… node scripts/dub-links.mjs       # LINKS'teki eksik kısa linkleri oluştur, HTML'i güncelle
+node --test scripts/short-links.test.mjs
+node scripts/short-links.mjs --check            # eksik eşleme / çevrilmemiş bağlantı kontrolü
+node scripts/short-links.mjs --plan > /tmp/site-links.csv  # yeni hedefleri panel için CSV'ye çıkar
+node scripts/short-links.mjs                    # eşlemedeki linkleri HTML'e uygula
+node scripts/short-links.mjs --check --verify   # canlı hedefleri HEAD ile doğrula; tıklama sayılmaz
 ```
 
-Hangi adresin takip edileceği `scripts/dub-links.mjs` içindeki `LINKS` listesinde; eşleme `scripts/dub-links.json`'da (gizli bilgi içermez). Ücretsiz plan ayda 25 yeni link verdiği için listede olmayan adres kendiliğinden kısa linke çevrilmez, yalnızca raporlanır. API anahtarı hiçbir dosyaya yazılmaz; depo herkese açık. Yer imleri, ana sayfa ve gizlilik sayfaları kapsam dışıdır.
+Yeni hedef eklerken önce `--plan` çıktısını panelin **İçe / dışa aktar** ekranında önizleyip içe aktarın (var olanları atla). CSV'deki kısa ad önerisini değiştirebilirsiniz. Ardından `scripts/short-links.json`'a kanonik hedef adresini anahtar olarak, `{ "key": "kisa-ad", "shortLink": "https://ubyd.link/kisa-ad" }` kaydını ekleyin; betiği ve canlı kontrolü çalıştırıp HTML ile eşlemeyi birlikte commit edin. Eksik hedef varsa betik dosya yazmadan durur. Yönetim paneli yalnız sahibine açık kalır; bu herkese açık repoda token veya yeni bir yönetim API'si yoktur.
+
+Dub API'si ve aylık yeni link sınırı kaldırıldı; Cloudflare'ın kullanım kotaları geçerlidir. Dinleme bloğu da kapsamdadır; `tts.py` model bağlantısını aynı eşlemeden okur. Site içi bağlantılar, `mailto:`/`tel:` gibi protokoller, `<head>` ve JSON-LD değiştirilmez. Yer imleri (Raindrop senkronu) ile gizlilik sayfaları bu taramanın dışındadır.
 
 ## Yazıların sesli sürümü
 

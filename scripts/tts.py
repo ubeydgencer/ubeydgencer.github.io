@@ -23,6 +23,7 @@ Model: antalia-mini, Apache-2.0 · https://huggingface.co/cloud0day3/antalia-min
 
 import argparse
 import hashlib
+from html import escape
 import json
 import re
 import sys
@@ -37,6 +38,7 @@ AUDIO = ROOT / "assets" / "audio"
 SOZLUK = Path(__file__).resolve().parent / "tts-sozluk.json"
 SITE = "https://ubeydgencer.com"
 MODEL_URL = "https://huggingface.co/cloud0day3/antalia-mini"
+SHORT_LINKS = ROOT / "scripts" / "short-links.json"
 
 # Bunlardan biri değişirse bütün sesler yeniden üretilir (özete girerler).
 AYAR = {
@@ -103,6 +105,8 @@ def iso_sure(sn):
 
 def blok(ad, h, sn):
     src = f"/assets/audio/{ad}.mp3"
+    # Oynatıcı yeniden üretilirken dış bağlantı takibi korunur; API anahtarı gerekmez.
+    model_link = json.loads(SHORT_LINKS.read_text(encoding="utf-8"))[MODEL_URL]["shortLink"]
     return f"""    {BAS}
     <div class="listen" data-listen data-tts="{h}">
       <div class="listen__bar">
@@ -114,7 +118,7 @@ def blok(ad, h, sn):
         <span class="listen__time machine"><span data-now>0:00</span> / {sure_metni(sn)}</span>
         <button type="button" class="listen__rate" data-rate aria-label="Oynatma hızı: 1×">1×</button>
       </div>
-      <p class="listen__note machine">Sentetik ses · <a href="{MODEL_URL}" rel="noopener">antalia-mini</a> ile okundu</p>
+      <p class="listen__note machine">Sentetik ses · <a href="{escape(model_link, quote=True)}" data-dest="{MODEL_URL}" rel="noopener">antalia-mini</a> ile okundu</p>
       <audio preload="none" src="{src}" data-audio></audio>
     </div>
     {SON}
