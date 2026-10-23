@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-22T11:00:27.637Z",
-  "total": 44,
+  "updated": "2026-10-23T10:53:57.159Z",
+  "total": 45,
   "collections": [
     {
       "title": "Bookmark",
@@ -220,8 +220,14 @@
     },
     {
       "title": "Wish List",
-      "count": 10,
+      "count": 11,
       "items": [
+        {
+          "title": "LG Soundbar S70TY | LG Türkiye",
+          "link": "https://www.lg.com/tr/sound-bar/s70ty/",
+          "domain": "lg.com",
+          "created": "2026-10-23T07:59:50.030Z"
+        },
         {
           "title": "Osmo Action 6 - Mehr Format. Weniger Kompromiss. - DJI Deutschland",
           "link": "https://www.dji.com/global/osmo-action-6?site=brandsite&from=insite_search",
