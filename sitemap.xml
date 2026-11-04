@@ -178,4 +178,16 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix" />
+    <lastmod>2026-11-04</lastmod><changefreq>yearly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix" />
+    <lastmod>2026-11-04</lastmod><changefreq>yearly</changefreq><priority>0.6</priority>
+  </url>
 </urlset>

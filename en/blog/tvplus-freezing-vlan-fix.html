@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fixing TV+ freezes behind GL.iNet with VLANs — Ubeyd Gencer</title>
+<meta name="description" content="The settings I tried for TV+ freezes behind an MT3000, the test that narrowed the problem down, and the port tables for carrying two networks over one cable with TP-Link switches." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Fixing TV+ freezes behind GL.iNet with VLANs" />
+<meta property="og:description" content="The settings I tried for TV+ freezes behind an MT3000, the test that narrowed the problem down, and the port tables for carrying two networks over one cable with TP-Link switches." />
+<meta property="og:url" content="https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-11-04" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="Fixing TV+ freezes behind GL.iNet with VLANs" />
+<meta name="twitter:description" content="The settings I tried for TV+ freezes behind an MT3000, the test that narrowed the problem down, and the port tables for carrying two networks over one cable with TP-Link switches." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" href="/favicon.ico?v=20261019" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261019" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Fixing TV+ freezes behind GL.iNet with VLANs","description":"The settings I tried for TV+ freezes behind an MT3000, the test that narrowed the problem down, and the port tables for carrying two networks over one cable with TP-Link switches.","datePublished":"2026-11-04","dateModified":"2026-11-04","inLanguage":"en","url":"https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/en/blog/"}}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css?v=20261015" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+<style>
+.vlan-wrap{max-width:100%;overflow-x:auto;grid-column:2/-1}.vlan-table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.82rem;line-height:1.5}.vlan-table caption{text-align:left;font-weight:700;padding:.7rem 0}.vlan-table th,.vlan-table td{text-align:left;border-bottom:1px solid var(--rule-strong);padding:.65rem .55rem;white-space:nowrap}.vlan-table thead{border-top:2px solid currentColor}.vlan-key{grid-column:2/-1;margin-top:.5rem}.vlan-diagram{grid-column:2/-1;min-width:0;margin:1rem 0}.vlan-diagram svg{width:100%;height:auto;display:block}.vlan-diagram figcaption{margin-top:.8rem;line-height:1.8}@media(max-width:760px){.vlan-wrap,.vlan-key,.vlan-diagram{grid-column:1/-1}.vlan-table{font-size:.72rem}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERENCE MANUAL · REVISION 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Sections">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/en"><span>1 · Introduction</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/en/projects"><span>2 · Projects</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/en/bookmarks"><span>3 · Bookmarks</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/en/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Theme">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Theme</span>
+  </button>
+  <a class="ctl" href="/blog/tvplus-donma-vlan-cozumu" hreflang="tr" title="Türkçe sürüme geç">TR</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+<div class="folio"><div class="folio__set"><span class="machine">Section 4</span><span class="machine">Blog · 4.1.7</span></div><div class="folio__set"><span class="machine"><time datetime="2026-11-04">4 November 2026</time></span><span class="machine">6 min read</span></div></div><div class="full"><h1 class="display display--sm">Fixing TV+ freezes behind GL.iNet with VLANs</h1><p class="machine" style="margin-top:.9rem">Network note · MT3000 · 802.1Q VLAN</p></div>
+
+<h2 class="head">One stream, two networks<small>§1</small></h2>
+<div class="prose lede"><p>I wanted my home devices behind a GL.iNet MT3000, but Turkcell TV+ kept freezing on that connection. The working solution was to use two managed switches to carry a separate modem network over the existing cable to the TV box.</p></div>
+<div class="prose"><p>These are my notes from 3 November 2026. Freezing stopped after I completed the VLAN connection. I did not establish the exact mechanism that caused the problem on the path through the MT3000.</p></div>
+<h2 class="head">The original path<small>§2</small></h2>
+<div class="prose"><p>The connection ran from a ZTE H3600 V9 modem through the MT3000, then a TL-SG105PE and a TL-SG105E. There was also an older switch before the TV+ box. GL.iNet handed out <code>192.168.8.x</code> addresses; the modem used <code>192.168.1.x</code>.</p><p>The modem and TV box were in different places. Running a new direct cable all the way to the TV box was impractical, so I needed to use the existing route.</p></div>
+<h2 class="head">Settings I tried<small>§3</small></h2>
+<div class="prose"><p>I restarted the modem and TV box, disabled Network Acceleration on the MT3000, and removed the last old switch. Freezing continued. I then enabled IGMP Snooping, first with version 3 and then version 2. Neither test fixed it.</p><p>The router reported 1000 Mbps full duplex on both WAN and LAN. No VPN tunnel was configured. Negotiated speed does not prove the absence of packet loss, but there was no obvious speed downgrade in the panel.</p><p>I did not capture packets to establish how the stream was transported. Multicast handling was a possibility I tested, rather than a confirmed diagnosis. These results did not prove a defective router or a particular firmware bug.</p></div>
+<h2 class="head">The useful comparison<small>§4</small></h2>
+<div class="prose"><p>The modem and MT3000 were next to each other. I temporarily moved the cable feeding the switch chain from the router to a free modem LAN port. With the old final switch also removed, freezing stopped.</p><p>I put the MT3000 back into the path while leaving the old switch out. After the TV box restarted, freezing returned. This narrowed the investigation to the path through the MT3000; it did not distinguish the precise feature, cable or port responsible.</p><p>I wanted to keep GL.iNet for the home network. The compromise was an exception for TV+: other devices would remain behind the router, while TV+ would get a separate path to the modem.</p></div>
+<h2 class="head">A separate path over the same cable<small>§5</small></h2>
+<div class="prose"><p>Both switches supported 802.1Q configuration. I kept the home network on VLAN 1 and created VLAN 20 for TV+. <strong>20 is a locally chosen VLAN ID for this setup.</strong> It is not a service VLAN ID supplied by Turkcell.</p><p>The modem LAN1-to-MT3000-WAN cable stayed in place. I added a cable from a spare modem LAN port to port 2 of the first switch. The existing inter-switch cable then carried the home and modem networks in separate VLANs.</p></div>
+<figure class="vlan-diagram"><svg viewBox="0 0 760 350" role="img" aria-labelledby="network-title network-desc"><title id="network-title">Separate home and TV+ networks</title><desc id="network-desc">The modem feeds VLAN 1 through GL.iNet and VLAN 20 via SG105PE port 2. Both VLANs cross the link from SG105PE port 3 to SG105E port 5. TV+ uses SG105E port 2.</desc><g fill="none" stroke="currentColor" stroke-width="2"><rect x="15" y="25" width="175" height="55"/><rect x="265" y="25" width="175" height="55"/><path d="M190 52H265"/><path d="M352 80V145"/><rect x="265" y="145" width="175" height="65"/><path stroke-dasharray="7 5" d="M100 80V177H265"/><path d="M440 167H560M440 187H560"/><rect x="560" y="145" width="185" height="65"/><path d="M605 210V265H490M700 210V300H490"/></g><g fill="currentColor" font-family="system-ui,sans-serif" font-size="15" text-anchor="middle"><text x="102" y="58">ZTE H3600 V9</text><text x="352" y="58">GL.iNet MT3000</text><text x="352" y="171">TL-SG105PE</text><text x="352" y="194" font-size="12">P1: VLAN 1 · P2: VLAN 20</text><text x="653" y="171">TL-SG105E</text><text x="653" y="194" font-size="12">P5: VLAN 1 + VLAN 20</text><text x="222" y="39" font-size="12">LAN1</text><text x="394" y="118" font-size="12">Home network</text><text x="166" y="165" font-size="12">LAN → P2</text><text x="500" y="137" font-size="12">Existing cable</text><text x="500" y="231" font-size="12">P3 ↔ P5</text><text x="415" y="270">TV+ · P2 · VLAN 20</text><text x="403" y="305">Other devices · VLAN 1</text></g></svg><figcaption class="machine">One cable, two VLANs. Dashed line: added modem cable.</figcaption></figure>
+<div class="prose"><p>VLAN 20 travels tagged between switches and untagged on the modem and TV+ ports. PVID 20 assigns untagged incoming traffic on those end ports to the TV+ VLAN. The home network remains untagged VLAN 1 on the inter-switch link.</p></div>
+<h2 class="head">First switch: TL-SG105PE<small>§6</small></h2>
+<div class="prose"><p>Port 2 is dedicated to the added modem connection. GL.iNet, Deco and Hue stay on VLAN 1.</p></div>
+<div class="vlan-wrap" role="region" aria-label="TL-SG105PE · port membership" tabindex="0"><table class="vlan-table"><caption>TL-SG105PE · port membership</caption><thead><tr><th scope="col">Port</th><th scope="col">Connection</th><th scope="col">VLAN 1</th><th scope="col">VLAN 20</th><th scope="col">PVID</th></tr></thead><tbody><tr><th scope="row">1</th><td>GL.iNet LAN</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">2</th><td>Turkcell modem LAN</td><td>—</td><td>U</td><td>20</td></tr><tr><th scope="row">3</th><td>TL-SG105E</td><td>U</td><td>T</td><td>1</td></tr><tr><th scope="row">4</th><td>Deco X50 PoE</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">5</th><td>Hue Bridge</td><td>U</td><td>—</td><td>1</td></tr></tbody></table></div><p class="machine vlan-key">U: Untagged · T: Tagged · —: Not a member</p>
+<h2 class="head">Second switch: TL-SG105E<small>§7</small></h2>
+<div class="prose"><p>I removed the TV+ port, port 2, from VLAN 1 and made it a member of VLAN 20 only. The Mac mini, Deco X20 and Home Assistant remain on the home network.</p></div>
+<div class="vlan-wrap" role="region" aria-label="TL-SG105E · port membership" tabindex="0"><table class="vlan-table"><caption>TL-SG105E · port membership</caption><thead><tr><th scope="col">Port</th><th scope="col">Connection</th><th scope="col">VLAN 1</th><th scope="col">VLAN 20</th><th scope="col">PVID</th></tr></thead><tbody><tr><th scope="row">1</th><td>Mac mini</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">2</th><td>Turkcell TV+</td><td>—</td><td>U</td><td>20</td></tr><tr><th scope="row">3</th><td>Deco X20</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">4</th><td>Home Assistant</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">5</th><td>TL-SG105PE</td><td>U</td><td>T</td><td>1</td></tr></tbody></table></div><p class="machine vlan-key">U: Untagged · T: Tagged · —: Not a member</p>
+<div class="prose"><p>I enabled 802.1Q on both switches, saved the VLAN memberships and set port 2 on each switch to PVID 20. <strong>I connected the additional modem cable only after that separation was configured.</strong> The modem and GL.iNet DHCP servers needed to stay in separate broadcast domains.</p></div>
+<h2 class="head">What worked<small>§8</small></h2>
+<div class="prose"><p>After connecting the cable and restarting TV+, the stream ran without freezing. TV+ now reaches the modem through the switches and bypasses GL.iNet routing and filtering. Other devices still use GL.iNet.</p><p>The expected addressing is <code>192.168.1.x</code> for TV+ and <code>192.168.8.x</code> for home devices. I did not independently verify the new TV+ lease in the modem panel: its session had expired. The observed result was that freezing stopped after the connection was completed, rather than a long-term performance measurement.</p><p>Network Acceleration remained disabled and IGMP Snooping remained enabled with version 2. Those settings had not fixed the problem on their own. Since the TV+ path now bypasses router forwarding, I do not credit them for the result.</p></div>
+<h2 class="head">The next expansion<small>§9</small></h2>
+<div class="prose"><p>I have ordered a TL-SG108E to add more ports and plan to move the TL-SG105E to the TV unit. TV+ will stay on the modem VLAN, with the PS4, Apple TV and Philips TV on the home network. That expansion has not been implemented; the tables above document the working two-switch setup.</p><p>The most useful step was the comparison test. Temporarily bypassing the router identified the path associated with freezing. VLANs then let me take only TV+ off that path while keeping the existing cable.</p></div>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/en/blog/">Section 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Reference manual · Rev. 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js?v=20261015" defer></script>
+</body>
+</html>

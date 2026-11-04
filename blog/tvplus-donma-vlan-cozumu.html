@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr" data-board="grass">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GL.iNet arkasında TV+ donmasını VLAN ile çözmek — Ubeyd Gencer</title>
+<meta name="description" content="MT3000 arkasında takılan TV+ için denediğim ayarlar, sonucu değiştiren bağlantı testi ve iki TP-Link switch üzerinde aynı kabloda iki ayrı ağ kurmanın port tabloları." />
+<meta name="author" content="Ubeyd Gencer" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#3C7429" />
+<link rel="canonical" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+<link rel="alternate" hreflang="tr" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+<link rel="alternate" hreflang="en" href="https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix" />
+<link rel="alternate" hreflang="x-default" href="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="GL.iNet arkasında TV+ donmasını VLAN ile çözmek" />
+<meta property="og:description" content="MT3000 arkasında takılan TV+ için denediğim ayarlar, sonucu değiştiren bağlantı testi ve iki TP-Link switch üzerinde aynı kabloda iki ayrı ağ kurmanın port tabloları." />
+<meta property="og:url" content="https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu" />
+<meta property="og:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:site_name" content="Ubeyd Gencer" />
+<meta property="article:published_time" content="2026-11-04" />
+<meta property="article:author" content="Ubeyd Gencer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@UbeydGencer" />
+<meta name="twitter:creator" content="@UbeydGencer" />
+<meta name="twitter:title" content="GL.iNet arkasında TV+ donmasını VLAN ile çözmek" />
+<meta name="twitter:description" content="MT3000 arkasında takılan TV+ için denediğim ayarlar, sonucu değiştiren bağlantı testi ve iki TP-Link switch üzerinde aynı kabloda iki ayrı ağ kurmanın port tabloları." />
+<meta name="twitter:image" content="https://ubeydgencer.com/ubeydgencer.jpg" />
+
+<link rel="icon" href="/favicon.ico?v=20261019" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261019" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"GL.iNet arkasında TV+ donmasını VLAN ile çözmek","description":"MT3000 arkasında takılan TV+ için denediğim ayarlar, sonucu değiştiren bağlantı testi ve iki TP-Link switch üzerinde aynı kabloda iki ayrı ağ kurmanın port tabloları.","datePublished":"2026-11-04","dateModified":"2026-11-04","inLanguage":"tr","url":"https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu","author":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"publisher":{"@type":"Person","name":"Ubeyd Gencer","url":"https://ubeydgencer.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu"},"isPartOf":{"@type":"Blog","name":"Blog — Ubeyd Gencer","url":"https://ubeydgencer.com/blog/"}}</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCQFS30M5E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SCQFS30M5E');</script>
+
+<link rel="preload" href="/assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/ebgaramond-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<link rel="stylesheet" href="/assets/manual.css?v=20261015" />
+<script>(function(){var r=document.documentElement;
+var q=(location.search.match(/[?&]theme=(dark|light)/)||[])[1];
+var t;try{t=q||localStorage.getItem('theme');}catch(e){t=q;}
+var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+r.classList.toggle('dark',dark);
+var H={yellow:[233,168,28],orange:[185,79,20],teal:[15,113,118],grass:[60,116,41]};
+function lin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function lum(p){return 0.2126*lin(p[0])+0.7152*lin(p[1])+0.0722*lin(p[2]);}
+window.solveLeaf=function(){
+var d=r.classList.contains('dark');
+var b=H['grass'];if(d){b=[b[0]*0.38,b[1]*0.38,b[2]*0.38];}
+var leaf=d?[20,18,16]:[246,241,230],target=d?0.014:0.735;
+var lb=lum(b),ll=lum(leaf),lo=0,hi=1,mid,L;
+/* Hedef ulaşılabilir aralığın dışına düşerse çözüm 0 veya 1'e çöker ve
+   yaprak tümden kaybolur; bandı aralığın içine sıkıştır. */
+var min=Math.min(lb,ll),max=Math.max(lb,ll),pad=(max-min)*0.08;
+if(target<min+pad)target=min+pad;if(target>max-pad)target=max-pad;
+var up=ll>lb;
+for(var i=0;i<22;i++){mid=(lo+hi)/2;
+L=lum([leaf[0]*mid+b[0]*(1-mid),leaf[1]*mid+b[1]*(1-mid),leaf[2]*mid+b[2]*(1-mid)]);
+if(up?L<target:L>target){lo=mid;}else{hi=mid;}}
+var a=(lo+hi)/2;if(a<0.2)a=0.2;if(a>0.97)a=0.97;
+r.style.setProperty('--leaf-a',a.toFixed(4));
+if(d)r.style.setProperty('--board-face','rgb('+b.map(Math.round).join(' ')+')');
+else r.style.removeProperty('--board-face');};
+window.solveLeaf();})();</script>
+<style>
+.vlan-wrap{max-width:100%;overflow-x:auto;grid-column:2/-1}.vlan-table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.82rem;line-height:1.5}.vlan-table caption{text-align:left;font-weight:700;padding:.7rem 0}.vlan-table th,.vlan-table td{text-align:left;border-bottom:1px solid var(--rule-strong);padding:.65rem .55rem;white-space:nowrap}.vlan-table thead{border-top:2px solid currentColor}.vlan-key{grid-column:2/-1;margin-top:.5rem}.vlan-diagram{grid-column:2/-1;min-width:0;margin:1rem 0}.vlan-diagram svg{width:100%;height:auto;display:block}.vlan-diagram figcaption{margin-top:.8rem;line-height:1.8}@media(max-width:760px){.vlan-wrap,.vlan-key,.vlan-diagram{grid-column:1/-1}.vlan-table{font-size:.72rem}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">İçeriğe geç</a>
+
+<div class="binding" aria-hidden="true">
+  <span class="punch-hole"></span>
+  <span class="spine">UBEYD GENCER · REFERANS KILAVUZU · SÜRÜM 2026.08</span>
+  <span class="punch-hole"></span>
+</div>
+
+<nav class="rail" aria-label="Bölümler">
+  <ul style="display:contents">
+    <li style="--extent:1"><a class="tab t-yellow" href="/"><span>1 · Giriş</span></a></li>
+    <li style="--extent:3.1"><a class="tab t-orange" href="/projects"><span>2 · Projeler</span></a></li>
+    <li style="--extent:2.4"><a class="tab t-teal" href="/bookmarks"><span>3 · Yer İmleri</span></a></li>
+    <li style="--extent:0.8"><a class="tab t-grass" href="/blog/" aria-current="page"><span>4 · Blog</span></a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button class="ctl" id="themeHinge" type="button" aria-pressed="false" title="Tema">
+    <svg data-mode="light" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10l2.1 2.1m0-14.2l-2.1 2.1m-10 10l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg data-mode="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <span class="vh">Tema</span>
+  </button>
+  <a class="ctl" href="/en/blog/tvplus-freezing-vlan-fix" hreflang="en" title="Switch to English">EN</a>
+</div>
+
+<main class="leaf" id="main">
+  <article class="sheet">
+<div class="folio"><div class="folio__set"><span class="machine">Bölüm 4</span><span class="machine">Blog · 4.1.7</span></div><div class="folio__set"><span class="machine"><time datetime="2026-11-04">4 Kasım 2026</time></span><span class="machine">7 dk okuma</span></div></div><div class="full"><h1 class="display display--sm">GL.iNet arkasında TV+ donmasını VLAN ile çözmek</h1><p class="machine" style="margin-top:.9rem">Ağ notu · MT3000 · 802.1Q VLAN</p></div>
+
+<h2 class="head">Bir yayın, iki ağ<small>§1</small></h2>
+<div class="prose lede"><p>Evde bütün cihazları GL.iNet MT3000 üzerinden yönetmek istiyordum. Turkcell TV+ ise bu bağlantıda takılıyordu. Çözüm, TV+’a kadar yeni kablo çekmek yerine iki yönetilebilir switch üzerinde mevcut kabloyu iki ayrı ağ için kullanmak oldu.</p></div>
+<div class="prose"><p>Bu yazı 3 Kasım 2026’da yaptığım denemelerin kaydı. VLAN bağlantısını tamamladıktan sonra yayındaki takılma kesildi. MT3000 üzerinden geçen yolda sorunu tetikleyen kesin mekanizmayı ise saptamadım.</p></div>
+<h2 class="head">Başlangıçtaki güzergâh<small>§2</small></h2>
+<div class="prose"><p>İnternet ZTE H3600 V9 modemden GL.iNet MT3000’e, oradan TL-SG105PE ve TL-SG105E switchlerine gidiyordu. TV+’tan önce eski bir switch daha vardı. GL.iNet ev ağına <code>192.168.8.x</code>, Turkcell modem ise kendi ağına <code>192.168.1.x</code> adresleri dağıtıyordu.</p><p>Modem ile TV+ aynı yerde değildi. TV+ kutusuna doğrudan modemden yeni bir kablo çekmek pratik değildi; elimdeki güzergâhı kullanmam gerekiyordu.</p></div>
+<h2 class="head">Denediğim ayarlar<small>§3</small></h2>
+<div class="prose"><p>Önce kutuyu ve modemi yeniden başlattım. MT3000’de Network Acceleration’ı kapattım. Son eski switch’i çıkardım. Takılma devam etti. Daha sonra IGMP Snooping’i açıp önce sürüm 3, ardından sürüm 2 ile denedim; sonuç değişmedi.</p><p>Panelde MT3000’in WAN ve LAN bağlantıları 1000 Mbps full duplex görünüyordu. Tanımlı VPN tüneli de yoktu. Bağlantı hızı tek başına paket kaybı olmadığını kanıtlamaz; ama panelde görünen belirgin bir hız düşüşü bulamadım.</p><p>Bu denemelerden “multicast kesin bozuk” veya “router arızalı” sonucunu çıkarmadım. Yayının taşıma biçimini paket yakalayarak doğrulamadım. IGMP, bu aşamada sınadığım bir olasılıktı.</p></div>
+<h2 class="head">Sonucu değiştiren test<small>§4</small></h2>
+<div class="prose"><p>Modem ile MT3000 yan yanaydı. Switch’e giden kablonun router tarafındaki ucunu geçici olarak modemin boş LAN portuna taşıdım. Eski son switch de devre dışındayken bu bağlantıda takılma kesildi.</p><p>Sonra eski switch’i dışarıda tutup GL.iNet’i yeniden araya aldım. TV+ yeniden başladı ve takılma geri geldi. Bu karşılaştırma, incelemeyi MT3000 üzerinden geçen yola daralttı. Tek başına hangi yazılım özelliğinin, kablonun veya portun sorumlu olduğunu ayırmadı.</p><p>GL.iNet’i kullanmaya devam etmek istiyordum. Bu yüzden TV+ için bir istisna oluşturdum: diğer cihazlar GL.iNet arkasında kalacak, TV+ modem ağına ayrı bir yoldan ulaşacaktı.</p></div>
+<h2 class="head">Mevcut kabloda ayrı yol<small>§5</small></h2>
+<div class="prose"><p>İki switch de 802.1Q VLAN ayarlarına sahipti. Ev ağını VLAN 1’de bıraktım; TV+ için VLAN 20 oluşturdum. <strong>20 numarasını ev içindeki bu bağlantı için seçtim.</strong> Bu, Turkcell’den öğrenilmiş bir servis VLAN numarası değil.</p><p>ZTE’nin LAN1 portundan MT3000’in WAN portuna giden kablo yerinde kaldı. Modemin boş bir LAN portundan ilk switch’in port 2’sine ek kablo çektim. Switchler arasındaki mevcut kablo artık ev ağıyla TV+ ağını birlikte, ayrı VLAN’larda taşıyordu.</p></div>
+<figure class="vlan-diagram"><svg viewBox="0 0 760 350" role="img" aria-labelledby="network-title network-desc"><title id="network-title">VLAN ile ayrılmış ev ve TV+ ağı</title><desc id="network-desc">Modem GL.iNet üzerinden VLAN 1’e, ayrı kabloyla SG105PE port 2 üzerinden VLAN 20’ye bağlanır. İki VLAN SG105PE port 3 ile SG105E port 5 arasında taşınır. TV+ SG105E port 2’dedir.</desc><g fill="none" stroke="currentColor" stroke-width="2"><rect x="15" y="25" width="175" height="55"/><rect x="265" y="25" width="175" height="55"/><path d="M190 52H265"/><path d="M352 80V145"/><rect x="265" y="145" width="175" height="65"/><path stroke-dasharray="7 5" d="M100 80V177H265"/><path d="M440 167H560M440 187H560"/><rect x="560" y="145" width="185" height="65"/><path d="M605 210V265H490M700 210V300H490"/></g><g fill="currentColor" font-family="system-ui,sans-serif" font-size="15" text-anchor="middle"><text x="102" y="58">ZTE H3600 V9</text><text x="352" y="58">GL.iNet MT3000</text><text x="352" y="171">TL-SG105PE</text><text x="352" y="194" font-size="12">P1: VLAN 1 · P2: VLAN 20</text><text x="653" y="171">TL-SG105E</text><text x="653" y="194" font-size="12">P5: VLAN 1 + VLAN 20</text><text x="222" y="39" font-size="12">LAN1</text><text x="394" y="118" font-size="12">Ev ağı</text><text x="166" y="165" font-size="12">LAN → P2</text><text x="500" y="137" font-size="12">Mevcut kablo</text><text x="500" y="231" font-size="12">P3 ↔ P5</text><text x="415" y="270">TV+ · P2 · VLAN 20</text><text x="403" y="305">Diğer cihazlar · VLAN 1</text></g></svg><figcaption class="machine">Aynı kablo, iki ayrı VLAN. Kesik çizgi: ek modem kablosu.</figcaption></figure>
+<div class="prose"><p>Switchler arasındaki bağlantıda VLAN 20 paketleri etiketli, yani <em>tagged</em> taşınıyor. Modeme ve TV+’a giden portlarda etiket kaldırılıyor: <em>untagged</em>. PVID ise bu uç portlara gelen etiketsiz paketleri VLAN 20’ye atıyor. Ev ağı switchler arasındaki bağlantıda etiketsiz VLAN 1 olarak kalıyor.</p></div>
+<h2 class="head">İlk switch: TL-SG105PE<small>§6</small></h2>
+<div class="prose"><p>Modemden gelen ek kabloyu yalnızca port 2’ye ayırdım. GL.iNet, Deco ve Hue bağlantıları VLAN 1’de kaldı.</p></div>
+<div class="vlan-wrap" role="region" aria-label="TL-SG105PE · port üyelikleri" tabindex="0"><table class="vlan-table"><caption>TL-SG105PE · port üyelikleri</caption><thead><tr><th scope="col">Port</th><th scope="col">Bağlantı</th><th scope="col">VLAN 1</th><th scope="col">VLAN 20</th><th scope="col">PVID</th></tr></thead><tbody><tr><th scope="row">1</th><td>GL.iNet LAN</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">2</th><td>Turkcell modem LAN</td><td>—</td><td>U</td><td>20</td></tr><tr><th scope="row">3</th><td>TL-SG105E</td><td>U</td><td>T</td><td>1</td></tr><tr><th scope="row">4</th><td>Deco X50 PoE</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">5</th><td>Hue Bridge</td><td>U</td><td>—</td><td>1</td></tr></tbody></table></div><p class="machine vlan-key">U: Untagged · T: Tagged · —: Üye değil</p>
+<h2 class="head">İkinci switch: TL-SG105E<small>§7</small></h2>
+<div class="prose"><p>TV+ port 2’deydi. Bu portu VLAN 1’den çıkardım; yalnızca VLAN 20’ye üye yaptım. Mac mini, Deco X20 ve Home Assistant ev ağında kaldı.</p></div>
+<div class="vlan-wrap" role="region" aria-label="TL-SG105E · port üyelikleri" tabindex="0"><table class="vlan-table"><caption>TL-SG105E · port üyelikleri</caption><thead><tr><th scope="col">Port</th><th scope="col">Bağlantı</th><th scope="col">VLAN 1</th><th scope="col">VLAN 20</th><th scope="col">PVID</th></tr></thead><tbody><tr><th scope="row">1</th><td>Mac mini</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">2</th><td>Turkcell TV+</td><td>—</td><td>U</td><td>20</td></tr><tr><th scope="row">3</th><td>Deco X20</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">4</th><td>Home Assistant</td><td>U</td><td>—</td><td>1</td></tr><tr><th scope="row">5</th><td>TL-SG105PE</td><td>U</td><td>T</td><td>1</td></tr></tbody></table></div><p class="machine vlan-key">U: Untagged · T: Tagged · —: Üye değil</p>
+<div class="prose"><p>Her iki switch’te 802.1Q VLAN’ı etkinleştirdim. Önce VLAN üyeliklerini, ardından iki switch’in de port 2’sinde PVID 20 değerini kaydettim. <strong>Modemden ilk switch’e gelen ek kabloyu ancak bu ayrım tamamlandıktan sonra taktım.</strong> Modem ve GL.iNet’in DHCP sunucularını aynı etiketsiz ağa bağlamak istemiyordum.</p></div>
+<h2 class="head">Bağlantı tamamlandıktan sonra<small>§8</small></h2>
+<div class="prose"><p>TV+ kutusunu yeniden başlatıp yayını açtım. Bu düzende takılma olmadı. TV+ artık switchler üzerinden modem ağına ulaşıyor; GL.iNet’in yönlendirme ve filtreleme işlemlerini atlıyor. Diğer cihazlar GL.iNet üzerinden çalışmayı sürdürüyor.</p><p>Beklenen adresleme TV+ için <code>192.168.1.x</code>, ev cihazları için <code>192.168.8.x</code>. TV+’ın yeni adresini modem panelinden ayrıca doğrulayamadım; o sırada panel oturumu kapanmıştı. Doğruladığım sonuç, bağlantıyı tamamladıktan sonra yayındaki takılmanın kesilmesi. Uzun süreli bir ölçüm sonucu çıkarmıyorum.</p><p>Network Acceleration kapalı, IGMP Snooping sürüm 2 ile açık kaldı. Bu ayarlar tek başlarına sorunu çözmemişti; TV+ artık router üzerinden yönlendirilmediği için onları çözümün nedeni olarak göstermiyorum.</p></div>
+<h2 class="head">Bir sonraki genişleme<small>§9</small></h2>
+<div class="prose"><p>Sonraki planım sekiz portlu bir switch eklemek ve TL-SG105E’yi TV ünitesine taşımak. Sipariş ettiğim model TL-SG108E. TV+ modem VLAN’ında kalırken PS4, Apple TV ve Philips TV ev ağına bağlanacak. Bu genişleme henüz uygulanmadı; yukarıdaki tablolar çalışan iki switchli düzeni anlatıyor.</p><p>Bu işten aklımda kalan, ayarlardan önce karşılaştırma testinin değeriydi. Router’ı geçici olarak aradan çıkarmak sorunun hangi yolda oluştuğunu gösterdi. VLAN ise mevcut kabloyu kullanarak o yoldan yalnızca TV+’ı ayırmamı sağladı.</p></div>
+
+      <div class="colophon">
+        <span class="machine">Ubeyd Gencer · İstanbul, Türkiye</span>
+        <a class="jump" href="/blog/">Bölüm 4 · Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="machine">Referans kılavuzu · Sürüm 2026.08</span>
+      </div>
+  </article>
+</main>
+<script src="/assets/manual.js?v=20261015" defer></script>
+</body>
+</html>

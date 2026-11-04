@@ -14,12 +14,13 @@ Site iki dillidir: Türkçe kök dizinde, İngilizce /en/ altında.
 - [Yer İmleri](https://ubeydgencer.com/bookmarks) · [Bookmarks (EN)](https://ubeydgencer.com/en/bookmarks)
 - [Blog](https://ubeydgencer.com/blog/) · [Blog (EN)](https://ubeydgencer.com/en/blog/)
 
-## Blog (6 yazı / 6 posts)
+## Blog (7 yazı / 7 posts)
 
 Yapım notları, kararlar ve hayatın içinden konular. / Build notes, decisions, and everyday subjects.
 
 Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/assets/audio/<yazı>.mp3` — [antalia-mini](https://huggingface.co/cloud0day3/antalia-mini) (Apache-2.0) ile üretildi. / Turkish posts have a synthetic-voice audio version, generated with antalia-mini.
 
+- **GL.iNet arkasında TV+ donmasını VLAN ile çözmek** (04.11.2026) — MT3000 arkasındaki TV+ takılmasını karşılaştırma testleriyle daraltıp TL-SG105PE ve TL-SG105E üzerinde ayrı modem VLAN’ı ile giderme deneyimi. Port üyelikleri, PVID değerleri ve doğrulama sınırları. [/blog/tvplus-donma-vlan-cozumu](https://ubeydgencer.com/blog/tvplus-donma-vlan-cozumu) · [EN](https://ubeydgencer.com/en/blog/tvplus-freezing-vlan-fix)
 - **Haberi okumadan dinlemek** (14.10.2026) — Türkçe haberleri sesli okuyan, sesi tamamen tarayıcıda üreten İstima Chrome eklentisinin yapım notu: Antalia-2 Mini modelinin WebAssembly ile tarayıcıya taşınması, Türk haber sitelerinden metni ayıklamak için yazılan kurallar, Chrome Web Mağazası'yla üç tur (çift manifest, geniş izin, anahtar kelime spam'i), ilk geri bildirim ve EMA Lightning katkısı, sunucusuz kalma sözünün 57 MB'lık bedeli. [/blog/istima](https://ubeydgencer.com/blog/istima) · [EN](https://ubeydgencer.com/en/blog/istima)
 - **Bolu'da bir hafta: Narven, Gölcük ve Bayezid Camii** (14.09.2026) — 29 Ağustos – 5 Eylül 2026 ailece Bolu. Narven'de orman, Gölcük Tabiat Parkı'nda nilüferler, ATV'yle toprak yollar, Bolu merkezde Bayezid Camii ve Gerede Yazıkara köyünün havadan görüntüsü. Fotoğraf ve sessiz video içerir. [/blog/bolu-narven-bir-hafta](https://ubeydgencer.com/blog/bolu-narven-bir-hafta) · [EN](https://ubeydgencer.com/en/blog/a-week-in-bolu)
 - **Yapay zekâyı çıkarınca daha iyi oldu** (13.09.2026) — 19 teknoloji yayınını tarayıp Türkçe gösteren tek dosyalık sayfanın yapım notu: API anahtarının çıkarılması, CORS engelleri ve proxy zinciri, DeepL'in tarayıcıdan çağrılamaması, ödeme duvarını makale sanıp çeviren hata, lügattaki işe yaramaz kelime elemesi ve yapay zekâ yerine çok kaynaklı doğrulamaya dayanan gündem özeti. [/blog/teknoloji-gunlugu](https://ubeydgencer.com/blog/teknoloji-gunlugu) · [EN](https://ubeydgencer.com/en/blog/turkish-tech-briefing)
