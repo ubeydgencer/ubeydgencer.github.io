@@ -65,7 +65,12 @@ def sozluk():
 
 def parcalar(html, kelimeler):
     """Okunacak metin, sırasıyla: [(metin, sonrasındaki sessizlik sn), ...]"""
-    art = BeautifulSoup(html, "html.parser").select_one("article")
+    page = BeautifulSoup(html, "html.parser")
+    narration = page.select_one("template[data-narration]")
+    if narration:
+        paragraphs = narration.get_text(strip=True).split("\n\n")
+        return [(paragraph, 0.20) for paragraph in paragraphs]
+    art = page.select_one("article")
     h1 = art.select_one("h1")
     out = [(h1.get_text(" ", strip=True), AYAR["pause_title"])]
     for el in art.select("h2.head, .prose p, .prose li"):
@@ -104,7 +109,7 @@ def iso_sure(sn):
 
 
 def blok(ad, h, sn):
-    src = f"/assets/audio/{ad}.mp3"
+    src = f"/assets/audio/{ad}.mp3?v={h}"
     # Oynatıcı yeniden üretilirken dış bağlantı takibi korunur; API anahtarı gerekmez.
     model_link = json.loads(SHORT_LINKS.read_text(encoding="utf-8"))[MODEL_URL]["shortLink"]
     return f"""    {BAS}
