@@ -28,7 +28,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Kırtasiye için bir sabah bülteni** (06.09.2026) — Yüz kırtasiye markasını tarayıp her sabah 09:00'da tek bildirim gönderen bir küratör. Gemini ile kuruldu; reklam ve spam yok, filtre kullanıcının belirlediği kalite eşiği. Otomasyonu iş yerine kişisel bir hobiye yöneltmek üzerine bir yapım notu. [/blog/kirtasiye-bulteni](https://ubeydgencer.com/blog/kirtasiye-bulteni) · [EN](https://ubeydgencer.com/en/blog/stationery-briefing)
 - **Sıfır bütçeyle bir asistan kurduk** (28.08.2026) — Bir takviye gıda markası için kurulan mikrobiyota asistanının yapım notu: kapsamın ürüne değil bilimsel alana çekilmesi, ücretsiz model katmanının dayattığı mimari, ikinci bir kod ajanıyla çalışmanın bedeli ve ücretsiz katman kuyruğa girdiğinde yedek model zinciriyle çözüm. [/blog/sifir-maliyetli-asistan](https://ubeydgencer.com/blog/sifir-maliyetli-asistan) · [EN](https://ubeydgencer.com/en/blog/zero-cost-assistant)
 
-## Projeler (35 — 24 canlı, 11 geliştirmede)
+## Projeler (36 — 25 canlı, 11 geliştirmede)
 
 ### Açsa Otomotiv / Açsa Otomotiv
 
@@ -61,6 +61,7 @@ Türkçe yazıların sentetik sesli sürümü var: `https://ubeydgencer.com/asse
 - **Teknoloji Günlüğü** — Ondokuz teknoloji yayınını tarayıp günün haberlerini Türkçe gösteren tek dosyalık sayfa. Haber kaynağına gitmeden Türkçe okuma modunda açılıyor, yanında o metnin lügatı çıkıyor. Sunucu, kurulum ve API anahtarı yok. (dahili / bağlantı yok)
 - **Zehra Gencer** — Tarif, akademik çalışma ve çiniyi tek çatıda toplayan dört siteli kişisel alan. Tarif defteri D1 üzerinde; e-posta koduyla korunan yönetim panelinden taslak/yayın akışı, fotoğraf yükleme ve JSON yedeği. Akademik site tez bulgularını etkileşimli grafiklerle iki dilde sunar. React, TypeScript, Cloudflare Pages, D1. [zehragencer.com](https://zehragencer.com)
 - **Günün Kaydı** — Kaynak bağlantıları ve tam metniyle günlük Türkçe sesli haber özeti. Haberler yerel Qwen modeliyle hazırlanır, ses Antalia/EMA ile CPU üzerinde üretilir; ücretli model API'si yok. Kaynak tarihi, kanıt ve gerçek ses süresi geçitlerinden geçmeyen bölüm yayımlanmaz. TypeScript, Cloudflare Workers, D1, Python. [gununkaydi.com](https://gununkaydi.com)
+- **İSTLED Elektronik** — Işıklı ikaz, siren ve araç ekipmanı üreten İSTLED için iki parçalı proje. Kurumsal site WordPress’ten kendi PHP uygulamasına taşındı; ürün ve yazı adresleri korundu, içerik kendi yönetim panelinden yönetiliyor. Servis paneli araç servis formlarını dijitale taşıyor: ekranda imza, SMS ile müşteri onayı, fotoğraf ve plakalı kısa bağlantıyla açılan yazdırılabilir müşteri nüshası. PHP, MySQL. [www.istled.com](https://www.istled.com) · [servis.istled.com](https://servis.istled.com)
 
 ### Uygulamalar & IoT / Applications & IoT
 

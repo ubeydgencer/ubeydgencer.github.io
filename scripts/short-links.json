@@ -103,6 +103,14 @@
     "key": "istima-chrome",
     "shortLink": "https://ubyd.link/istima-chrome"
   },
+  "https://www.istled.com/": {
+    "key": "istled",
+    "shortLink": "https://ubyd.link/istled"
+  },
+  "https://servis.istled.com/": {
+    "key": "istled-servis",
+    "shortLink": "https://ubyd.link/istled-servis"
+  },
   "https://www.kirogluhukuk.com/": {
     "key": "kiroglu",
     "shortLink": "https://ubyd.link/kiroglu"
